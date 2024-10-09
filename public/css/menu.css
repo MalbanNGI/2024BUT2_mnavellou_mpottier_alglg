@@ -1,0 +1,78 @@
+@font-face {
+    font-family: 'IntegralCF Regular';
+    src: url('../fonts/Fontspring-DEMO-integralcf-regular.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'IntegralCF Bold';
+    src: url('../fonts/Fontspring-DEMO-integralcf-bold.otf') format('opentype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'IntegralCF Regular Oblique';
+    src: url('../fonts/Fontspring-DEMO-integralcf-regularoblique.otf') format('opentype');
+    font-weight: normal;
+    font-style: oblique;
+}
+
+
+
+@font-face {
+    font-family: 'Satoshi-Bold';
+    src:url('../fonts/Satoshi-Bold.otf') format('opentype');
+    font-style: normal;
+}
+
+/* Add more font faces for italic styles, medium weight, etc. if needed */
+
+
+    /*font-family: 'IntegralCF Bold', Arial, sans-serif;*/
+
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+nav ul li {
+    display: inline-block;
+    margin: 0 15px;
+    color: white;
+    font-size: 36px;
+    cursor: pointer;
+    font-family: 'Satoshi-Bold', sans-serif;
+}
+
+#mainLOCFIT {
+    font-family: 'IntegralCF Bold', Arial, sans-serif;
+}
+
+/* Effet hover sur les éléments du menu */
+nav ul li:hover {
+    color: #f0a500;
+}
+
+nav {
+    margin-top: 40px;
+    
+}
+
+.compte-header, .panier-header {
+    max-width: 30px;
+    margin-top: 12.5px;
+    filter: invert()
+}
+
+li a {
+    list-style: none;
+    color: white;
+    text-decoration: none;
+}
+

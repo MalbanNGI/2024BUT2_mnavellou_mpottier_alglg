@@ -1,0 +1,24 @@
+.video {
+    position: relative;
+    width: 100%; /* Prend toute la largeur de l'écran */
+    height: 100vh; /* Prend toute la hauteur de la fenêtre visible */
+    max-height: 800px; /* Limite la hauteur à 800px */
+    overflow: hidden;
+    
+    
+}
+
+/* La vidéo en arrière-plan */
+.video video {  
+    filter: brightness(0.7);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%; /* Prend toute la largeur du conteneur */
+    height: 100%; /* Prend toute la hauteur du conteneur */
+    max-width: 1920px; /* Largeur maximale 1920px */
+    max-height: 750px; /* Hauteur maximale 800px */
+    object-fit: cover; /* S'adapte au conteneur sans déformer */
+    transform: translate(-50%, -50%); /* Centre la vidéo */
+    z-index: -1; /* Place la vidéo derrière le contenu */
+}

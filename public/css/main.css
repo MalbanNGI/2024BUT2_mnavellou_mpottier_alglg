@@ -1,0 +1,106 @@
+@font-face {
+    font-family: 'IntegralCF Regular';
+    src: url('../fonts/Fontspring-DEMO-integralcf-regular.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'IntegralCF Bold';
+    src: url('../fonts/Fontspring-DEMO-integralcf-bold.otf') format('opentype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'IntegralCF Regular Oblique';
+    src: url('../fonts/Fontspring-DEMO-integralcf-regularoblique.otf') format('opentype');
+    font-weight: normal;
+    font-style: oblique;
+}
+
+
+
+@font-face {
+    font-family: 'Satoshi-Bold';
+    src:url('../fonts/Satoshi-Bold.otf') format('opentype');
+    font-style: normal;
+}
+
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Satoshi-Bold', sans-serif;
+    background-color: #D9D9D9;
+}
+
+
+header, .texte {
+    position: relative;
+    z-index: 1; /* Au-dessus de la vidéo */
+    color: white;
+    
+}
+
+
+
+/* Header styling */
+
+
+
+/* Styles pour le texte */
+.texte {
+    margin-left: 50px;
+    margin-top: 10vh; /* Ajuste la distance par rapport au haut de l'écran */
+}
+
+.texte h1 {
+    font-size: 64px;
+    margin-bottom: 10px;
+    font-family: 'IntegralCF Bold', Arial, sans-serif;
+}
+
+.texte p {
+    font-size: 24px;
+}
+
+.btn-catalogue button {
+    margin: 20px auto;
+    padding: 10px 20px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border: none;
+    cursor: pointer;
+    font-size: 32px;
+    background-color: #198900;
+    color: white;
+    border-radius: 45px;
+    
+}
+
+/* Styles pour les informations */
+.publocfit {
+    display: flex;
+    justify-content: space-around;
+    color: white;
+}
+
+
+.main-para {
+    max-width: 500px;
+}
+
+.slogan {
+    font-size: 24px;
+}
+
+
+h3 {
+    font-size: 40px
+}
+
+.petit {
+    font-size: 16px;
+    color: #D9D9D9;
+    margin-top: -50px;
+}
