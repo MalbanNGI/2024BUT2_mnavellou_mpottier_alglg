@@ -9,6 +9,7 @@ app.get('/', function (req, res) {
     res.render('index');
 })
 
+
 app.use(function (req, res) {
     res.statut(404).render("404");
 })

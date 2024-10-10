@@ -43,6 +43,13 @@ header, .texte {
     
 }
 
+header {
+    position: absolute;
+    left: 50%;
+    right: 50%;
+    position: fixed;
+}
+
 
 
 /* Header styling */
@@ -52,7 +59,7 @@ header, .texte {
 /* Styles pour le texte */
 .texte {
     margin-left: 50px;
-    margin-top: 10vh; /* Ajuste la distance par rapport au haut de l'écran */
+    margin-top: 20vh; /* Ajuste la distance par rapport au haut de l'écran */
 }
 
 .texte h1 {
