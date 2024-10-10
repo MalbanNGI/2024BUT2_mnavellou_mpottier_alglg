@@ -85,7 +85,7 @@ header {
     
 }
 
-/* Styles pour les informations */
+
 .publocfit {
     display: flex;
     justify-content: space-around;
@@ -111,3 +111,94 @@ h3 {
     color: #D9D9D9;
     margin-top: -50px;
 }
+
+.banner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #198900;
+    height: 100px;
+}
+
+.banner h2 {
+    font-family: 'IntegralCF Bold', Arial, sans-serif;
+    color: white;
+    font-size: 36px;
+}
+.allProduct {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Centre les produits horizontalement */
+    margin-top: 30px;
+    gap: 20px; /* Espace entre les produits */
+}
+.rotor {
+    font-size: 30px;
+    margin-top: 30px;
+    text-align: center; /* Centrer le texte du rotor */
+}
+
+
+.product img {
+    max-width: 100%; /* Pour que l'image prenne toute la largeur du conteneur */
+    min-height: 300px;
+    object-fit: cover; /* Ajuste l'image à l'intérieur du conteneur sans la déformer */
+    border-radius: 25px;
+}
+
+.title-product {
+    font-size: 24px;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.information-subject {
+    margin-top: 10px;
+}
+
+.product {
+    flex: 1 1 calc(25% - 20px); /* Prend 25% de la largeur moins l'espace entre les produits */
+    box-sizing: border-box; /* Assure que padding/margin n'affecte pas la largeur */
+    max-width: 300px; /* Assure que les produits ne dépassent pas une certaine taille */
+    margin: 10px;
+    text-align: center;
+}
+
+.link-discover {
+    list-style: none;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+.link-discover {
+    color: white;
+}
+
+.btn-infos {
+    background-color: #EBB100;
+    border: none;
+    height: 30px;
+    width: 150px;
+    border-radius: 25px;
+    cursor: pointer;
+    border-radius: 45px;
+    margin-top: -20px;
+    transition: 1s;
+}
+
+.btn-infos:hover {
+    color: black;
+    background-color: #ffd000;
+    border: none;
+    transition: 1s;
+}
+
+.btn-infos:hover a {
+    color: black;
+    transition: 1s;
+}
+   
+   
+    
+
+    
