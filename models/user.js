@@ -13,7 +13,7 @@ async function getUserById (id) {
     });   
 };
 
-async function getUserById (name) {
+async function getUserByName (name) {
     sql = "SELECT * FROM utilisateur WHERE name = ?"; // ? = la variable 1 ici id
     return new Promise((resolve, reject) => {
         bdd.query(sql, name, (err, results) => {  // test avec [id]
@@ -42,4 +42,4 @@ async function getAllUsers () {
 
 
 
-module.exports = { getUserById, getAllUsers};
+module.exports = { getUserById, getAllUsers, getUserByName};
