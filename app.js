@@ -21,6 +21,13 @@ app.get('/index', function (req, res) {
     res.render('contact');
  })
 
+ app.get('/catalogue', function (req, res) { 
+    res.render('catalogue');
+ })
+
+ app.get('/inscription', function (req, res) { 
+    res.render('inscritpion');
+ })
 
 app.get('/test', async function (req, res) { // {param}
     try {
