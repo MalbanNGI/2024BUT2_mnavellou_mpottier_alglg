@@ -13,7 +13,16 @@ app.get('/', function (req, res) { // exemple     async si await
    res.render('index');
 })
 
-app.get('/index', async function (req, res) { // {param}
+app.get('/index', function (req, res) {
+    res.render('index');
+ })
+
+ app.get('/contact', function (req, res) { 
+    res.render('contact');
+ })
+
+
+app.get('/test', async function (req, res) { // {param}
     try {
         const user = await userModel.getUserById(2); // chiffre a recup normalement
         res.render('testing', {user});
@@ -26,7 +35,7 @@ app.get('/index', async function (req, res) { // {param}
 
 
 app.use(function (req, res) {
-    res.statut(404).render("404");
+    res.status(404).render("404");
 })
 
 app.listen(3000, function () {
