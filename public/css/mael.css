@@ -1,0 +1,125 @@
+.ariane {
+    font-size: 16px;
+    margin-right: 150px;
+}
+
+.ariane a {
+    text-decoration: none;
+    color: #3f3f3f;
+    margin-right: 5px;
+}
+
+.ariane span {
+    margin: 0 5px;
+    color: #333;
+}
+
+.ariane .current {
+    font-weight: bold;
+    color: #333;
+}
+
+.gras{
+    font-weight: bold;
+}
+
+
+.location-guide {
+    text-align: center;
+}
+
+.location-guide h1 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
+}
+
+.steps-container {
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.step {
+    background-color: white;
+    padding: 20px;
+    width: 200px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.step h2 {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.step p {
+    font-size: 14px;
+    color: #665;
+}
+
+.petittitre{
+    text-align: center;
+}
+
+.card {
+    border-radius: 15px;
+    padding: 20px;
+    width: 280px;
+    text-align: center;
+}
+
+.image-container {
+    background-color: white;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.image-container img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.info {
+    margin-top: 15px;
+}
+
+.info h2 {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.price-btn-container {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.price {
+    font-size: 16px;
+    color: #333;
+}
+
+.btn {
+    background-color: #fcbf23;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 30px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn:hover {
+    background-color: #e0a91c;
+}
+
+.titreenbas{
+    text-align: center;
+}
