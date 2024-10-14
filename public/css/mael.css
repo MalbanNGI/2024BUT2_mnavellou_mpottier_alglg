@@ -36,7 +36,7 @@
 
 .steps-container {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
     gap: 20px;
     padding: 20px;
     border-radius: 10px;
@@ -122,4 +122,76 @@
 
 .titreenbas{
     text-align: center;
+}
+
+/*Page de contact */
+
+
+
+.toutelapage {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f1f1f1;
+}
+
+.contact-card {
+    display: flex;
+    width: 700px;
+    background-color: #f1f1f1;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.image-container {
+    width: 60%;
+    padding: 20px;
+}
+
+.image-container img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.contact-info {
+    width: 40%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.contact-details {
+    margin-bottom: 20px;
+}
+
+.contact-details p {
+    font-size: 16px;
+    color: #333;
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+}
+
+.socials p {
+    margin: 5px 0;
+}
+
+.icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+.location {
+    margin-top: 20px;
+    font-size: 16px;
+    color: #333;
+}
+
+.location p {
+    display: flex;
+    align-items: center;
 }
