@@ -74,9 +74,8 @@ li a {
     text-decoration: none;
 }
 
-li:hover {
-    font-size: 40px ;
-    transition: 1s;
+.li-nav:hover {
+    transition: 0.5s;
     text-decoration: underline;
 }
 
