@@ -42,7 +42,7 @@ input {
     border: 1px solid #ccc;
 }
 
-button {
+.btnform {
     padding: 10px 20px;
     background-color: #057D09;
     color: white;
@@ -52,7 +52,7 @@ button {
     width: 100%;
 }
 
-button:hover {
+.btnform:hover {
     background-color: #218838;
 }
 
