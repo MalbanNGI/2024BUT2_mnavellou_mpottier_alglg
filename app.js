@@ -26,7 +26,7 @@ app.get('/index', function (req, res) {
  })
 
  app.get('/inscription', function (req, res) { 
-    res.render('inscritpion');
+    res.render('inscription');
  })
 
 app.get('/test', async function (req, res) { // {param}
