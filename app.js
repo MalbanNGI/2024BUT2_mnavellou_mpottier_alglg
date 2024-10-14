@@ -13,6 +13,12 @@ app.get('/', function (req, res) { // exemple     async si await
    res.render('index');
 })
 
+
+app.get('/catalogue', function (req, res) { // exemple     async si await
+    res.render('catalogue');
+ })
+
+
 app.get('/index', function (req, res) {
     res.render('index');
  })
@@ -21,9 +27,6 @@ app.get('/index', function (req, res) {
     res.render('contact');
  })
 
- app.get('/catalogue', function (req, res) { 
-    res.render('catalogue');
- })
 
  app.get('/inscription', function (req, res) { 
     res.render('inscription');
