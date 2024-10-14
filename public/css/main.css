@@ -198,6 +198,13 @@ h3 {
     transition: 1s;
 }
    
+.light-background {
+    background-color: white;
+  }
+  
+  .dark-background {
+    background-color: black;
+  }
    
     
 
