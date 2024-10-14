@@ -7,11 +7,15 @@ app.set('view engine', 'ejs');
 
 app.use(express.static('public'));
 
-// app.get('/', function (req, res) { // exemple     async si await
-   //  res.render('index');
-// })
+app.get('/', function (req, res) { // exemple     async si await
+   res.render('index');
+})
 
-app.get('/', async function (req, res) { // {param}
+app.get('/catalogue', function (req, res) { // exemple     async si await
+    res.render('catalogue');
+ })
+
+app.get('/test', async function (req, res) { // {param}
     try {
         const user = await userModel.getUserById(2); // chiffre a recup normalement
         res.render('testing', {user});
