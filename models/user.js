@@ -13,5 +13,33 @@ async function getUserById (id) {
     });   
 };
 
+async function getUserById (name) {
+    sql = "SELECT * FROM utilisateur WHERE name = ?"; // ? = la variable 1 ici id
+    return new Promise((resolve, reject) => {
+        bdd.query(sql, name, (err, results) => {  // test avec [id]
+           if (err) {
+            return reject(err)
+           }
+           resolve(results);
 
-module.exports = { getUserById};
+        });
+    });   
+};
+
+
+async function getAllUsers () {
+    sql = "SELECT * FROM utilisateur"; 
+    return new Promise((resolve, reject) => {
+        bdd.query(sql,(err, results) => {  // test avec [id]
+           if (err) {
+            return reject(err)
+           }
+           resolve(results);
+
+        });
+    });   
+};
+
+
+
+module.exports = { getUserById, getAllUsers};

@@ -1,6 +1,19 @@
 <main>
-    <h1>Bonjour test</h1>
-    <% user.forEach(function(element) { %>
-        <%= element.login %>
-    <% });%>
+  <h1>Bonjour test</h1>
+  <% user.forEach(function(element) { %>
+  <!-- En fait il faut parcourir le catalogue par exemple et le dispercer en plusieurs élément ensuite la syntaxe est la suivante : element.attribut -->
+  <p>
+    Bonjour à tous je m'appelle <%= element.nom %> <%= element.prenom %>, mon
+    login est <%= element.login %>. La connection à mon compte <%=
+    element.type_utilisateur %> se fait grâce à mon mail : <%= element.email %>. Voici un petit teste tout simple pour la gestion d'élément: <%= data = element.login %>
+  </p>
+  <% });%>
+
+  <code>
+    En fait il faut parcourir le catalogue par exemple et le dispercer en plusieurs élément ensuite la syntaxe est la suivante : element.attribut
+    <br>user.forEach(function(element)) { <br>
+        ____element.login <br>
+    }
+  </code>
+
 </main>
