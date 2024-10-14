@@ -1,3 +1,5 @@
+// gere les root // 
+
 const express = require('express');
 const app = express();
 const userModel = require("./models/user.js");
@@ -11,8 +13,23 @@ app.get('/', function (req, res) { // exemple     async si await
    res.render('index');
 })
 
+
 app.get('/catalogue', function (req, res) { // exemple     async si await
     res.render('catalogue');
+ })
+
+
+app.get('/index', function (req, res) {
+    res.render('index');
+ })
+
+ app.get('/contact', function (req, res) { 
+    res.render('contact');
+ })
+
+
+ app.get('/inscription', function (req, res) { 
+    res.render('inscription');
  })
 
 app.get('/test', async function (req, res) { // {param}
@@ -28,7 +45,7 @@ app.get('/test', async function (req, res) { // {param}
 
 
 app.use(function (req, res) {
-    res.statut(404).render("404");
+    res.status(404).render("404");
 })
 
 app.listen(3000, function () {
