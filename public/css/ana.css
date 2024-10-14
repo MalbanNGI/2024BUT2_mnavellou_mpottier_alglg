@@ -1,0 +1,72 @@
+
+.formcontainer {
+    background-color: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    text-align: center;
+    justify-content: center;
+}
+
+h1 {
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    text-align: left;
+}
+
+input {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #057D09;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+}
+
+button:hover {
+    background-color: #218838;
+}
+
+.error {
+    color: red;
+    margin-top: 10px;
+}
+
+.formulaireCentre {
+    margin-top: 75px;
+    display: flex;
+    justify-content: center;
+}
+
+.form-group p {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.form-group p a {
+    color: #28a745;
+    text-decoration: none;
+}
+
+.form-group p a:hover {
+    text-decoration: underline;
+}

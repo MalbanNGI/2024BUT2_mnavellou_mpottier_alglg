@@ -1,5 +1,3 @@
-// script .js
-
 // script.js
 document.getElementById("registrationForm").addEventListener("submit", function(event) {
     event.preventDefault();  // Empêche l'envoi par défaut du formulaire
@@ -31,3 +29,4 @@ function isValidAge(birthdate) {
 
     return age >= 18;
 }
+

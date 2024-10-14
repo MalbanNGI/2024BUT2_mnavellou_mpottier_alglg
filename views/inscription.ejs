@@ -1,41 +1,50 @@
 <%- include('header'); -%>
 
-<div class="space">
+    <div class="space">
 
-</div>
+    </div>
 
-<div class="banner">
-    <h2>inscription</h2>
-</div>
-<div class="container">
-    <h1>Inscription</h1>
-    <form id="registrationForm">
-        <div class="form-group">
-            <label for="name">Nom :</label>
-            <input type="text" id="name" name="name" required>
+    <div class="banner">
+        <h2>inscription</h2>
+    </div>
+    <div class="formulaireCentre">
+        <div class="formcontainer">
+            <h1>Inscription</h1>
+            <form id="registrationForm">
+                <div class="form-group">
+                    <label for="name">Nom :</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email :</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="birthdate">Date de naissance :</label>
+                    <input type="date" id="birthdate" name="birthdate" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Mot de passe :</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+
+                <div class="form-group">
+                    <button type="submit">S'inscrire</button>
+                </div>
+            </form>
+
+            <p id="error-message" class="error"></p>
+            <div class="form-group">
+                <p>Déjà un compte ? <a href="/connexion">Se connecter</a></p>
+            </div>
+    
+
         </div>
+    </div>
 
-        <div class="form-group">
-            <label for="email">Email :</label>
-            <input type="email" id="email" name="email" required>
-        </div>
+    
 
-        <div class="form-group">
-            <label for="birthdate">Date de naissance :</label>
-            <input type="date" id="birthdate" name="birthdate" required>
-        </div>
-
-        <div class="form-group">
-            <label for="password">Mot de passe :</label>
-            <input type="password" id="password" name="password" required>
-        </div>
-
-        <div class="form-group">
-            <button type="submit">S'inscrire</button>
-        </div>
-    </form>
-
-    <p id="error-message" class="error"></p>
-</div>
-
-<%- include('footer'); -%>
+    <%- include('footer'); -%>
