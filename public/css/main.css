@@ -128,9 +128,7 @@ h3 {
 .allProduct {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center; /* Centre les produits horizontalement */
-    margin-top: 30px;
-    gap: 20px; /* Espace entre les produits */
+    justify-content: center; /* Centre les produits horizontalement */ 
 }
 .rotor {
     font-size: 30px;
