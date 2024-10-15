@@ -50,7 +50,7 @@ async function check_login (mailing) {
             return reject(err)
            }
            console.log("ceci est results", results)
-           resolve(results);
+           resolve(results[0]);
 
         });
     });   
