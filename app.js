@@ -24,12 +24,14 @@ app.use(function (req, res, next) {
 app.get("/", function (req, res) {
   res.render("index");
 });
-app.post("/", function (req, res) {
-  res.render("index");
-});
+
 
 app.get("/catalogue", function (req, res) {
   res.render("catalogue");
+});
+
+app.get("/produit", function (req, res) {
+  res.render("produit");
 });
 
 app.get("/contact", function (req, res) {
@@ -50,7 +52,7 @@ app.post("/connexion", async function (req, res) {
   if (user && user.password === mdp) {
     req.session.userId = user.id;
     req.session.role = user.type_utilisateur;
-    return res.redirect("/index");
+    return res.redirect("/");
   } else {
     res.render("connexion", { error: "Mauvais login/mdp" });
   }
