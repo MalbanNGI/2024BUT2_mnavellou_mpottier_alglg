@@ -80,3 +80,84 @@ input {
 .form-group p a:hover {
     text-decoration: underline;
 }
+
+.product-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.product-header h1 {
+    font-size: 48px;
+    margin-bottom: 10px;
+}
+
+.product-header p {
+    color: #666;
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.product-header h2 {
+    font-size: 36px;
+    color: #333;
+}
+
+.reserve {
+    margin-top: 20px;
+}
+
+.reserve input[type="number"] {
+    width: 50px;
+    padding: 5px;
+    font-size: 16px;
+    margin-right: 10px;
+}
+
+.reserve-btn {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.reserve-btn:hover {
+    background-color: #218838;
+}
+
+.product-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.product-image {
+    width: 50%;
+    max-width: 600px;
+}
+
+.details {
+    width: 40%;
+}
+
+.details ul {
+    list-style-type: none;
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.details ul li {
+    margin-bottom: 10px;
+}
+
+.illustration {
+    text-align: center;
+}
+
+.illustration img {
+    width: 100%;
+    max-width: 200px;
+}
