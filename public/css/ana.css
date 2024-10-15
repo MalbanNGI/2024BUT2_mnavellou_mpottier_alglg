@@ -1,4 +1,6 @@
 
+/*Connexion & inscription*/
+
 .formcontainer {
     background-color: white;
     padding: 30px;
@@ -81,36 +83,93 @@ input {
     text-decoration: underline;
 }
 
-.product-header {
-    text-align: center;
-    margin-bottom: 30px;
+/*Produit*/
+
+.product-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1000px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.product-header h1 {
+.image-section {
+    flex: 1;
+}
+
+.product-image {
+    width: 100%;
+    max-width: 450px;
+    height: auto;
+}
+
+.details-section {
+    flex: 1;
+    padding: 0 30px;
+}
+
+h1 {
     font-size: 48px;
-    margin-bottom: 10px;
-}
-
-.product-header p {
-    color: #666;
-    font-size: 18px;
+    font-weight: bold;
     margin-bottom: 20px;
 }
 
-.product-header h2 {
+.description {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+.price {
     font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 20px;
     color: #333;
 }
 
-.reserve {
-    margin-top: 20px;
+.delivery-info {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 20px;
 }
 
-.reserve input[type="number"] {
+.delivery-info strong {
+    color: #28a745;
+}
+
+.quantity-reserve {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.quantity-controls {
+    display: flex;
+    align-items: center;
+}
+
+.quantity-controls input {
     width: 50px;
+    text-align: center;
+    font-size: 18px;
+    margin: 0 10px;
     padding: 5px;
-    font-size: 16px;
-    margin-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.quantity-controls button {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    padding: 5px 10px;
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 5px;
 }
 
 .reserve-btn {
@@ -120,44 +179,58 @@ input {
     padding: 10px 20px;
     font-size: 18px;
     cursor: pointer;
+    border-radius: 5px;
 }
 
 .reserve-btn:hover {
     background-color: #218838;
 }
 
-.product-info {
+.specs-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 20px;
+    max-width: 1000px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.product-image {
-    width: 50%;
-    max-width: 600px;
+.specs-section {
+    flex: 1;
+    padding-left: 20px;
 }
 
-.details {
-    width: 40%;
-}
-
-.details ul {
+.specs-section ul {
     list-style-type: none;
     font-size: 18px;
     color: #333;
-    margin-bottom: 20px;
 }
 
-.details ul li {
-    margin-bottom: 10px;
+.specs-section ul li {
+    margin-bottom: 15px;
+    font-size: 18px;
 }
 
-.illustration {
+.middle-illustration {
+    flex: 1;
     text-align: center;
 }
 
-.illustration img {
-    width: 100%;
-    max-width: 200px;
+.middle-illustration img {
+    max-width: 250px;
+    height: auto;
+}
+
+.fitness-image {
+    flex: 1;
+    text-align: right;
+    padding-right: 20px;
+}
+
+.fitness-image img {
+    max-width: 300px;
+    height: auto;
 }
