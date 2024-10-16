@@ -340,7 +340,7 @@ h1 {
 }
 
 .order-btn {
-    background-color: #28a745;
+    background-color: #218838;
     color: white;
     border: none;
     padding: 10px 20px;
@@ -348,6 +348,10 @@ h1 {
     border-radius: 5px;
     cursor: pointer;
     margin-bottom: 10px;
+}
+
+.order-btn:hover{
+    background-color: #28a745;
 }
 
 .continue-btn {
@@ -358,4 +362,9 @@ h1 {
     font-size: 16px;
     border-radius: 5px;
     cursor: pointer;
+}
+
+.continue-btn:hover{
+    background-color: #eec54a;
+
 }
