@@ -34,6 +34,10 @@ app.get("/produit", function (req, res) {
   res.render("produit");
 });
 
+app.get("/compte", function (req, res) {
+  res.render("compte");
+});
+
 app.get("/contact", function (req, res) {
   res.render("contact");
 });
