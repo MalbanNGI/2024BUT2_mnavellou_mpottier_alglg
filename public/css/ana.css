@@ -382,7 +382,8 @@ h1 {
 
 .avis-clients h2 {
     font-size: 36px;
-    color: #3BB13B; /* Vert pour le titre */
+    color: #057D09;
+     /* Vert pour le titre */
     margin-bottom: 30px;
 }
 
@@ -462,4 +463,38 @@ h1 {
     font-size: 14px;
     color: #555;
     line-height: 1.5;
+}
+
+.bouton-container {
+    display: flex;
+    justify-content: center; /* Centrage horizontal */
+    align-items: center; /* Centrage vertical */
+    height: 23vh; /* Prendre toute la hauteur de la fenêtre */
+}
+
+/* Bouton stylé */
+.petitbouton {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #357a38; /* Couleur verte foncée */
+    color: white; /* Texte en blanc */
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 50px; /* Forme arrondie */
+    transition: background-color 0.3s ease;
+}
+
+.petitbouton:hover {
+    background-color: #2e6d31; /* Changement de couleur au survol */
+}
+
+.arrow {
+    margin-left: 10px; /* Espacement entre le texte et la flèche */
+    font-size: 1.2rem;
+}
+
+/* Titre pour les avis (en couleur verte) */
+.titreavis {
+    color: #357a38;
 }
