@@ -42,6 +42,10 @@ app.get("/contact", function (req, res) {
   res.render("contact");
 });
 
+app.get("/panier", function (req, res) {
+  res.render("panier");
+});
+
 app.get("/connexion", function (req, res) {
   res.render("connexion", { error: null });
 });
