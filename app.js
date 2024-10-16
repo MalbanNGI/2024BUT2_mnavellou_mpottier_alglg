@@ -40,6 +40,10 @@ app.get("/produit", function (req, res) {
   res.render("produit");
 });
 
+app.get("/help", function (req, res) {
+  res.render("help");
+});
+
 app.get("/compte", function (req, res) {
   res.render("compte");
 });

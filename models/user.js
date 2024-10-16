@@ -68,18 +68,17 @@ async function show_product() {
     });
 }
 async function show_productById (id) {
-    sql = "SELECT * FROM produit WHERE id = ?"; // ? = la variable 1 ici id
+    sql = "SELECT * FROM utilisateur WHERE email = ?"; // ? = la variable 1 ici id
     return new Promise((resolve, reject) => {
         bdd.query(sql, id, (err, results) => {  // test avec [id]
            if (err) {
             return reject(err)
            }
            console.log("ceci est results", results)
-           resolve(results[0]);
+           resolve(results);
 
         });
     });   
-};;
-
+};
 
 module.exports = { getUserById, getAllUsers, getUserByName, check_login, show_productById, show_product};
