@@ -49,10 +49,43 @@
                     <p>126,99€</p>
                 </div>
 
-                <button class="order-btn">Commander</button>
+                <button class="order-btn" onclick="generatePDF()">Commander</button>
                 <button class="continue-btn">Poursuivre mes achats</button>
             </div>
         </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+
+        <script>
+            function generatePDF() {
+                const { jsPDF } = window.jspdf;
+                const doc = new jsPDF();
+                // Informations de la commande à inclure
+                const itemName = "VELO DE BIKING 500";
+                const pricePerDay = "35€/j";
+                const quantity = document.querySelector('.quantity').innerText;
+                const subTotal = "123€";
+        
+                const totalPrice = "126,99€";
+                const rentalPeriod = "Du 17 août au 23 août 2024";
+        
+                // Ajout du contenu dans le PDF
+                doc.setFontSize(18);
+                doc.text("Détails de la commande", 10, 10);
+                
+                doc.setFontSize(12);
+                doc.text(`Article : ${itemName}`, 10, 30);
+                doc.text(`Prix par jour : ${pricePerDay}`, 10, 40);
+                doc.text(`Quantité : ${quantity}`, 10, 50);
+                doc.text(`Sous-total : ${subTotal}`, 10, 60);
+                doc.text(`Total (TVA incluse) : ${totalPrice}`, 10, 80);
+                doc.text(`Période de location : ${rentalPeriod}`, 10, 90);
+        
+                // Générer et ouvrir le PDF
+                doc.save("commande.pdf");
+            }
+        </script>
+        
     </div>
 
 <%- include('footer'); -%>
