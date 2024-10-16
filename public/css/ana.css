@@ -234,6 +234,8 @@ h1 {
     height: auto;
 }
 
+
+/*pannier*/
 .breadcrumb {
     margin: 20px;
     font-size: 14px;
@@ -367,4 +369,51 @@ h1 {
 .continue-btn:hover{
     background-color: #eec54a;
 
+}
+
+/*avis client*/
+.avis-clients {
+    text-align: center;
+    padding: 50px 0;
+    background-image: url('/public/img/chemin.png'); /* Le chemin vers ton image d'arrière-plan */
+    background-size: cover;
+    background-position: center;
+}
+
+.avis-clients h2 {
+    font-size: 36px;
+    color: #3BB13B; /* Vert pour le titre */
+    margin-bottom: 30px;
+}
+
+.avis-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.avis {
+    background: rgba(255, 255, 255, 0.9); /* Fond blanc avec transparence */
+    border-radius: 10px;
+    padding: 20px;
+    width: 250px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.avis h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.avis span {
+    color: #FFD700; /* Couleur or pour les étoiles */
+    font-size: 18px;
+}
+
+.avis p {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.5;
 }
