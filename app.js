@@ -26,8 +26,14 @@ app.get("/", function (req, res) {
 });
 
 
-app.get("/catalogue", function (req, res) {
-  res.render("catalogue");
+app.get("/catalogue", async function (req, res) {
+  try {
+    const products = await userModel.show_product(); 
+    res.render("catalogue", { products }); 
+  } catch (error) {
+    console.error("Erreur dans la liste des produits:", error);
+    res.status(500).send("Erreur dans la liste des produits");
+  }
 });
 
 app.get("/produit", function (req, res) {

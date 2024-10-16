@@ -56,22 +56,19 @@ async function check_login (mailing) {
     });   
 };
 
-async function show_product () {
-    sql = "SELECT * FROM produits"; 
+async function show_product() {
+    const sql = "SELECT * FROM produit";
     return new Promise((resolve, reject) => {
-        bdd.query(sql, (err, results) => {  
-           if (err) {
-            return reject(err)
-           }
-           console.log("ceci est results", results)
-           resolve(results[0]);
-
+        bdd.query(sql, (err, results) => {
+            if (err) {
+                return reject(err);
+            }
+            resolve(results);  // Return all products, not just the first one
         });
-    });   
-};
-
+    });
+}
 async function show_productById (id) {
-    sql = "SELECT * FROM produits WHERE id = ?"; // ? = la variable 1 ici id
+    sql = "SELECT * FROM produit WHERE id = ?"; // ? = la variable 1 ici id
     return new Promise((resolve, reject) => {
         bdd.query(sql, id, (err, results) => {  // test avec [id]
            if (err) {

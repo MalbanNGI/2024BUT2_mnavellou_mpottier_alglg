@@ -6,113 +6,66 @@
         <h2>catalogue</h2>
     </div>
 
-        <!-- ligne d'ariane -->
+    <!-- ligne d'ariane -->
 
     <nav class="ariane">
         <a href="#">Accueil</a>
         <span>&gt;</span>
         <a class="gras" href="#">Catalogue</a>
-        
+
     </nav>
 
-         <!-- les étapes -->
+    <!-- les étapes -->
 
-         <section class="location-guide">
-            <h2 class="petittitre">Comment louer mon équipement sportif ?</h2>
-            <div class="steps-container">
-                <div class="step">
-                    <h2>1. CHOISIR LE PRODUIT</h2>
-                    <p>Je choisis le matériel avec les services associés sur decathlon.fr ou dans mon magasin préféré.</p>
-                </div>
-                <div class="step">
-                    <h2>2. CHOISIR LA DURÉE</h2>
-                    <p>3 jours ? 1 semaine ? Même 1 mois si vous voulez !</p>
-                </div>
-                <div class="step">
-                    <h2>3. PRATIQUER CHEZ VOUS</h2>
-                    <p>J’utilise mon produit en toute liberté en bénéficiant des services et des conseils associés : entretien, casse, ...</p>
-                </div>
-                <div class="step">
-                    <h2>4. RETOURNER LE PRODUIT</h2>
-                    <p>Je me rends en magasin lorsque mon engagement est terminé pour retourner mon produit.</p>
-                </div>
+    <section class="location-guide">
+        <h2 class="petittitre">Comment louer mon équipement sportif ?</h2>
+        <div class="steps-container">
+            <div class="step">
+                <h2>1. CHOISIR LE PRODUIT</h2>
+                <p>Je choisis le matériel avec les services associés sur decathlon.fr ou dans mon magasin préféré.</p>
             </div>
-        </section>
+            <div class="step">
+                <h2>2. CHOISIR LA DURÉE</h2>
+                <p>3 jours ? 1 semaine ? Même 1 mois si vous voulez !</p>
+            </div>
+            <div class="step">
+                <h2>3. PRATIQUER CHEZ VOUS</h2>
+                <p>J’utilise mon produit en toute liberté en bénéficiant des services et des conseils associés :
+                    entretien, casse, ...</p>
+            </div>
+            <div class="step">
+                <h2>4. RETOURNER LE PRODUIT</h2>
+                <p>Je me rends en magasin lorsque mon engagement est terminé pour retourner mon produit.</p>
+            </div>
+        </div>
+    </section>
 
     <h2 class="titreenbas">Découvrez toutes nos offres de location !</h2>
 
-      <!-- première ligne -->
+    <!-- première ligne -->
 
     <div class="allProduct">
-        <% 
-        <div class="card">
-            <div class="image-container">
-                <img src="img/tapis-de-course.png" alt="Vélo de biking 500">
-            </div>
-            <div class="info">
-                <h2>Vélo de biking 500</h2>
-                <div class="price-btn-container">
-                    <p class="price">28€/j</p>
-                    <button class="btn">Découvrir</button>
+        <% products.forEach(function(element) { %>
+            <div class="card">
+                <div class="image-container">
+                    <img src="img/<%= element.image %>" alt="<%= element.image %>">
+                </div>
+                <div class="info">
+                    <h2>
+                        <%= element.type %>
+                            <%= element.modele %>
+                    </h2>
+                    <div class="price-btn-container">
+                        <p class="price">
+                            <%= element.prix_location %>€/j
+                        </p>
+                        <button class="btn"><a href="produit">Découvrir</a></button>
+                    </div>
                 </div>
             </div>
-        </div>
-        
 
-  <!-- deuxième ligne -->
-
-  <div class="allProduct">
-    <div class="card">
-        <div class="image-container">
-            <img src="img/tapis-de-course.png" alt="Vélo de biking 500">
-        </div>
-        <div class="info">
-            <h2>Vélo de biking 500</h2>
-            <div class="price-btn-container">
-                <p class="price">28€/j</p>
-                <button class="btn">Découvrir</button>
-            </div>
-        </div>
+            <% }); %>
     </div>
-    <div class="card">
-        <div class="image-container">
-            <img src="img/tapis-de-course.png" alt="Vélo de biking 500">
-        </div>
-        <div class="info">
-            <h2>Vélo de biking 500</h2>
-            <div class="price-btn-container">
-                <p class="price">28€/j</p>
-                <button class="btn">Découvrir</button>
-            </div>
-        </div>
-    </div>
-    <div class="card">
-        <div class="image-container">
-            <img src="img/tapis-de-course.png" alt="Vélo de biking 500">
-        </div>
-        <div class="info">
-            <h2>Vélo de biking 500</h2>
-            <div class="price-btn-container">
-                <p class="price">28€/j</p>
-                <button class="btn">Découvrir</button>
-            </div>
-        </div>
-    </div>
-    <div class="card">
-        <div class="image-container">
-            <img src="img/tapis-de-course.png" alt="Vélo de biking 500">
-        </div>
-        <div class="info">
-            <h2>Vélo de biking 500</h2>
-            <div class="price-btn-container">
-                <p class="price">28€/j</p>
-                <button class="btn">Découvrir</button>
-            </div>
-        </div>
-    </div>
+    </body>
 
-
-
-                    </body>
-
-                    </html>
+    </html>
