@@ -20,16 +20,16 @@
       <div class="navigation">
         <ul>
           <li id="mainLOCFIT"><a href="/">LOCFIT</a></li>
-          <li class="li-nav"><a href="/help">Aides</a></li>
-          <li class="li-nav"><a href="/catalogue">Catalogue</a></li>
-          <li class="li-nav"><a href="/contact">Contact</a></li>
+        <li class="li-nav"><a href="/help">Aides</a></li>
+        <li class="li-nav"><a href="/catalogue">Catalogue</a></li>
+        <li class="li-nav"><a href="/contact">Contact</a></li>
           
           <% if (isAuth) { %>
-            <li class="li-nav"><a href="#"><img class="panier-header" src="/img/panier.png" alt="panier icon"></a></li>
-            <li class="li-nav"><a href="#"><img class="compte-header" src="/img/utilisateur.png" alt="compte icon"></a></li>
+            <li class="li-nav"><a href="/panier"><img class="panier-header" src="/img/panier.png" alt="panier icon"></a></li>
+            <li class="li-nav"><a href="/compte"><img class="compte-header" src="/img/utilisateur.png" alt="compte icon"></a></li>
             <li class="li-nav"><a href="/deconnexion"><img class="compte-header" src="/img/deconnexion.png" alt="déconnexion icon"></a></li>
           <% } else { %>
-            <li class="li-nav"><a href="connexion"><img class="compte-header" src="/img/utilisateur.png" alt="compte icon"></a></li>
+            <li class="li-nav"><a href="/connexion"><img class="compte-header" src="/img/utilisateur.png" alt="compte icon"></a></li>
           <% } %>
         </ul>
       </div>

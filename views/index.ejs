@@ -18,16 +18,16 @@
     <nav class="nav-index2">
       <ul>
         <li id="mainLOCFIT"><a href="/">LOCFIT</a></li>
-        <li class="li-nav"><a href="help">Aides</a></li>
-        <li class="li-nav"><a href="catalogue">Catalogue</a></li>
-        <li class="li-nav"><a href="contact">Contact</a></li>
+        <li class="li-nav"><a href="/help">Aides</a></li>
+        <li class="li-nav"><a href="/catalogue">Catalogue</a></li>
+        <li class="li-nav"><a href="/contact">Contact</a></li>
         
         <% if (isAuth) { %>
-          <li class="li-nav"><a href="#"><img class="panier-header" src="/img/panier.png" alt="panier icon"></a></li>
-          <li class="li-nav"><a href="#"><img class="compte-header" src="/img/utilisateur.png" alt="compte icon"></a></li>
+          <li class="li-nav"><a href="/panier"><img class="panier-header" src="/img/panier.png" alt="panier icon"></a></li>
+          <li class="li-nav"><a href="/compte"><img class="compte-header" src="/img/utilisateur.png" alt="compte icon"></a></li>
           <li class="li-nav"><a href="/deconnexion"><img class="compte-header" src="/img/deconnexion.png" alt="déconnexion icon"></a></li>
         <% } else { %>
-          <li class="li-nav"><a href="connexion"><img class="compte-header" src="img/utilisateur.png" alt="compte icon"></a></li>
+          <li class="li-nav"><a href="/connexion"><img class="compte-header" src="img/utilisateur.png" alt="compte icon"></a></li>
         <% } %>
 
       </ul>
@@ -38,8 +38,8 @@
 <div class="video">
         
     <video autoplay muted loop playsinline>
-      <source src="video/course apied.mp4" type="video/mp4" />
-      <source src="video/course apied.webm" type="video/webm" />
+      <source src="/video/course apied.mp4" type="video/mp4" />
+      <source src="/video/course apied.webm" type="video/webm" />
       Votre navigateur ne supporte pas les vidéos en arrière-plan.
     </video>
 
@@ -51,7 +51,7 @@
         <p>Grâce à LocFit, découvrez l’univers du sport à domicile !</p>
       </div>
       <div class="btn-catalogue">
-        <button type="submit">Catalogue</button>
+        <button type="submit"><a href="catalogue">Catalogue</a></button>
       </div>
       <div class="publocfit">
         <div class="age">
@@ -83,13 +83,24 @@
   <div class="allProduct">
   <div class="product">
     <div class="image-product">
-      <img src="img/tapis-de-course.png" alt="" />
+      <img src="/img/tapis-de-course.png" alt="" />
     </div>
     <div class="title-product">
       <h4 class="title-product">Tapis de course</h4>
     </div>
     <div class="information-subject">
-      <button class="btn-infos" type="button"><a class="link-discover" href="">Découvrir</a></button>
+      <button class="btn-infos" type="button"><a class="link-discover" href="catalogue">Découvrir</a></button>
+    </div>
+  </div>
+  <div class="product">
+    <div class="image-product">
+      <img src="/img/tapis-de-course.png" alt="" />
+    </div>
+    <div class="title-product">
+      <h4 class="title-product">Vélos</h4>
+    </div>
+    <div class="information-subject">
+      <button class="btn-infos" type="button"><a class="link-discover" href="catalogue">Découvrir</a></button>
     </div>
   </div>
   <div class="product">
@@ -100,7 +111,7 @@
       <h4 class="title-product">Vélos</h4>
     </div>
     <div class="information-subject">
-      <button class="btn-infos" type="button"><a class="link-discover" href="">Découvrir</a></button>
+      <button class="btn-infos" type="button"><a class="link-discover" href="catalogue">Découvrir</a></button>
     </div>
   </div>
   <div class="product">
@@ -111,18 +122,7 @@
       <h4 class="title-product">Vélos</h4>
     </div>
     <div class="information-subject">
-      <button class="btn-infos" type="button"><a class="link-discover" href="">Découvrir</a></button>
-    </div>
-  </div>
-  <div class="product">
-    <div class="image-product">
-      <img src="img/tapis-de-course.png" alt="" />
-    </div>
-    <div class="title-product">
-      <h4 class="title-product">Vélos</h4>
-    </div>
-    <div class="information-subject">
-      <button class="btn-infos" type="button"><a class="link-discover" href="">Découvrir</a></button>
+      <button class="btn-infos" type="button"><a class="link-discover" href="catalogue">Découvrir</a></button>
     </div>
   </div>
 </div>

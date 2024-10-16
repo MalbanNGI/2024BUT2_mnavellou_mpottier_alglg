@@ -71,7 +71,12 @@ app.get("/help", function (req, res) {
 });
 
 app.get("/compte", function (req, res) {
-  res.render("compte");
+  if(res.locals.isAuth) {
+    res.render("compte");
+  }
+  else {
+    res.render("/")
+  }
 });
 
 app.get("/contact", function (req, res) {
@@ -80,6 +85,10 @@ app.get("/contact", function (req, res) {
 
 app.get("/panier", function (req, res) {
   res.render("panier");
+});
+
+app.get("/addProduct", function (req, res) {
+  res.render("addProduct", { error: null });
 });
 
 app.get("/connexion", function (req, res) {

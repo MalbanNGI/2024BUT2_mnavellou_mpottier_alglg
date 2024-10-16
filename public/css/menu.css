@@ -124,8 +124,12 @@ nav.menu-navigation {
     text-decoration: underline;
 }
 
-/* .navigation {
-    background-color: aqua;
-} */
+nav.menu-navigation .navigation ul .compte-header, .panier-header {
+    filter: none;
+}
 
-/* Optional: If you want to give the navigation a fixed height */
+a {
+    list-style: none;
+    text-decoration: none;
+    color: white;
+}
