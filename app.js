@@ -16,7 +16,17 @@ app.use(session({
 
 // Middleware pour rendre la session disponible dans les vues
 app.use(function (req, res, next) {
-  res.locals.session = req.session; // Ajoute la session à res.locals
+  if (req.session.userId){
+    
+    res.locals.isAuth = true;
+    res.locals.id = req.session.userId;
+    res.locals.name = req.session.userId; // toujours mettre le else !!!
+  }
+  else {
+    res.locals.isAuth = false;
+    res.locals.id = null;
+    res.locals.name = null; 
+  }
   next();
 });
 
@@ -36,8 +46,24 @@ app.get("/catalogue", async function (req, res) {
   }
 });
 
-app.get("/produit", function (req, res) {
-  res.render("produit");
+
+app.get("/produit/:id", async function (req, res) {
+  
+  const productId = req.params.id;
+  console.log(productId);
+
+  try {
+    const product = await userModel.show_productById(productId); 
+    console.log(product);
+    if (product) {
+      res.render("produit", { product });
+    } else {
+      res.status(404).render("404");
+    }
+  } catch (error) {
+    console.error("Error fetching product:", error);
+    res.status(500).send("An error occurred");
+  }
 });
 
 app.get("/help", function (req, res) {
@@ -69,7 +95,8 @@ app.post("/connexion", async function (req, res) {
   
   if (user && user.password === mdp) {
     req.session.userId = user.id;
-    req.session.role = user.type_utilisateur;
+    req.session.name = user.nom;
+    req.session.role = user.type_utilisateur; // on peut rajouter ce qu'on veut !!!!! 
     return res.redirect("/");
   } else {
     res.render("connexion", { error: "Mauvais login/mdp" });

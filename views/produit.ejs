@@ -10,15 +10,15 @@
 
     <div class="product-container">
         <div class="image-section">
-            <img src="img/velo.png" alt="Vélo" class="product-image">
+            <img src="/img/velo.png" alt="Vélo" class="product-image">
         </div>
-
+        
         <div class="details-section">
-            <h1>VELO</h1>
+            <h1><%= product.type %> <%= product.modele %></h1>
             <p class="description">
-                "Lorem ipsum dolor sit amet nggnfg rjez,fdg qfqffq fjqf,qpofqsofjoqpj afjjaijfqpsjfp ap jajjfpsjdqpsjfpasjfqsjpq ajfp jjjjjjs jsjdsdj jsojdoajjj qsjajd oqs"
+                <%= product.description %>
             </p>
-            <h2 class="price">35€/j</h2>
+            <h2 class="price"><%= product.prix_location %>€/j</h2>
             <div class="delivery-info">
                 <span>Retrait <strong>GRATUIT</strong></span> en magasin et point relais
             </div>
@@ -46,11 +46,11 @@
         </div>
         
         <div class="middle-illustration">
-            <img src="img/a_vous_de_jouer.png" alt="A vous de jouer">
+            <img src="/img/a_vous_de_jouer.png" alt="A vous de jouer">
         </div>
 
         <div class="fitness-image">
-            <img src="video/gif/velo.gif" alt="Fitness Program">
+            <img src="/video/gif/velo.gif" alt="Fitness Program">
         </div>
     </div>
 

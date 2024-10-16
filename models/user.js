@@ -67,18 +67,15 @@ async function show_product() {
         });
     });
 }
-async function show_productById (id) {
-    sql = "SELECT * FROM utilisateur WHERE email = ?"; // ? = la variable 1 ici id
+async function show_productById(id) {
+    const sql = "SELECT * FROM produit WHERE id = ?";
     return new Promise((resolve, reject) => {
-        bdd.query(sql, id, (err, results) => {  // test avec [id]
-           if (err) {
-            return reject(err)
-           }
-           console.log("ceci est results", results)
-           resolve(results);
-
+        bdd.query(sql, [id], (err, results) => {
+            if (err) {
+                return reject(err);
+            }
+            resolve(results[0]); // Return the first (and only) product result
         });
-    });   
-};
-
+    });
+}
 module.exports = { getUserById, getAllUsers, getUserByName, check_login, show_productById, show_product};

@@ -4,33 +4,35 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>LocFit by AMM</title>
-  <link rel="stylesheet" href="css/menu.css" />
-  <link rel="stylesheet" href="css/main.css" />
-  <link rel="stylesheet" href="css/video.css" />
-  <link rel="stylesheet" href="css/ana.css" />
-  <link rel="stylesheet" href="css/mael.css" />
-  <link rel="stylesheet" href="css/milo.css" />
-  <link rel="stylesheet" href="css/footer.css" />
-  <link rel="stylesheet" href="js/script.js">
+  <link rel="stylesheet" href="/css/menu.css" />
+  <link rel="stylesheet" href="/css/main.css" />
+  <link rel="stylesheet" href="/css/video.css" />
+  <link rel="stylesheet" href="/css/ana.css" />
+  <link rel="stylesheet" href="/css/mael.css" />
+  <link rel="stylesheet" href="/css/milo.css" />
+  <link rel="stylesheet" href="/css/footer.css" />
+  <link rel="stylesheet" href="/js/script.js">
 </head>
 <body>
-  <header>
-    <nav>
-      <ul>
-        <li id="mainLOCFIT"><a href="/">LOCFIT</a></li>
-        <li class="li-nav"><a href="help">Aides</a></li>
-        <li class="li-nav"><a href="catalogue">Catalogue</a></li>
-        <li class="li-nav"><a href="contact">Contact</a></li>
-        
-        <% if (session.userId) { %>
-          <li class="li-nav"><a href="#"><img class="panier-header" src="img/panier.png" alt="panier icon"></a></li>
-          <li class="li-nav"><a href="#"><img class="compte-header" src="img/utilisateur.png" alt="compte icon"></a></li>
-          <li class="li-nav"><a href="/deconnexion"><img class="compte-header" src="img/deconnexion.png" alt="déconnexion icon"></a></li>
-        <% } else { %>
-          <li class="li-nav"><a href="connexion"><img class="compte-header" src="img/utilisateur.png" alt="compte icon"></a></li>
-        <% } %>
-
-      </ul>
+   <!-- heyyyyyyy-->
+   <header>
+    <nav class="menu-navigation">
+      <div class="navigation">
+        <ul>
+          <li id="mainLOCFIT"><a href="/">LOCFIT</a></li>
+          <li class="li-nav"><a href="/help">Aides</a></li>
+          <li class="li-nav"><a href="/catalogue">Catalogue</a></li>
+          <li class="li-nav"><a href="/contact">Contact</a></li>
+          
+          <% if (isAuth) { %>
+            <li class="li-nav"><a href="#"><img class="panier-header" src="/img/panier.png" alt="panier icon"></a></li>
+            <li class="li-nav"><a href="#"><img class="compte-header" src="/img/utilisateur.png" alt="compte icon"></a></li>
+            <li class="li-nav"><a href="/deconnexion"><img class="compte-header" src="/img/deconnexion.png" alt="déconnexion icon"></a></li>
+          <% } else { %>
+            <li class="li-nav"><a href="connexion"><img class="compte-header" src="/img/utilisateur.png" alt="compte icon"></a></li>
+          <% } %>
+        </ul>
+      </div>
     </nav>
   </header>
 </body>

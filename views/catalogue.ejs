@@ -48,18 +48,18 @@
         <% products.forEach(function(element) { %>
             <div class="card">
                 <div class="image-container">
-                    <img src="img/<%= element.image %>" alt="<%= element.image %>">
+                    <img src="/img/<%= element.image %>" alt="<%= element.image %>">
                 </div>
                 <div class="info">
                     <h2>
                         <%= element.type %>
-                            <%= element.modele %>
+                            <%= element.modele %>a
                     </h2>
                     <div class="price-btn-container">
                         <p class="price">
                             <%= element.prix_location %> €/j
                         </p>
-                        <button class="btn"><a href="produit">Découvrir</a></button>
+                        <button class="btn"><a href="/produit/<%= element.id %>">Découvrir</a></button>
                     </div>
                 </div>
             </div>
