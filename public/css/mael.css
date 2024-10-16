@@ -134,19 +134,19 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #f1f1f1;
+    background-color: #b3b3b3;
 }
 
 .contact-card {
     display: flex;
-    width: 700px;
+    width: 800px;
     background-color: #f1f1f1;
     border-radius: 15px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-top: 100px;
 }
 
 .image-container {
-    width: 60%;
     padding: 20px;
 }
 
@@ -161,6 +161,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    background-color: white;
 }
 
 .contact-details {
@@ -175,9 +176,47 @@
     align-items: center;
 }
 
-.socials p {
-    margin: 5px 0;
+.social-media {
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content: space-around; 
+    max-width: 500px; 
+    margin: 0 auto; 
 }
+
+
+
+.contact-details img{
+    width: 30px; 
+    height: 30px;
+    margin-left: 10px;
+}
+
+.social-item {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+    width: 45%; 
+}
+
+.social-item img {
+    width: 30px; 
+    height: 30px;
+    margin-right: 10px; 
+}
+
+.social-item a {
+    display: flex;
+    align-items: center;
+    text-decoration: none; 
+    color: #000;
+    font-weight: bold;
+}
+
+.social-item span {
+    font-size: 16px;
+}
+
 
 .icon {
     width: 20px;
@@ -198,8 +237,13 @@
 
 .rectangle{
         width  : 270px;
-        height : 180px;
-        background : rgb(100, 100, 100);  
+        height : 190px;
+        background : rgb(183, 183, 183);  
         margin-left: -100px;
         margin-top: 70px;
+}
+.location img{
+    height: 60px;
+    width: 60px;
+    margin-left: -20px;
 }
