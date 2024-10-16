@@ -45,7 +45,11 @@
 
     <div class="texte">
       <div class="main-para">
+        <% if (isAuth) { %>
+          <h1><%= name %>,<br> TESTEZ VOUS AU SPORT A <br> DOMICILE</h1>
+          <% } else { %>
         <h1>TESTEZ VOUS<br> AU SPORT A <br> DOMICILE</h1>
+        <% } %>
       </div>
       <div class="slogan">
         <p>Grâce à LocFit, découvrez l’univers du sport à domicile !</p>

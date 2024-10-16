@@ -19,5 +19,5 @@
     max-height: 750px; /* Hauteur maximale 800px */
     object-fit: cover; /* S'adapte au conteneur sans déformer */
     transform: translate(-50%, -50%); /* Centre la vidéo */
-    z-index: -1; /* Place la vidéo derrière le contenu */
+    z-index: -15; /* Place la vidéo derrière le contenu */
 }

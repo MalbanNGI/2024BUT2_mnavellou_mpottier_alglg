@@ -20,12 +20,16 @@ app.use(function (req, res, next) {
     
     res.locals.isAuth = true;
     res.locals.id = req.session.userId;
-    res.locals.name = req.session.userId; // toujours mettre le else !!!
+    res.locals.name = req.session.prenomCLient; // toujours mettre le else !!!
+    console.log( "ceci est name: ", res.locals.name)
+    console.log( "ceci est id: ", res.locals.id)
+    console.log( "ceci est isAuth: ", res.locals.isAuth)
   }
   else {
     res.locals.isAuth = false;
     res.locals.id = null;
     res.locals.name = null; 
+
   }
   next();
 });
@@ -75,7 +79,7 @@ app.get("/compte", function (req, res) {
     res.render("compte");
   }
   else {
-    res.render("/")
+    res.render("index")
   }
 });
 
@@ -105,6 +109,7 @@ app.post("/connexion", async function (req, res) {
   if (user && user.password === mdp) {
     req.session.userId = user.id;
     req.session.name = user.nom;
+    req.session.prenomCLient = user.prenom;
     req.session.role = user.type_utilisateur; // on peut rajouter ce qu'on veut !!!!! 
     return res.redirect("/");
   } else {
