@@ -81,26 +81,3 @@ li a {
 
 
 
-nav {
-    background: rgba(255, 255, 255, 0.3); /* Couleur blanche avec 30% d'opacité */
-    backdrop-filter: blur(10px); /* Flou du fond */
-    -webkit-backdrop-filter: blur(10px); /* Support pour Safari */
-    border-radius: 10px; /* Bords arrondis pour un effet stylisé */
-    padding: 15px;
-    position: fixed; /* Menu fixe en haut */
-    width: 100%;
-    top: 0;
-    left: 0;
-    z-index: 1000; /* Assurez-vous qu'il soit au-dessus des autres éléments */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Légère ombre portée */
-  }
-  
-  /* Liste des éléments du menu */
-
-  
-  /* Style des liens dans le menu */
-
-
-  
-  /* Effet au survol */
-
