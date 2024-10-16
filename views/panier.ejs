@@ -1,0 +1,58 @@
+<%- include('header'); -%>
+
+    <div class="space">
+
+    </div>
+
+    <div class="banner">
+        <h2>Panier</h2>
+    </div>
+
+    <div class="breadcrumb">
+        <a href="#">Accueil</a> > <a href="#">Panier</a>
+    </div>
+
+    <div class="cart-container">
+        <p class="delivery-info">Livraison dès demain dans nos boutiques près de chez vous.</p>
+        
+        <div class="cart-item">
+            <div class="item-image">
+                <img src="img/velo.png" alt="Velo de Biking 500">
+            </div>
+
+            <div class="item-details">
+                <h2>VELO DE BIKING 500</h2>
+                <p class="price">35€/j</p>
+
+                <div class="quantity-control">
+                    <button class="quantity-btn">-</button>
+                    <span class="quantity">1</span>
+                    <button class="quantity-btn">+</button>
+                    <button class="refresh-btn">&#x21bb;</button>
+                </div>
+
+                <p class="date-range">Du 17 août au 23 août 2024</p>
+            </div>
+
+            <div class="order-summary">
+                <div class="price-details">
+                    <p>Sous-total</p>
+                    <p>123€</p>
+                </div>
+                <div class="price-details">
+                    <p>Livraison</p>
+                    <p>3,99€</p>
+                </div>
+                <hr>
+                <div class="total-price">
+                    <p>Total TVA incluse</p>
+                    <p>126,99€</p>
+                </div>
+
+                <button class="order-btn">Commander</button>
+                <button class="continue-btn">Poursuivre mes achats</button>
+            </div>
+        </div>
+    </div>
+
+<%- include('footer'); -%>
