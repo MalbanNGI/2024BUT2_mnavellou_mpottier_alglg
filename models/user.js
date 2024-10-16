@@ -56,6 +56,33 @@ async function check_login (mailing) {
     });   
 };
 
+async function show_product () {
+    sql = "SELECT * FROM produits"; 
+    return new Promise((resolve, reject) => {
+        bdd.query(sql, (err, results) => {  
+           if (err) {
+            return reject(err)
+           }
+           console.log("ceci est results", results)
+           resolve(results[0]);
+
+        });
+    });   
+};
+
+async function show_productById (id) {
+    sql = "SELECT * FROM produits WHERE id = ?"; // ? = la variable 1 ici id
+    return new Promise((resolve, reject) => {
+        bdd.query(sql, id, (err, results) => {  // test avec [id]
+           if (err) {
+            return reject(err)
+           }
+           console.log("ceci est results", results)
+           resolve(results[0]);
+
+        });
+    });   
+};;
 
 
-module.exports = { getUserById, getAllUsers, getUserByName, check_login};
+module.exports = { getUserById, getAllUsers, getUserByName, check_login, show_productById, show_product};
