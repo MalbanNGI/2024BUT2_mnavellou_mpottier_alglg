@@ -3,6 +3,58 @@
 
     </div>
 
+    <div class="banner">
+        <h2>Gestion des produits  Location Sportive</h2>
+    </div>
+
+    <nav class="ariane">
+        <a href="#">Accueil</a>
+        <span>&gt;</span>
+        <a class="gras" href="#">Gestion des produits</a>
+
+    </nav>
+    
+<div class="add-container">
+        <div class="product-form">
+            <h2>Ajouter un produit</h2>
+            <input type="text" id="productPrice" placeholder="Prix par jour (€)">
+            <input type="text" id="productType" placeholder="Type du produit">
+            <input type="text" id="productDescription" placeholder="Description du produit">
+            <input type="text" id="productMarque" placeholder="Marque du produit">
+            <input type="text" id="productModel" placeholder="Modèle du produit">
+            <input type="text" id="productEtat" placeholder="Etat du produit">
+            <input type="file" id="productPhoto" accept="img/*" placeholder="Photo du produit">
+            <div class="btn-addProduct"><button>Ajouter</button></div>
+            
+            <div class="error"></div>
+        </div>
+
+        <h2>Liste des produits</h2>
+        <ul class="product-list">
+            <li>
+                <span>Vélo de Biking 500 - 35€/jour</span>
+                <button class="update-btn" onclick="openModal('Vélo de Biking 500', '35')">Modifier</button>
+                <button>Supprimer</button>
+            </li>
+            <li>
+                <span>Tapis de course Pro - 50€/jour (En location)</span>
+                <button class="update-btn" onclick="openModal('Tapis de course Pro', '50')">Modifier</button>
+                <button>Supprimer</button>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Modal de modification -->
+    <div id="updateModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>Modifier les informations du produit</h2>
+            <input type="text" id="modalProductName" placeholder="Nom du produit">
+            <input type="text" id="modalProductPrice" placeholder="Prix par jour (€)">
+            <button>Enregistrer les modifications</button>
+        </div>
+    </div>
+</div
 
 
     
