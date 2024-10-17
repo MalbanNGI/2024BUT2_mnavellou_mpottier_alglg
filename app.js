@@ -78,12 +78,24 @@ app.get("/validation", function (req, res) {
   res.render("validation");
 });
 
-app.get("/compte", function (req, res) {
-  if(res.locals.isAuth) {
-    res.render("compte");
-  }
-  else {
-    res.render("index")
+app.get("/inscription", function (req, res) {
+  res.render("inscription");
+});
+
+app.get("/compte", async function (req, res) {
+  if (res.locals.isAuth) {
+      try {
+
+          const userInfos = await userModel.getUserById(res.locals.id); 
+          console.log('ceci est userInfos :', userInfos);
+          res.render("compte", { userInfos });
+      } catch (err) {
+          console.error("Erreur lors de la récupération des infos utilisateur :", err);
+
+          res.status(500).send("Erreur interne");
+      }
+  } else {
+      res.render("index");
   }
 });
 
