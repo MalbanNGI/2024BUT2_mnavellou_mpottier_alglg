@@ -1,4 +1,3 @@
-
 /*Connexion & inscription*/
 
 .formcontainer {
@@ -352,7 +351,7 @@ h1 {
     margin-bottom: 10px;
 }
 
-.order-btn:hover{
+.order-btn:hover {
     background-color: #28a745;
 }
 
@@ -366,7 +365,7 @@ h1 {
     cursor: pointer;
 }
 
-.continue-btn:hover{
+.continue-btn:hover {
     background-color: #eec54a;
 
 }
@@ -375,7 +374,8 @@ h1 {
 .avis-clients {
     text-align: center;
     padding: 50px 0;
-    background-image: url('/public/img/chemin.png'); /* Le chemin vers ton image d'arrière-plan */
+    background-image: url('/public/img/chemin.png');
+    /* Le chemin vers ton image d'arrière-plan */
     background-size: cover;
     background-position: center;
 }
@@ -383,7 +383,7 @@ h1 {
 .avis-clients h2 {
     font-size: 36px;
     color: #198900;
-     /* Vert pour le titre */
+    /* Vert pour le titre */
     margin-bottom: 30px;
 }
 
@@ -395,7 +395,8 @@ h1 {
 }
 
 .avis {
-    background: rgba(255, 255, 255, 0.9); /* Fond blanc avec transparence */
+    background: rgba(255, 255, 255, 0.9);
+    /* Fond blanc avec transparence */
     border-radius: 10px;
     padding: 20px;
     width: 250px;
@@ -409,7 +410,8 @@ h1 {
 }
 
 .avis span {
-    color: #FFD700; /* Couleur or pour les étoiles */
+    color: #FFD700;
+    /* Couleur or pour les étoiles */
     font-size: 18px;
 }
 
@@ -420,14 +422,22 @@ h1 {
 }
 
 .avis-clients {
-    background-size: cover; /* L'image couvre toute la section */
-    background-position: center; /* Centrer l'image */
-    background-repeat: no-repeat; /* Éviter la répétition de l'image */
-    padding: 50px 20px; /* Espacement autour du texte */
-    color: white; /* Couleur de texte pour le contraste */
-    text-align: center; /* Centrer les titres et avis */
-    position: relative; /* Nécessaire pour positionner les éléments internes */
-    z-index: 1; /* Garde la section en arrière-plan */
+    background-size: cover;
+    /* L'image couvre toute la section */
+    background-position: center;
+    /* Centrer l'image */
+    background-repeat: no-repeat;
+    /* Éviter la répétition de l'image */
+    padding: 50px 20px;
+    /* Espacement autour du texte */
+    color: white;
+    /* Couleur de texte pour le contraste */
+    text-align: center;
+    /* Centrer les titres et avis */
+    position: relative;
+    /* Nécessaire pour positionner les éléments internes */
+    z-index: 1;
+    /* Garde la section en arrière-plan */
 }
 
 .avis-container {
@@ -435,27 +445,33 @@ h1 {
     justify-content: space-around;
     flex-wrap: wrap;
     gap: 20px;
-    z-index: 2; /* Met les avis au-dessus de l'arrière-plan */
+    z-index: 2;
+    /* Met les avis au-dessus de l'arrière-plan */
 }
 
 .avis {
-    background: rgba(255, 255, 255, 0.7); /* Fond blanc avec transparence */
+    background: rgba(255, 255, 255, 0.7);
+    /* Fond blanc avec transparence */
     border-radius: 10px;
     padding: 20px;
     width: 250px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    color: #333; /* Couleur du texte pour un meilleur contraste */
-    z-index: 3; /* S'assure que chaque avis est bien visible */
+    color: #333;
+    /* Couleur du texte pour un meilleur contraste */
+    z-index: 3;
+    /* S'assure que chaque avis est bien visible */
 }
 
 .avis h3 {
     font-size: 18px;
     margin-bottom: 10px;
-    color: #333; /* Texte bien lisible */
+    color: #333;
+    /* Texte bien lisible */
 }
 
 .avis span {
-    color: #FFD700; /* Couleur or pour les étoiles */
+    color: #FFD700;
+    /* Couleur or pour les étoiles */
     font-size: 18px;
 }
 
@@ -467,34 +483,194 @@ h1 {
 
 .bouton-container {
     display: flex;
-    justify-content: center; /* Centrage horizontal */
-    align-items: center; /* Centrage vertical */
-    height: 23vh; /* Prendre toute la hauteur de la fenêtre */
+    justify-content: center;
+    /* Centrage horizontal */
+    align-items: center;
+    /* Centrage vertical */
+    height: 23vh;
+    /* Prendre toute la hauteur de la fenêtre */
 }
 
 /* Bouton stylé */
 .petitbouton {
     display: inline-block;
     padding: 10px 20px;
-    background-color: #357a38; /* Couleur verte foncée */
-    color: white; /* Texte en blanc */
+    background-color: #357a38;
+    /* Couleur verte foncée */
+    color: white;
+    /* Texte en blanc */
     font-size: 1.2rem;
     font-weight: bold;
     text-decoration: none;
-    border-radius: 50px; /* Forme arrondie */
+    border-radius: 50px;
+    /* Forme arrondie */
     transition: background-color 0.3s ease;
 }
 
 .petitbouton:hover {
-    background-color: #2e6d31; /* Changement de couleur au survol */
+    background-color: #2e6d31;
+    /* Changement de couleur au survol */
 }
 
 .arrow {
-    margin-left: 10px; /* Espacement entre le texte et la flèche */
+    margin-left: 10px;
+    /* Espacement entre le texte et la flèche */
     font-size: 1.2rem;
 }
 
 /* Titre pour les avis (en couleur verte) */
 .titreavis {
     color: #357a38;
+}
+
+/*add product*/
+
+.add-container {
+    width: 70%;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.product-form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.product-form input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.product-form button {
+    background-color: #218838;
+    color: white;
+    cursor: pointer;
+    border: none;
+    width: 15%;
+    border-radius: 5px;
+    font-size: 16px;
+    padding: 10px;
+    margin: 10px 0;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+.product-form button:hover {
+    background-color: #45a049;
+}
+
+.error {
+    color: red;
+    margin-bottom: 10px;
+}
+
+.product-list {
+    list-style: none;
+    padding: 0;
+}
+
+.product-list li {
+    background-color: #fff;
+    padding: 15px;
+    margin: 10px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.product-list li span {
+    font-size: 18px;
+}
+
+.product-list li button {
+    background-color: #f44336;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.product-list li button:hover {
+    background-color: #e53935;
+}
+
+.update-btn {
+    background-color: #ffa500;
+}
+
+.update-btn:hover {
+    background-color: #ff8c00;
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 50%;
+    border-radius: 10px;
+}
+.btn-addProduct {
+    display: flex;
+    justify-content: center;
+}
+.modal input,
+.modal button {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal button {
+    background-color: #218838;
+    color: white;
+    cursor: pointer;
+    border: none;
+}
+
+.modal button:hover {
+    background-color: #45a049;
 }
