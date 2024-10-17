@@ -1,7 +1,9 @@
 .video {
     position: relative;
     width: 100%; /* Prend toute la largeur de l'écran */
+    height: 100vh;
     max-height: 800px; /* Limite la hauteur à 800px */
+
     overflow: hidden;
     
     
@@ -19,5 +21,5 @@
     max-height: 750px; /* Hauteur maximale 800px */
     object-fit: cover; /* S'adapte au conteneur sans déformer */
     transform: translate(-50%, -50%); /* Centre la vidéo */
-    z-index: -15; /* Place la vidéo derrière le contenu */
+    z-index: -150000; /* Place la vidéo derrière le contenu */
 }
