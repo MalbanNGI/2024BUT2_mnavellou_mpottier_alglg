@@ -124,9 +124,14 @@ nav.menu-navigation {
     text-decoration: underline;
 }
 
-nav.menu-navigation .navigation ul .compte-header, .panier-header {
+nav.menu-navigation .navigation ul .compte-header {
     filter: none;
 }
+
+nav.menu-navigation .navigation ul .panier-header {
+    filter: none;
+}
+
 
 a {
     list-style: none;

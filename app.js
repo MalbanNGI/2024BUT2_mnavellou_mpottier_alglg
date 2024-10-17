@@ -74,6 +74,10 @@ app.get("/help", function (req, res) {
   res.render("help");
 });
 
+app.get("/validation", function (req, res) {
+  res.render("validation");
+});
+
 app.get("/compte", function (req, res) {
   if(res.locals.isAuth) {
     res.render("compte");
