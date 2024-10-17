@@ -79,6 +79,7 @@
     display: flex;
     justify-content: center;
     width: 100%;
+    margin-top: -50px;
   }
   
   .stat-item:not(:last-child) {
