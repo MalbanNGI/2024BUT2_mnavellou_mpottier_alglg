@@ -1,4 +1,4 @@
-.wrapper {
+.wrapper2 {
     background-color: white;
     border-radius: 15px;
     overflow: hidden;
@@ -76,8 +76,8 @@
   }
   
   .profile-stats {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    display: flex;
+    justify-content: center;
     width: 100%;
   }
   
@@ -88,4 +88,9 @@
   .stat {
     font-size: 20px;
     font-weight: 700;
+  }
+
+ .middleOfPage {
+    display: flex;
+    justify-content: center;
   }

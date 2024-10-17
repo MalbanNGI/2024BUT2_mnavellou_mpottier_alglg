@@ -78,8 +78,8 @@ app.get("/validation", function (req, res) {
   res.render("validation");
 });
 
-app.get("/inscription", function (req, res) {
-  res.render("inscription");
+app.get("/inscriptionadmin", function (req, res) {
+  res.render("inscriptionadmin");
 });
 
 app.get("/compte", async function (req, res) {
