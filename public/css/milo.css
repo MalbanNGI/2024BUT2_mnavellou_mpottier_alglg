@@ -21,7 +21,7 @@
   }
   
   .profile-image {
-    background-image: url("/img/user.jpg");
+    background-image: url("/img/user.png");
     background-position: center;
     background-size: cover;
     position: relative;
