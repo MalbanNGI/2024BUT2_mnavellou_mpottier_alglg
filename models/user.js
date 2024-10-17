@@ -28,18 +28,18 @@ async function getAllUsers () {
     });   
 };
 
-async function getUserById (id) {
-    sql = "SELECT * FROM utilisateur WHERE id = ?"; // ? = la variable 1 ici id
+async function getUserById(id) {  
+    console.log("ceci est l'id envoyé dans la fonction getUserById :", id);  
+    const sql = "SELECT * FROM utilisateur WHERE id = ?"; // ? = la variable 1 ici id
     return new Promise((resolve, reject) => {
-        bdd.query(sql, id, (err, results) => {  // test avec [id]
-           if (err) {
-            return reject(err)
-           }
-           resolve(results);
-
+        bdd.query(sql, [id], (err, results) => { // Le paramètre doit être passé comme un tableau
+            if (err) {
+                return reject(err);
+            }
+            resolve(results[0]); // Résoudre la première ligne des résultats
         });
-    });   
-};
+    });
+}
 
 
 async function check_login (mailing) {
