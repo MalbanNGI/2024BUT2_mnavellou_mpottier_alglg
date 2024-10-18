@@ -1,12 +1,17 @@
 const express = require("express");
 const session = require("express-session");
+
 const md5 = require("md5");
+
 const app = express();
 const userModel = require("./models/user.js");
 
 app.set("view engine", "ejs");
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: false }));
+
+
+
 
 app.use(
   session({
@@ -105,7 +110,6 @@ app.post("/inscriptionadmin", async function (req, res) {
 app.get("/inscription", function (req, res) {
   res.render("inscription");
 });
-
 app.post("/inscription", async function (req, res) {
   try {
     let nom = req.body.name;
@@ -155,6 +159,28 @@ app.get("/panier", function (req, res) {
 app.get("/addProduct", function (req, res) {
   res.render("addProduct", { error: null });
 });
+app.post("/addProduct", async function (req, res) {
+  try {
+      let prix = req.body.prix;
+      prix = parseInt(prix)
+      let type = req.body.type;
+      let description = req.body.description;
+      let marque = req.body.marque;
+      let modele = req.body.modele;
+      let etat = req.body.productCondition;
+      const values = [type, description, marque, modele, prix, etat];
+      console.log("ceci est values : ", values);
+  
+      const user = await userModel.addProduct(type, description, marque, modele, prix, etat);
+      console.log("Produit créé avec succès : ", user);
+  
+      res.render("index");
+  } catch (err) {
+      console.error("Erreur lors de l'ajout du produit :", err);
+      res.status(500).send("Erreur lors de l'ajout du produit");
+  }
+});
+
 
 app.get("/connexion", function (req, res) {
   res.render("connexion", { error: null });

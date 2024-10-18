@@ -4,7 +4,7 @@
     </div>
 
     <div class="banner">
-        <h2>Gestion des produits  Location Sportive</h2>
+        <h2>Gestion des produits Location Sportive</h2>
     </div>
 
     <nav class="ariane">
@@ -13,18 +13,50 @@
         <a class="gras" href="#">Gestion des produits</a>
 
     </nav>
-    
-<div class="add-container">
+
+    <div class="add-container">
         <div class="product-form">
-            <h2>Ajouter un produit</h2>
-            <input type="text" id="productPrice" placeholder="Prix par jour (€)">
-            <input type="text" id="productType" placeholder="Type du produit">
-            <input type="text" id="productDescription" placeholder="Description du produit">
-            <input type="text" id="productMarque" placeholder="Marque du produit">
-            <input type="text" id="productModel" placeholder="Modèle du produit">
-            <input type="text" id="productEtat" placeholder="Etat du produit">
-            <input type="file" id="productPhoto" accept="img/*" placeholder="Photo du produit">
-            <div class="btn-addProduct"><button>Ajouter</button></div>
+            <form action="/addProduct" method="post">
+                <h2>Ajouter un produit</h2>
+                
+                <div class="productPrice">
+                    <label for="prix">Prix par jour (€) :</label>
+                    <input type="text" id="prix" name="prix" placeholder="Prix par jour (€)" required>
+                </div>
+                
+                <div class="productType">
+                    <label for="type">Type du produit :</label>
+                    <input type="text" id="type" name="type" placeholder="Type du produit" required>
+                </div>
+                
+                <div class="productDescription">
+                    <label for="description">Description du produit :</label>
+                    <input type="text" id="description" name="description" placeholder="Description du produit" required>
+                </div>
+                
+                <div class="productMarque">
+                    <label for="marque">Marque du produit :</label>
+                    <input type="text" id="marque" name="marque" placeholder="Marque du produit" required>
+                </div>
+                
+                <div class="productModel">
+                    <label for="modele">Modèle du produit :</label>
+                    <input type="text" id="modele" name="modele" placeholder="Modèle du produit" required>
+                </div>
+                
+                <label for="productCondition">État du produit :</label>
+                <select id="productCondition" name="productCondition">
+                    <option value="Bon état">Bon état</option>
+                    <option value="Etat satisfaisant">État satisfaisant</option>
+                    <option value="Très bon état">Très bon état</option>
+                    <option value="Neuf">Neuf</option>
+                </select><br><br>
+                
+                <div class="btn-addProduct">
+                    <button type="submit">Ajouter</button>
+                </div>
+            </form>
+            
             
             <div class="error"></div>
         </div>
@@ -54,8 +86,4 @@
             <button>Enregistrer les modifications</button>
         </div>
     </div>
-</div
-
-
-    
-<%- include('footer'); -%>
+    </div <%- include('footer'); -%>
