@@ -316,3 +316,58 @@ recapH1 {
 .actions button:hover {
     opacity: 0.9;
 }
+
+.link {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.link p {
+    margin: 0;
+}
+
+.link a {
+    text-decoration: none;
+    color: #3498db;
+    font-weight: bold;
+}
+
+.formcontainer{
+    margin-bottom: 50px;
+}
+
+.btnsuprimerlecompte {
+    text-align: center;
+}
+
+.delete-btn {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.delete-btn:hover {
+    background-color: #c0392b;
+}
+
+.btninscription{
+    background-color: #198900;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.btninscription:hover {
+    background-color: #20b100;
+}

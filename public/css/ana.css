@@ -367,15 +367,52 @@ h1 {
 
 .continue-btn:hover {
     background-color: #eec54a;
-
 }
+
+.order-actions {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.cancel-btn {
+    background-color: #f44336; 
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.cancel-btn:hover {
+    background-color: #e53935;
+}
+
+.cancel-btn:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+.cancel-message {
+    color: #999;
+    font-size: 14px;
+    display: none; 
+}
+
+.order-actions.non-annulable .cancel-btn {
+    display: none; 
+}
+
+.order-actions.non-annulable .cancel-message {
+    display: block; 
+}
+
 
 /*avis client*/
 .avis-clients {
     text-align: center;
     padding: 50px 0;
     background-image: url('/public/img/chemin.png');
-    /* Le chemin vers ton image d'arrière-plan */
     background-size: cover;
     background-position: center;
 }
