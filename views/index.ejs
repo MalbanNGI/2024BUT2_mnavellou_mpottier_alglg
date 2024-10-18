@@ -21,6 +21,9 @@
         <li class="li-nav"><a href="/help">Aides</a></li>
         <li class="li-nav"><a href="/catalogue">Catalogue</a></li>
         <li class="li-nav"><a href="/contact">Contact</a></li>
+        <% if(role === 'admin') {%>
+          <li class="li-nav"><a href="/inscriptionadmin">Admin</a></li>
+        <% } %>
         
         <% if (isAuth) { %>
           <li class="li-nav"><a href="/panier"><img class="panier-header" src="/img/panier.png" alt="panier icon"></a></li>

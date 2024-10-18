@@ -67,6 +67,7 @@ async function show_product() {
         });
     });
 }
+
 async function show_productById(id) {
     const sql = "SELECT * FROM produit WHERE id = ?";
     return new Promise((resolve, reject) => {
@@ -78,4 +79,34 @@ async function show_productById(id) {
         });
     });
 }
-module.exports = { getUserById, getAllUsers, getUserByName, check_login, show_productById, show_product};
+
+async function createClient(mdp, nom, prenom, ddn, email) {
+    const login = prenom[0] + nom;
+    const sql = "INSERT INTO utilisateur (login, password, nom, prenom, ddn, email, type_utilisateur) VALUES (?, ?, ?, ?, ?, ?, 'client')";
+    const values = [login, mdp, nom, prenom, ddn, email];
+
+    return new Promise((resolve, reject) => {
+        bdd.query(sql, values, (err, results) => {
+            if (err) {
+                return reject(err);
+            }
+            resolve(results);
+        });
+    });
+}
+
+async function createAgent(mdp, nom, prenom, ddn, email) {
+    const login = prenom[0] + nom;
+    const sql = "INSERT INTO utilisateur (login, password, nom, prenom, ddn, email, type_utilisateur) VALUES (?, ?, ?, ?, ?, ?, 'agent')";
+    const values = [login, mdp, nom, prenom, ddn, email];
+
+    return new Promise((resolve, reject) => {
+        bdd.query(sql, values, (err, results) => {
+            if (err) {
+                return reject(err);
+            }
+            resolve(results);
+        });
+    });
+}
+module.exports = { getUserById, getAllUsers, getUserByName, check_login, show_productById, show_product, createClient, createAgent };
