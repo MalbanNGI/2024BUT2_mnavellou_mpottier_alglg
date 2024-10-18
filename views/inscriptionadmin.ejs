@@ -9,10 +9,14 @@
     </div>
     <div class="formulaireCentre">
         <div class="formcontainer">
-            <form id="registrationForm">
+            <form id="registrationForm" action="/inscriptionadmin" method="post">
                 <div class="form-group">
                     <label for="name">Nom :</label>
                     <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="name">Prénom :</label>
+                    <input type="text" id="name" name="surname" required>
                 </div>
 
                 <div class="form-group">
@@ -22,7 +26,7 @@
 
                 <div class="form-group">
                     <label for="birthdate">Date de naissance :</label>
-                    <input type="date" id="birthdate" name="birthdate" required>
+                    <input type="date" id="birthdate" name="ddn" required>
                 </div>
 
                 <div class="form-group">
