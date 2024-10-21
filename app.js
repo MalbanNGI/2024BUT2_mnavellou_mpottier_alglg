@@ -49,7 +49,7 @@ app.get("/catalogue", async function (req, res) {
   }
 });
 
-app.post("/produit/:id", async function (req, res) {
+app.get("/produit/:id", async function (req, res) {
   const productId = req.params.id;
   console.log(productId);
 
