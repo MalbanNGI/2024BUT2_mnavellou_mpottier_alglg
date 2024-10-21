@@ -179,6 +179,21 @@ async function deleteProduct(id) {
     });
 }
 
+async function updateUser(id, nom, prenom, password, ddn, email) {
+    const sql = "UPDATE utilisateur SET nom = ?, prenom = ?, password = ?, ddn = ?, email = ? WHERE id = ?";
+    const values = [nom, prenom, password, ddn, email, id];
+  
+    return new Promise((resolve, reject) => {
+      bdd.query(sql, values, (err, results) => {
+        if (err) {
+          return reject(err);
+        }
+        resolve(results);
+      });
+    });
+  }
+  
+
   
 
 module.exports = {
@@ -194,5 +209,6 @@ module.exports = {
     deleteClient,
     verifResaClient,
     verifResaProduct,
-    deleteProduct
+    deleteProduct,
+    updateUser
 };

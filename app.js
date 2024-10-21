@@ -71,23 +71,25 @@ app.get("/delete-product/:id", async function (req, res) {
   try {
     const idProduct = req.params.id;
     console.log(idProduct);
-    
+
     // Vérification des locations en cours pour ce produit
     const loc = await userModel.verifResaProduct(idProduct);
     console.log("res de idProduct", loc);
     console.log("longueur de loc", loc.length);
-    
+
     if (loc.length > 0) {
       // Si le produit est en cours de location, envoyer une erreur
       return res
         .status(400)
-        .send("Vous ne pouvez pas supprimer ce produit car il est actuellement loué.");
+        .send(
+          "Vous ne pouvez pas supprimer ce produit car il est actuellement loué."
+        );
     } else {
       console.log("Apres le else");
       // Si aucune location n'est en cours, supprimer le produit
       const product = await userModel.deleteProduct(idProduct);
       console.log("Produit supprimé avec succès", product);
-      
+
       // Récupérer la liste des produits après suppression et rendre la vue
       const products = await userModel.show_product();
       return res.render("catalogue", { products });
@@ -170,6 +172,43 @@ app.get("/compte", async function (req, res) {
     }
   } else {
     res.render("connexion", { error: null });
+  }
+});
+app.get("/modif-account", function (req, res) {
+  if (res.locals.isAuth) {
+    res.render("modif-account");
+  } else {
+    res.render("index");
+  }
+});
+
+app.post("/modif-account", async function (req, res) {
+  const { nom, prenom, password, ddn, email } = req.body;
+  const userId = res.locals.id;
+  const mdp = md5(password);
+
+  try {
+    const result = await userModel.updateUser(
+      userId,
+      nom,
+      prenom,
+      mdp,
+      ddn,
+      email
+    );
+
+    if (result.affectedRows > 0) {
+      console.log("Compte modifié avec succès");
+      res.status(200).send("Votre compte a été modifié avec succès.");
+      res.render("compte");
+    } else {
+      return res.status(400).send("Erreur lors de la modification du compte.");
+    }
+  } catch (err) {
+    console.error("Erreur lors de la modification du compte :", err);
+    return res
+      .status(500)
+      .send("Erreur serveur lors de la modification du compte.");
   }
 });
 
