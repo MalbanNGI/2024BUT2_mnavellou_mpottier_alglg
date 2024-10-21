@@ -138,7 +138,7 @@ async function deleteClient(userId) {
 }
 
 
-  async function verifResa(userId) {
+  async function verifResaClient(userId) {
     const sql = "SELECT * FROM utilisateur U JOIN location L ON U.id = L.utilisateur_id WHERE L.utilisateur_id = ?";
 
     return new Promise((resolve, reject) => {
@@ -150,6 +150,35 @@ async function deleteClient(userId) {
         });
     });
 }
+
+async function verifResaProduct(id) {
+    const sql = "SELECT * FROM produit P JOIN location L ON P.id = L.produit_id WHERE L.produit_id = ?"; 
+    const values = [id];
+
+    return new Promise((resolve, reject) => {
+        bdd.query(sql, values, (err, results) => {
+            if (err) {
+                return reject(err);
+            }
+            resolve(results);
+        });
+    });
+}
+
+async function deleteProduct(id) {
+    const sql = "DELETE FROM produit WHERE id = ?";
+    const values = [id];
+
+    return new Promise((resolve, reject) => {
+        bdd.query(sql, values, (err, results) => {
+            if (err) {
+                return reject(err);
+            }
+            resolve(results);
+        });
+    });
+}
+
   
 
 module.exports = {
@@ -163,5 +192,7 @@ module.exports = {
     createAgent,
     addProduct,
     deleteClient,
-    verifResa
+    verifResaClient,
+    verifResaProduct,
+    deleteProduct
 };

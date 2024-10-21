@@ -10,9 +10,6 @@ app.set("view engine", "ejs");
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: false }));
 
-
-
-
 app.use(
   session({
     secret: "milo",
@@ -52,7 +49,7 @@ app.get("/catalogue", async function (req, res) {
   }
 });
 
-app.get("/produit/:id", async function (req, res) {
+app.post("/produit/:id", async function (req, res) {
   const productId = req.params.id;
   console.log(productId);
 
@@ -67,6 +64,37 @@ app.get("/produit/:id", async function (req, res) {
   } catch (error) {
     console.error("Error fetching product:", error);
     res.status(500).send("An error occurred");
+  }
+});
+
+app.get("/delete-product/:id", async function (req, res) {
+  try {
+    const idProduct = req.params.id;
+    console.log(idProduct);
+    
+    // Vérification des locations en cours pour ce produit
+    const loc = await userModel.verifResaProduct(idProduct);
+    console.log("res de idProduct", loc);
+    console.log("longueur de loc", loc.length);
+    
+    if (loc.length > 0) {
+      // Si le produit est en cours de location, envoyer une erreur
+      return res
+        .status(400)
+        .send("Vous ne pouvez pas supprimer ce produit car il est actuellement loué.");
+    } else {
+      console.log("Apres le else");
+      // Si aucune location n'est en cours, supprimer le produit
+      const product = await userModel.deleteProduct(idProduct);
+      console.log("Produit supprimé avec succès", product);
+      
+      // Récupérer la liste des produits après suppression et rendre la vue
+      const products = await userModel.show_product();
+      return res.render("catalogue", { products });
+    }
+  } catch (err) {
+    console.error("Erreur lors de la suppression du produit :", err);
+    return res.status(500).send("Erreur lors de la suppression du produit.");
   }
 });
 
@@ -154,10 +182,14 @@ app.post("/delete-account", async function (req, res) {
     const userId = res.locals.id;
 
     // Milo vérifie si l'utilisateur a des locations en cours !!!!!!!
-    const loc = await userModel.verifResa(userId);
+    const loc = await userModel.verifResaClient(userId);
 
     if (loc.length > 0) {
-      res.status(400).send("Vous ne pouvez pas supprimer votre compte, car vous avez des locations en cours. Veuillez revenir en arrière. ");
+      res
+        .status(400)
+        .send(
+          "Vous ne pouvez pas supprimer votre compte, car vous avez des locations en cours. Veuillez revenir en arrière. "
+        );
     } else {
       const user = await userModel.deleteClient(userId);
       console.log("Client supprimé avec succès", user);
@@ -172,7 +204,6 @@ app.post("/delete-account", async function (req, res) {
   }
 });
 
-
 app.get("/contact", function (req, res) {
   res.render("contact");
 });
@@ -186,26 +217,32 @@ app.get("/addProduct", function (req, res) {
 });
 app.post("/addProduct", async function (req, res) {
   try {
-      let prix = req.body.prix;
-      prix = parseInt(prix)
-      let type = req.body.type;
-      let description = req.body.description;
-      let marque = req.body.marque;
-      let modele = req.body.modele;
-      let etat = req.body.productCondition;
-      const values = [type, description, marque, modele, prix, etat];
-      console.log("ceci est values : ", values);
-  
-      const user = await userModel.addProduct(type, description, marque, modele, prix, etat);
-      console.log("Produit créé avec succès : ", user);
-  
-      res.render("index");
+    let prix = req.body.prix;
+    prix = parseInt(prix);
+    let type = req.body.type;
+    let description = req.body.description;
+    let marque = req.body.marque;
+    let modele = req.body.modele;
+    let etat = req.body.productCondition;
+    const values = [type, description, marque, modele, prix, etat];
+    console.log("ceci est values : ", values);
+
+    const user = await userModel.addProduct(
+      type,
+      description,
+      marque,
+      modele,
+      prix,
+      etat
+    );
+    console.log("Produit créé avec succès : ", user);
+
+    res.render("index");
   } catch (err) {
-      console.error("Erreur lors de l'ajout du produit :", err);
-      res.status(500).send("Erreur lors de l'ajout du produit");
+    console.error("Erreur lors de l'ajout du produit :", err);
+    res.status(500).send("Erreur lors de l'ajout du produit");
   }
 });
-
 
 app.get("/connexion", function (req, res) {
   res.render("connexion", { error: null });

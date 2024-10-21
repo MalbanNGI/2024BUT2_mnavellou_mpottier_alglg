@@ -46,6 +46,7 @@
 
     <div class="allProduct">
         <% products.forEach(function(element) { %>
+
             <div class="card">
                 <div class="image-container">
                     <img src="/img/<%= element.image %>" alt="<%= element.image %>">
@@ -60,6 +61,9 @@
                             <%= element.prix_location %> €/j
                         </p>
                         <button class="btn"><a href="/produit/<%= element.id %>">Découvrir</a></button>
+                        <% if (role === "agent") { %>
+                            <button class="btn rouge"><a href="/delete-product/<%= element.id %>">Supprimer</a></button>
+                        <% } %>
                     </div>
                 </div>
             </div>

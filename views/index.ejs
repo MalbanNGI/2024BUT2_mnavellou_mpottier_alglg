@@ -24,6 +24,9 @@
         <% if(role === 'admin') {%>
           <li class="li-nav"><a href="/inscriptionadmin">Admin</a></li>
         <% } %>
+        <% if(role === 'agent') {%>
+          <li class="li-nav"><a href="/addProduct">Gestion</a></li>
+        <% } %>
         
         <% if (isAuth) { %>
           <li class="li-nav"><a href="/panier"><img class="panier-header" src="/img/panier.png" alt="panier icon"></a></li>
