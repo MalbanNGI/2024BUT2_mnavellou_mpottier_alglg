@@ -144,7 +144,7 @@ app.get("/compte", async function (req, res) {
       res.status(500).send("Erreur interne");
     }
   } else {
-    res.render("connexion");
+    res.render("connexion", { error: null });
   }
 });
 
