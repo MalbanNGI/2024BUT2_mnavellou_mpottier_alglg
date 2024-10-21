@@ -139,7 +139,7 @@ async function deleteClient(userId) {
 
 
   async function verifResaClient(userId) {
-    const sql = "SELECT * FROM utilisateur U JOIN location L ON U.id = L.utilisateur_id WHERE L.utilisateur_id = ?";
+    const sql = "SELECT * FROM utilisateur U JOIN location L ON U.id = L.utilisateur_id WHERE L.utilisateur_id = ? AND L.status = 'progress'";
 
     return new Promise((resolve, reject) => {
         bdd.query(sql, [userId], (err, results) => {
@@ -152,7 +152,7 @@ async function deleteClient(userId) {
 }
 
 async function verifResaProduct(id) {
-    const sql = "SELECT * FROM produit P JOIN location L ON P.id = L.produit_id WHERE L.produit_id = ?"; 
+    const sql = "SELECT * FROM produit P JOIN location L ON P.id = L.produit_id WHERE L.produit_id = ? AND L.status = 'progress'"; 
     const values = [id];
 
     return new Promise((resolve, reject) => {
