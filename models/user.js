@@ -124,6 +124,33 @@ async function addProduct(type, description, marque, modele, prix, etat) {
         });
     });
 }
+async function deleteClient(userId) {
+    const sql = "DELETE FROM utilisateur WHERE id = ?";
+
+    return new Promise((resolve, reject) => {
+        bdd.query(sql, [userId], (err, results) => {
+            if (err) {
+                return reject(err);
+            }
+            resolve(results);
+        });
+    });
+}
+
+
+  async function verifResa(userId) {
+    const sql = "SELECT * FROM utilisateur U JOIN location L ON U.id = L.utilisateur_id WHERE L.utilisateur_id = ?";
+
+    return new Promise((resolve, reject) => {
+        bdd.query(sql, [userId], (err, results) => {
+            if (err) {
+                return reject(err);
+            }
+            resolve(results);
+        });
+    });
+}
+  
 
 module.exports = {
     getUserById,
@@ -135,4 +162,6 @@ module.exports = {
     createClient,
     createAgent,
     addProduct,
+    deleteClient,
+    verifResa
 };

@@ -28,9 +28,6 @@ app.use(function (req, res, next) {
     res.locals.id = req.session.userId;
     res.locals.name = req.session.prenomCLient; // toujours mettre le else !!!
     res.locals.role = req.session.role;
-    console.log("ceci est name: ", res.locals.name);
-    console.log("ceci est id: ", res.locals.id);
-    console.log("ceci est isAuth: ", res.locals.isAuth);
   } else {
     res.locals.isAuth = false;
     res.locals.id = null;
@@ -147,6 +144,34 @@ app.get("/compte", async function (req, res) {
     res.render("connexion", { error: null });
   }
 });
+
+app.get("/delete-acount", function (req, res) {
+  res.render("index");
+});
+
+app.post("/delete-account", async function (req, res) {
+  try {
+    const userId = res.locals.id;
+
+    // Milo vérifie si l'utilisateur a des locations en cours !!!!!!!
+    const loc = await userModel.verifResa(userId);
+
+    if (loc.length > 0) {
+      res.status(400).send("Vous ne pouvez pas supprimer votre compte, car vous avez des locations en cours. Veuillez revenir en arrière. ");
+    } else {
+      const user = await userModel.deleteClient(userId);
+      console.log("Client supprimé avec succès", user);
+      req.session.destroy(function (err) {
+        if (err) return res.redirect("/");
+        res.redirect("/connexion");
+      });
+    }
+  } catch (err) {
+    console.error("Erreur lors de la suppression du compte :", err);
+    res.status(500).send("Erreur lors de la suppression du compte");
+  }
+});
+
 
 app.get("/contact", function (req, res) {
   res.render("contact");
