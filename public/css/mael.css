@@ -335,7 +335,23 @@ recapH1 {
 }
 
 .formcontainer{
-    margin-bottom: 50px;
+    margin-bottom: 40px;
+}
+
+
+.btninscription{
+    background-color: #198900;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.btninscription:hover {
+    background-color: #20b100;
 }
 
 .btnsuprimerlecompte {
@@ -357,7 +373,13 @@ recapH1 {
     background-color: #c0392b;
 }
 
-.btninscription{
+.deuxbtncompte{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.panier-btn{
     background-color: #198900;
     color: white;
     border: none;
@@ -368,6 +390,7 @@ recapH1 {
     transition: background-color 0.3s ease;
 }
 
-.btninscription:hover {
+
+.panier-btn:hover {
     background-color: #20b100;
 }
