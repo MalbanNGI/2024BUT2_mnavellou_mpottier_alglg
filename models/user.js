@@ -165,6 +165,20 @@ async function verifResaProduct(id) {
     });
 }
 
+async function verifResaProductByDate(id, date) {
+    const sql = "SELECT * FROM produit P JOIN location L ON P.id = L.produit_id WHERE L.produit_id = ? AND L.status = 'progress' AND date"; 
+    const values = [id];
+
+    return new Promise((resolve, reject) => {
+        bdd.query(sql, values, (err, results) => {
+            if (err) {
+                return reject(err);
+            }
+            resolve(results);
+        });
+    });
+}
+
 async function deleteProduct(id) {
     const sql = "DELETE FROM produit WHERE id = ?";
     const values = [id];
@@ -210,5 +224,6 @@ module.exports = {
     verifResaClient,
     verifResaProduct,
     deleteProduct,
-    updateUser
+    updateUser,
+    verifResaProductByDate
 };

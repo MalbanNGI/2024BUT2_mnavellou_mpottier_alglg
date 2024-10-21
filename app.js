@@ -105,7 +105,11 @@ app.get("/help", function (req, res) {
 });
 
 app.get("/validation", function (req, res) {
-  res.render("validation");
+  
+  if (res.locals.role == "agent") {
+    res.render("validation");
+  }
+  res.render("index");
 });
 
 app.get("/inscriptionadmin", function (req, res) {
