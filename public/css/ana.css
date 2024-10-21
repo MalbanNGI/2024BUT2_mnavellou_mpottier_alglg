@@ -82,6 +82,19 @@ input {
     text-decoration: underline;
 }
 
+
+
+
+input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+label[for="age-confirmation"] {
+    display: inline-block;
+    font-size: 14px;
+    cursor: pointer;
+}
+
 /*Produit*/
 
 .product-container {
