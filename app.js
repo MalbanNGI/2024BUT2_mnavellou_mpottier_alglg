@@ -251,9 +251,83 @@ app.get("/contact", function (req, res) {
   res.render("contact");
 });
 
-app.get("/panier", function (req, res) {
-  res.render("panier");
+app.get("/panier", async function (req, res) {
+  if(res.locals.isAuth) {
+    try {
+      const userId = res.locals.id;
+      
+      const panier = await userModel.showPanier(userId);
+      console.log("ceci est la table panier")
+      console.table(panier)
+//
+      const user = await userModel.getUserById(userId);
+      console.log("ceci est la table user")
+      console.table(user)
+      const leproduit = await userModel.show_productById(id_product);
+      console.log("ceci est la table le produit")
+      console.table(leproduit)
+
+      // Renvoyer la vue "panier" avec les données du panier
+      
+//
+      
+      if(panier.length > 0) {
+        res.render("panier", { panier, user, leproduit });
+      }
+      else {
+        res.render("panier", { message: "Votre panier est vide" })
+      }
+      
+    }
+    catch (err) {
+      console.error("Erreur lors de l'ajout au panier :", err);
+      res.status(500).send("Erreur lors de l'ajout au panier.");
+    }
+    
+  }
+  else {
+    res.render("index")
+  }
+  
 });
+app.post("/panier", async function (req, res) {
+  try {
+    const userId = res.locals.id; // ID de l'utilisateur connecté
+    const { id_product, start, end } = req.body; // ID du produit et les dates sélectionnées
+    console.log("coucou", id_product, start, end );
+
+    // Vérifier si les dates de location sont disponibles pour le produit
+    const isAvailable = await userModel.VerifDateDeResa(id_product, start, end );
+    console.log("ceci est isAvailable :", isAvailable);
+
+    if (new Date(start) >= new Date(end)) {
+      return res.status(400).send("La date de début doit être avant la date de fin.");
+    }
+
+    if (isAvailable == true) {
+      // Si les dates sont disponibles, ajouter la location au panier
+      console.log('aaaaaaaaaa')
+      const days = await userModel.HowManyDaysWhenPrice(id_product, userId);
+      console.log("ceci est", days);
+      const prix = await userModel.calculateTotalPrice(days, 15); // on part dans l'idée que c'est le meme prix pour tout le matos
+
+      await userModel.addPanier(id_product, userId, start, end, prix);
+
+      // Récupérer le panier mis à jour après l'ajout
+      res.render("panier");
+      
+    } else {
+      // Sinon, renvoyer un message que les dates ne sont pas disponibles
+      res.status(400).send("Les dates sélectionnées ne sont pas disponibles pour ce produit.");
+    }
+  } catch (err) {
+    console.error("Erreur lors de l'ajout au panier :", err);
+    res.status(500).send("Erreur lors de l'ajout au panier.");
+  }
+});
+
+
+
 
 app.get("/addProduct", function (req, res) {
   res.render("addProduct", { error: null });

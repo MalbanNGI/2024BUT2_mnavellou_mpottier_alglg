@@ -208,8 +208,128 @@ async function updateUser(id, nom, prenom, password, ddn, email) {
   }
   
 
-  
+  async function HowManyDaysWhenPrice(idProduct, idClient) {
+    const sql = "SELECT * FROM utilisateur U JOIN location L ON U.id = L.utilisateur_id JOIN produit P ON L.produit_id = P.id WHERE P.id = ? AND U.id = ?"; //  AND L.date_retour_effective IS NOT NULL
+    const values = [idProduct, idClient];
 
+    return new Promise((resolve, reject) => {
+        bdd.query(sql, values, (err, results) => {
+            if (err) {
+                return reject(err);
+            }
+
+            if (results.length > 0) {
+                const { date_debut, date_retour_prevue} = results[0];
+
+                const dateDebut = new Date(date_debut);
+                const dateRetourEffective = new Date(date_retour_prevue);
+                const timeDiff = Math.abs(dateRetourEffective - dateDebut); // fonction qui calcule le nb de jours entre les 2 dates
+                const diffDays = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
+                resolve( diffDays);
+            } else {
+                resolve(null); 
+            }
+        });
+    });
+};
+
+function calculateTotalPrice(nbjours, basePrice) {
+    let totalPrice = 0;
+
+    if (nbjours <= 3) {
+        totalPrice = basePrice; // les 3 premiers jours sont egals au prix de base de location
+    } else if (nbjours > 3 && nbjours <= 7) {
+        totalPrice = basePrice + (basePrice * 0.04 * (nbjours - 3));
+    } else if (nbjours > 7 && nbjours <= 14) {
+        totalPrice = basePrice + (basePrice * 0.04 * 4) + (basePrice * 0.02 * (nbjours - 7));
+    } else if (nbjours > 14 && nbjours <= 30) {
+        totalPrice = basePrice + (basePrice * 0.04 * 4) + (basePrice * 0.02 * 7) + (basePrice * 0.01 * (nbjours - 14));
+    }
+
+    // si ya plus de 7 jours on enleve 10%
+    if (nbjours > 7) {
+        totalPrice *= 0.9;
+    }
+
+    // si ya plus de 30 jours on rajoute 20%
+    if (nbjours > 30) {
+        totalPrice += basePrice * 0.2;
+    }
+    // Milo arrondi ! 
+    return Math.round(totalPrice * 100) / 100; // on arrondi pour facilité l'affichage
+}
+
+
+async function addPanier(idProduct, idClient, dateDebut, dateRetourPrevue) {
+    const sql = `
+      INSERT INTO location (produit_id, utilisateur_id, date_debut, date_retour_prevue, status)
+      VALUES (?, ?, ?, ?, 'progress')
+    `;
+    
+    const values = [idProduct, idClient, dateDebut, dateRetourPrevue];
+  
+    return new Promise((resolve, reject) => {
+      bdd.query(sql, values, (err, results) => {
+        if (err) {
+          return reject(err);
+        }
+        resolve(results);
+      });
+    });
+};
+
+ 
+  async function VerifDateDeResa(idProduct, dateDebut, dateRetourPrevue) {
+    const sql = `
+      SELECT * FROM location
+      WHERE produit_id = ?
+      AND (
+        (date_debut <= ? AND date_retour_prevue >= ?)  -- Si la nouvelle date de début est comprise dans une location existante
+        OR
+        (date_debut <= ? AND date_retour_prevue >= ?)  -- Si la nouvelle date de fin est comprise dans une location existante
+        OR
+        (date_debut >= ? AND date_retour_prevue <= ?)  -- Si la nouvelle location est totalement incluse dans une location existante
+      )
+    `;
+  
+    const values = [
+      idProduct, 
+      dateDebut, dateDebut,  // Vérification de la date de début
+      dateRetourPrevue, dateRetourPrevue,  // Vérification de la date de retour
+      dateDebut, dateRetourPrevue  // Vérification si les dates sont incluses dans une location existante
+    ];
+  
+    return new Promise((resolve, reject) => {
+      bdd.query(sql, values, (err, results) => {
+        if (err) {
+          return reject(err);
+        }
+        // Si le résultat est vide, cela signifie que les dates ne sont pas chevauchées et donc disponibles
+        if (results.length > 0) {
+          resolve(false);  // Les dates sont déjà prises
+        } else {
+          resolve(true);  // Les dates sont disponibles
+        }
+      });
+    });
+  };
+
+  async function showPanier(idClient) {
+    const sql = `
+      SELECT * FROM location WHERE utilisateur_id = ? 
+    `;
+    const values = [idClient];
+  
+    return new Promise((resolve, reject) => {
+      bdd.query(sql, values, (err, results) => {
+        if (err) {
+          return reject(err);
+        }
+        resolve(results);
+      });
+    });
+};
+  
 module.exports = {
     getUserById,
     getAllUsers,
@@ -225,5 +345,10 @@ module.exports = {
     verifResaProduct,
     deleteProduct,
     updateUser,
-    verifResaProductByDate
+    verifResaProductByDate,
+    HowManyDaysWhenPrice,
+    calculateTotalPrice,
+    addPanier,
+    VerifDateDeResa,
+    showPanier
 };

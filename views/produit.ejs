@@ -7,32 +7,43 @@
     <div class="banner">
         <h2>Produit</h2>
     </div>
+    <form action="/panier" method="post">
+        <div class="product-container">
+            <div class="image-section">
+                <img src="/img/velo.png" alt="Vélo" class="product-image">
+            </div>
 
-    <div class="product-container">
-        <div class="image-section">
-            <img src="/img/velo.png" alt="Vélo" class="product-image">
-        </div>
-        
-        <div class="details-section">
-            <h1><%= product.type %> <%= product.modele %></h1>
-            <p class="description">
-                <%= product.description %>
-            </p>
-            <h2 class="price"><%= product.prix_location %>€/j</h2>
-            <div class="delivery-info">
-                <span>Retrait <strong>GRATUIT</strong></span> en magasin et point relais
-            </div>
-            
-            <div class="quantity-reserve">
-                <div class="quantity-controls">
-                    <button class="minus-btn">-</button>
-                    <input type="number" value="1" min="1">
-                    <button class="plus-btn">+</button>
+            <div class="details-section">
+                <h1>
+                    <%= product.type %>
+                        <%= product.modele %>
+                </h1>
+                <p class="description">
+                    <%= product.description %>
+                </p>
+                <h2 class="price">
+                    <%= product.prix_location %>€/j
+                </h2>
+                <div class="delivery-info">
+                    <span>Retrait <strong>GRATUIT</strong></span> en magasin et point relais
                 </div>
-                <button class="reserve-btn">Réserver</button>
+                <input type="hidden" name="id_product" value="<%= product.id %>">
+
+                <div class="quantity-reserve">    
+                    <div class="date-range">
+                        <label for="start">Louer du</label>
+                        <input type="date" id="start" name="start" required>
+                        <label for="end">au</label>
+                        <input type="date" id="end" name="end" required>
+                        
+                    </div>
+                    
+
+                </div>
+                <button type="submit" class="reserve-btn">Réserver</button>
             </div>
         </div>
-    </div>
+    </form>
 
     <div class="specs-container">
         <div class="specs-section">
@@ -44,7 +55,7 @@
                 <li>- Nombre de niveaux d'entraînements : 11</li>
             </ul>
         </div>
-        
+
         <div class="middle-illustration">
             <img src="/img/a_vous_de_jouer.png" alt="A vous de jouer">
         </div>

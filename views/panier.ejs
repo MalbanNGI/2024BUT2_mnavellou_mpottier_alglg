@@ -11,18 +11,20 @@
     <div class="breadcrumb">
         <a href="#">Accueil</a> > <a href="#">Panier</a>
     </div>
-
+ 
+    <% if ((panier && panier.length > 0) && (user && user.length > 0) && (leproduit && leproduit.length > 0)) { %>
+        <% panier.forEach(function(element) { %>
     <div class="cart-container">
         <p class="delivery-info">Livraison dès demain dans nos boutiques près de chez vous.</p>
-
+       
         <div class="cart-item">
             <div class="item-image">
                 <img src="img/velo.png" alt="Velo de Biking 500">
             </div>
 
             <div class="item-details">
-                <h2>VELO DE BIKING 500</h2>
-                <p class="price">35€/j</p>
+                <h2>titre ? </h2>
+                <p class="price"><%= element.prix_location %></p>
 
                 <div class="quantity-control">
                     <button class="quantity-btn">-</button>
@@ -31,25 +33,28 @@
                     <button class="refresh-btn">&#x21bb;</button>
                 </div>
 
-                <p class="date-range">Du 17 août au 23 août 2024</p>
+                <p class="date-range"><%= element.date_retour_prevue %></p>
             </div>
+          
 
             <div class="order-summary">
                 <div class="price-details">
                     <p>Sous-total</p>
-                    <p>123€</p>
+                    <p><%= element.prix_location %></p>
                 </div>
                 
                 <hr>
                 <div class="total-price">
                     <p>Total TVA incluse</p>
-                    <p>123€</p>
+                    <p><%= element.prix_location %></p>
                 </div>
 
-                <button class="order-btn" onclick="generatePDF()">Commander</button>
+                <button class="order-btn">Commander</button> <!-- onclick="generatePDF()"-->
                 <a href="/catalogue" class="continue-btn">Poursuivre mes achats</a>
             </div>
         </div>
+        
+        
         <div class="order-actions">
             <button class="cancel-btn">Annuler la commande</button>
             <p class="cancel-message">La commande ne peut plus être annulée car elle a été livrée ou commencée.</p>
@@ -88,5 +93,6 @@
         </script>
 
     </div>
+    <% })} %>
 
     <%- include('footer'); -%>
