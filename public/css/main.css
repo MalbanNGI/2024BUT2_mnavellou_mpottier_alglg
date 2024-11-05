@@ -225,17 +225,7 @@ h3 {
     align-items: center;
 }
 
-.status-indicator {
-    display: inline-block;
-    width: 12px;
 
-    height: 12px;
-    border-radius: 50%;
-
-    background-color: #fcbf23;
-  
-    margin-right: 8px;
-}
 
 /* Animation pour l'apparition des éléments */
 .fade-in {

@@ -136,8 +136,9 @@ app.post("/accept-commande", async function (req, res) {
     let idUser = req.body.id_user;
     const user = await userModel.acceptCommande(idProduct, idUser);
     const locations_wait = await userModel.locations_Wait();
-    res.render("verif-commandes", { locations_wait });
-    res.render("verif-commandes");
+    const locations_progress = await userModel.locations_Progress();
+    const locations_end = await userModel.locations_End();
+    res.render("verif-commandes", { locations_wait, locations_progress, locations_end  });
   } catch (err) {
     console.error("Erreur lors de l'ajout du produit :", err);
     res.status(500).send("Erreur lors de l'ajout du produit");
