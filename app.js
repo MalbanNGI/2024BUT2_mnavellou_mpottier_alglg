@@ -187,7 +187,7 @@ app.get("/validation", function (req, res) {
 });
 
 app.get("/inscriptionadmin", function (req, res) {
-  if (req.locals.role == "admin") {
+  if (res.locals.role == "admin") {
     res.render("inscriptionadmin");
   }
   else[
