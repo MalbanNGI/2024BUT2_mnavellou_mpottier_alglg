@@ -6,264 +6,172 @@
 
     <div class="container-locations">
         <h1 id="text" class="gradient">Locations en attente de validation</h1>
-        <div class="middleOfPage">
+
+        <div class="cards-container">
             <% locations_wait.forEach(function(element) { %>
-                <div class="wrapper2">
-                    <div class="profile-top">
-                        <div class="profile-image"></div>
+                <div class="card">
+                    <div class="card-header">
+                        <h2>
+                            <%= element.prenom %>
+                                <%= element.nom %>
+                        </h2>
+                        <span class="status validation">En attente</span>
                     </div>
-
-                    <div class="profile-bottom">
-                        <div class="profile-infos">
-                            <div class="main-infos">
-                                <h3 class="name">
-                                    <%= element.prenom %>
-                                        <%= element.nom %>
-                                </h3>
-                                <% const an=element.ddn.getFullYear() %>
-                                    <% const nbyears=2024- an %>
-                                        <p class="age grey">
-                                            <%= nbyears %> ans
-                                        </p>
-                            </div>
-                            <p class="email">
-                                <%= element.email %>
-                            </p>
-                            <p class="ville">
-                                <span class="status-indicator-waiting"></span> En attente de validation
-                            </p>
-                        </div>
-
-                        <div class="profile-stats">
-                            <div class="stat-item">
-                                <p class="stat">
+                    <div class="card-body">
+                        <% const an=element.ddn.getFullYear() %>
+                            <% const nbyears=2024- an %>
+                                <p><strong>Âge:</strong>
+                                    <%= nbyears %> ans
+                                </p>
+                                <p><strong>Email:</strong>
+                                    <%= element.email %>
+                                </p>
+                                <p><strong>Date de réservation:</strong>
+                                    <%= element.date_debut.getDay()%>/<%= element.date_debut.getMonth()%>/<%=
+                                                element.date_debut.getFullYear()%> - <%=
+                                                    element.date_retour_prevue.getDay()%>/<%=
+                                                        element.date_retour_prevue.getMonth()%>/<%=
+                                                            element.date_retour_prevue.getFullYear()%>
+                                </p>
+                                <p><strong>Produit sélectionné:</strong>
                                     <%= element.type %>
                                         <%= element.modele %>
                                 </p>
 
-                                <p class="grey">
-                                    "Réservation du <%= element.date_debut.getDay()%>/<%= element.date_debut.getMonth()
-                                            %>/<%= element.date_debut.getFullYear() %> au
-                                                <%= element.date_retour_prevue.getDay()%>/<%=
-                                                        element.date_retour_prevue.getMonth() %>/<%=
-                                                            element.date_retour_prevue.getFullYear() %>"
-                                </p>
-                            </div>
-                        </div>
-                        <div class="deuxbtncompte">
-                            <div class="Accederaupanier">
-                                <form action="/accept-commande" method="post">
-                                    <input type="hidden" name="id_product" value="<%= element.produit_id %>">
-                                    <input type="hidden" name="id_user" value="<%= element.utilisateur_id %>">
-                                    <button type="submit" class="panier-btn">Valider la commande</button>
-                                </form>
-                            </div>
-                            <div class="btnsupprimerlecompte">
-                                <div class="Accederaupanierrouge">
-                                    <form action="/delete-commande" method="post"> 
-                                        <!-- Renvoyer vers la page qui suppr ou change la commeande en mode progress !!!! -->
-                                        <input type="hidden" name="id_product" value="<%= element.produit_id %>">
-                                        <input type="hidden" name="id_user" value="<%= element.utilisateur_id %>">
-                                        <button type="submit" class="panier-btn rouge">Supprimer la commande</button>
-                                    </form>
-                                </div>
-                            </div>
-
-                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <form action="/accept-commande" method="post">
+                            <input type="hidden" name="id_product" value="<%= element.produit_id %>">
+                            <input type="hidden" name="id_user" value="<%= element.utilisateur_id %>">
+                            <button type="submit" class="button validate">Valider</button>
+                        </form>
+                        <form action="/delete-commande" method="post">
+                            <input type="hidden" name="id_product" value="<%= element.produit_id %>">
+                            <input type="hidden" name="id_user" value="<%= element.utilisateur_id %>">
+                            <button type="submit" class="button delete">Supprimer</button>
+                        </form>
                     </div>
                 </div>
-            <% }); %>
+                <% }); %>
         </div>
         <h1 id="text" class="gradient">Locations en cours</h1>
-        <div class="middleOfPage">
+        <div class="cards-container">
             <% locations_progress.forEach(function(element) { %>
-                <div class="wrapper2">
-                    <div class="profile-top">
-                        <div class="profile-image"></div>
+                <div class="card">
+                    <div class="card-header">
+                        <h2>
+                            <%= element.prenom %>
+                                <%= element.nom %>
+                        </h2>
+                        <span class="status in-progress">En cours</span>
                     </div>
-
-                    <div class="profile-bottom">
-                        <div class="profile-infos">
-                            <div class="main-infos">
-                                <h3 class="name">
-                                    <%= element.prenom %>
-                                        <%= element.nom %>
-                                </h3>
-                                <% const an=element.ddn.getFullYear() %>
-                                    <% const nbyears=2024- an %>
-                                        <p class="age grey">
-                                            <%= nbyears %> ans
-                                        </p>
-                            </div>
-                            <p class="email">
-                                <%= element.email %>
-                            </p>
-                            <p class="ville">
-                                <span class="status-indicator-progress"></span> En cours
-                            </p>
-                        </div>
-
-                        <div class="profile-stats">
-                            <div class="stat-item">
-                                <p class="stat">
+                    <div class="card-body">
+                        <% const an=element.ddn.getFullYear() %>
+                            <% const nbyears=2024- an %>
+                                <p><strong>Âge:</strong>
+                                    <%= nbyears %> ans
+                                </p>
+                                <p><strong>Email:</strong>
+                                    <%= element.email %>
+                                </p>
+                                <p><strong>Date de réservation:</strong>
+                                    <%= element.date_debut.getDay()%>/<%= element.date_debut.getMonth()%>/<%=
+                                                element.date_debut.getFullYear()%> - <%=
+                                                    element.date_retour_prevue.getDay()%>/<%=
+                                                        element.date_retour_prevue.getMonth()%>/<%=
+                                                            element.date_retour_prevue.getFullYear()%>
+                                </p>
+                                <p><strong>Produit sélectionné:</strong>
                                     <%= element.type %>
                                         <%= element.modele %>
                                 </p>
-
-                                <p class="grey">
-                                    "Réservation du <%= element.date_debut.getDay()%>/<%= element.date_debut.getMonth()
-                                            %>/<%= element.date_debut.getFullYear() %> au
-                                                <%= element.date_retour_prevue.getDay()%>/<%=
-                                                        element.date_retour_prevue.getMonth() %>/<%=
-                                                            element.date_retour_prevue.getFullYear() %>"
-                                </p>
-                            </div>
-                        </div>
-                        <div class="deuxbtncompte">
-                            <div class="Accederaupanier">
-                                <form action="/accept-commande" method="post">
-                                    <input type="hidden" name="id_product" value="<%= element.produit_id %>">
-                                    <input type="hidden" name="id_user" value="<%= element.utilisateur_id %>">
-                                    <button type="submit" class="panier-btn">Valider la commande</button>
-                                </form>
-                            </div>
-                            <div class="btnsupprimerlecompte">
-                                <div class="Accederaupanierrouge">
-                                    <form action="/delete-commande" method="post"> 
-                                        <!-- Renvoyer vers la page qui suppr ou change la commeande en mode progress !!!! -->
-                                        <input type="hidden" name="id_product" value="<%= element.produit_id %>">
-                                        <input type="hidden" name="id_user" value="<%= element.utilisateur_id %>">
-                                        <button type="submit" class="panier-btn rouge">Supprimer la commande</button>
-                                    </form>
-                                </div>
-                            </div>
-
-                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <form action="/finalise-commande" method="post">
+                            <input type="hidden" name="id_product" value="<%= element.produit_id %>">
+                            <input type="hidden" name="id_user" value="<%= element.utilisateur_id %>">
+                            <button type="submit" class="button validate">Finaliser</button>
+                        </form>
                     </div>
                 </div>
-            <% }); %>
+                <% }); %>
         </div>
 
         <h1 id="text" class="gradient">Locations terminées</h1>
-        <div class="middleOfPage">
+        <div class="cards-container">
             <% locations_end.forEach(function(element) { %>
-                <div class="card-petite">
-                    <div class="nom-prenom">
-                        <h4><%= element.prenom %> <%= element.nom %></h4>
+                <div class="card">
+                    <div class="card-header">
+                        <h2>
+                            <%= element.prenom %>
+                                <%= element.nom %>
+                        </h2>
+                        <span class="status finished">Terminée</span>
                     </div>
-                    <div class="date">
-                        <p><%= element.date_debut.getFullYear() %></p>
-                    </div>
-                    <button class="order-btn" data-popup-id="<%= element.id %>">Détails</button>
-                
-        
-                    <!-- Popup avec ID unique basé sur element.id -->
-                    <div id="popup_<%= element.id %>" class="popup">
-                        <div class="popup-content">
-                            <span class="close">&times;</span>
-                            <div class="wrapper2">
-                                <div class="profile-top">
-                                    <div class="profile-image"></div>
-                                </div>
-        
-                                <div class="profile-bottom">
-                                    <div class="profile-infos">
-                                        <div class="main-infos">
-                                            <h3 class="name">
-                                                <%= element.prenom %> <%= element.nom %>
-                                            </h3>
-                                            <% const an = element.ddn.getFullYear() %>
-                                            <% const nbyears = 2024 - an %>
-                                            <p class="age grey">
-                                                <%= nbyears %> ans
-                                            </p>
-                                        </div>
-                                        <p class="email">
-                                            <%= element.email %>
-                                        </p>
-                                        <p class="ville">
-                                            <span class="status-indicator"></span> En attente de validation
-                                        </p>
-                                    </div>
-        
-                                    <div class="profile-stats">
-                                        <div class="stat-item">
-                                            <p class="stat">
-                                                <%= element.type %> <%= element.modele %>
-                                            </p>
-                                            <p class="grey">
-                                                Réservation du <%= element.date_debut.getDate() %>/<%= element.date_debut.getMonth() + 1 %>/<%= element.date_debut.getFullYear() %> 
-                                                au <%= element.date_retour_prevue.getDate() %>/<%= element.date_retour_prevue.getMonth() + 1 %>/<%= element.date_retour_prevue.getFullYear() %>
-                                            </p>
-                                        </div>
-                                    </div>
-        
-                                    <div class="deuxbtncompte">
-                                        <div class="Accederaupanier">
-                                            <form action="/accept-commande" method="post">
-                                                <input type="hidden" name="id_product" value="<%= element.produit_id %>">
-                                                <input type="hidden" name="id_user" value="<%= element.utilisateur_id %>">
-                                                <button type="submit" class="panier-btn">Valider la commande</button>
-                                            </form>
-                                        </div>
-                                        <div class="Accederaupanierrouge">
-                                            <form action="/delete-commande" method="post">
-                                                <input type="hidden" name="id_product" value="<%= element.produit_id %>">
-                                                <input type="hidden" name="id_user" value="<%= element.utilisateur_id %>">
-                                                <button type="submit" class="panier-btn rouge">Supprimer la commande</button>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="card-body">
+                        <% const an=element.ddn.getFullYear() %>
+                            <% const nbyears=2024- an %>
+                                <p><strong>Âge:</strong>
+                                    <%= nbyears %> ans
+                                </p>
+                                <p><strong>Email:</strong>
+                                    <%= element.email %>
+                                </p>
+                                <p><strong>Date de réservation:</strong>
+                                    <%= element.date_debut.getDay()%>/<%= element.date_debut.getMonth()%>/<%=
+                                                element.date_debut.getFullYear()%> - <%=
+                                                    element.date_retour_prevue.getDay()%>/<%=
+                                                        element.date_retour_prevue.getMonth()%>/<%=
+                                                            element.date_retour_prevue.getFullYear()%>
+                                </p>
+                                <p><strong>Produit sélectionné:</strong>
+                                    <%= element.type %>
+                                        <%= element.modele %>
+                                </p>
                     </div>
                 </div>
-            <% }); %>
+                <% }); %>
         </div>
-        
-        
-        
-    </div>
-    
 
-        <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-        <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-        <script>
-            document.addEventListener("DOMContentLoaded", () => {
-                const openPopupBtns = document.querySelectorAll(".order-btn");
-                const closePopupBtns = document.querySelectorAll(".close");
-            
-                openPopupBtns.forEach((btn) => {
-                    btn.addEventListener("click", () => {
-                        const popupId = btn.getAttribute("data-popup-id");
-                        const popup = document.getElementById(`popup_${popupId}`);
-                        popup.style.display = "flex"; // Affiche le popup
-                    });
-                });
-            
-                closePopupBtns.forEach((btn) => {
-                    btn.addEventListener("click", (event) => {
-                        const popup = event.target.closest(".popup");
-                        popup.style.display = "none"; // Ferme le popup
-                    });
-                });
-            
-                // Fermer le popup en cliquant en dehors du contenu
-                window.addEventListener("click", (event) => {
-                    document.querySelectorAll(".popup").forEach((popup) => {
-                        if (event.target === popup) {
-                            popup.style.display = "none";
-                        }
-                    });
+
+
+    </div>
+
+
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const openPopupBtns = document.querySelectorAll(".order-btn");
+            const closePopupBtns = document.querySelectorAll(".close");
+
+            openPopupBtns.forEach((btn) => {
+                btn.addEventListener("click", () => {
+                    const popupId = btn.getAttribute("data-popup-id");
+                    const popup = document.getElementById(`popup_${popupId}`);
+                    popup.style.display = "flex"; // Affiche le popup
                 });
             });
-            
-            
-        </script>
+
+            closePopupBtns.forEach((btn) => {
+                btn.addEventListener("click", (event) => {
+                    const popup = event.target.closest(".popup");
+                    popup.style.display = "none"; // Ferme le popup
+                });
+            });
+
+            // Fermer le popup en cliquant en dehors du contenu
+            window.addEventListener("click", (event) => {
+                document.querySelectorAll(".popup").forEach((popup) => {
+                    if (event.target === popup) {
+                        popup.style.display = "none";
+                    }
+                });
+            });
+        });
 
 
-        <%- include('footer'); -%>
+    </script>
 
 
-        
+    <%- include('footer'); -%>

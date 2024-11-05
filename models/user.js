@@ -464,6 +464,21 @@ async function locations_End() {
   });
 }
 
+async function finish_location(idClient, idProduct) {
+  const sql = `
+        UPDATE location SET status = "finished" WHERE utilisateur_id = ? AND produit_id = ?; 
+      `;
+const values = [idClient, idProduct]
+  return new Promise((resolve, reject) => {
+    bdd.query(sql, values, (err, results) => {
+      if (err) {
+        return reject(err);
+      }
+      resolve(results);
+    });
+  });
+}
+
 async function acceptCommande(idProduct, userId) {
   const sql =
     "UPDATE location SET status = 'progress' WHERE produit_id = ? AND utilisateur_id = ?";
@@ -523,4 +538,5 @@ module.exports = {
   showCommandesPRO,
   locations_Progress,
   locations_End,
+  finish_location
 };
