@@ -23,14 +23,23 @@
       <div class="navigation">
         <ul>
           <li id="mainLOCFIT"><a href="/">LOCFIT</a></li>
+          <% if((role === 'client') || (role == null)) {%>
         <li class="li-nav"><a href="/help">Aides</a></li>
+        <% } %>
         <li class="li-nav"><a href="/catalogue">Catalogue</a></li>
+        <% if((role === 'client') || (role == null)) {%>
         <li class="li-nav"><a href="/contact">Contact</a></li>
+       
+        <% } %>
+        <% if(role === 'client') {%>
+          <li class="li-nav"><a href="/commandes-client">Commandes</a></li>
+          <% } %>
         <% if(role === 'admin') {%>
           <li class="li-nav"><a href="/inscriptionadmin">Admin</a></li>
         <% } %>
         <% if(role === 'agent') {%>
-          <li class="li-nav"><a href="/addProduct">Gestion</a></li>
+          <li class="li-nav"><a href="/addProduct">Produits</a></li>
+          <li class="li-nav"><a href="/verif-commandes">Location(s)</a></li>
         <% } %>
           
           <% if (isAuth) { %>

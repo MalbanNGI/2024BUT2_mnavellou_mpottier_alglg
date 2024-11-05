@@ -1,0 +1,236 @@
+<%- include('header'); -%>
+
+    <div class="space">
+    </div>
+
+    <div class="banner">
+        <h2>Mes commandes</h2>
+    </div>
+
+    <div class="breadcrumb">
+        <a href="/">Accueil</a> > <a href="/commandes-client">Commandes</a>
+    </div>
+    <h1 id="text" class="gradient "></h1>
+    <% if (panier && panier.length> 0) { %>
+        <% panier.forEach(function(element) { %>
+            <div class="cart-container">
+                <p class="delivery-info">Livraison dès demain dans nos boutiques près de chez vous.</p>
+
+                <div class="cart-item">
+                    <div class="item-image">
+                        <img src="/img/<%= element.image %>" alt="<%= element.type %>">
+                    </div>
+
+                    <div class="item-details">
+                        <h2>
+                            <%= element.type %>
+                                <%= element.marque %>
+                        </h2>
+                        <p class="price">
+                            <%= element.prix_total %> €
+                        </p>
+
+
+
+                        <p class="date-range">A retourner avant le <%= element.date_retour_prevue.getDay() %>
+                                <% let month=element.date_retour_prevue.getMonth(); monthOfYears=["Janvier", "Février"
+                                    , "Mars" , "Avril" , "Mai" , "Juin" , "Juillet" , "Août" , "Septembre" , "Octobre"
+                                    , "Novembre" , "Décembre" ]; %>
+                                    <%= monthOfYears[month] %>
+                                        <%= element.date_retour_prevue.getFullYear() %>
+                        </p>
+                    </div>
+
+
+                    <div class="order-summary">
+                        <div class="price-details">
+                            <p>Sous-total</p>
+                            <p>
+                                <%= element.prix_total %> €
+                            </p>
+                        </div>
+
+                        <hr>
+                        <div class="total-price">
+                            <p>Total TVA incluse</p>
+                            <p>
+                                <%= element.prix_total %> €
+                            </p>
+                        </div>
+
+
+
+                        <script src="script.js"></script>
+                        <a href="/catalogue" class="continue-btn">Commander un nouveau produit ?</a>
+                    </div>
+                </div>
+
+
+                <div class="order-actions">
+                    <form action="/deleteProductToPanier" method="post">
+                        <input type="hidden" name="productId" value="<%= element.produit_id %>">
+                        <button type="submit" class="cancel-btn">Stopper la location</button>
+                    </form>
+                    <p class="cancel-message">La commande ne peut plus être annulée car elle a été livrée ou commencée.
+                    </p>
+                </div>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+
+                <!-- <script>
+            function generatePDF() {
+                const { jsPDF } = window.jspdf;
+                const doc = new jsPDF();
+                // Informations de la commande à inclure
+                const itemName = "VELO DE BIKING 500";
+                const pricePerDay = "35€/j";
+                const quantity = document.querySelector('.quantity').innerText;
+                const subTotal = "123€";
+
+                const totalPrice = "123€";
+                const rentalPeriod = "Du 17 août au 23 août 2024";
+
+                // Ajout du contenu dans le PDF
+                doc.setFontSize(18);
+                doc.text("Détails de la commande", 10, 10);
+
+                doc.setFontSize(12);
+                doc.text(`Article : ${itemName}`, 10, 30);
+                doc.text(`Prix par jour : ${pricePerDay}`, 10, 40);
+                doc.text(`Quantité : ${quantity}`, 10, 50);
+                doc.text(`Sous-total : ${subTotal}`, 10, 60);
+                doc.text(`Total (TVA incluse) : ${totalPrice}`, 10, 80);
+                doc.text(`Période de location : ${rentalPeriod}`, 10, 90);
+
+                // Générer et ouvrir le PDF
+                doc.save("commande.pdf");
+            }
+        </script> -->
+
+            </div>
+            <% })} %>
+
+                <h1 id="text2" class="gradient "></h1>
+                <% if (panier2 && panier2.length> 0) { %>
+                    <% panier2.forEach(function(element) { %>
+                        <div class="cart-container">
+                            <p class="delivery-info">Livraison dès demain dans nos boutiques près de chez vous.</p>
+
+                            <div class="cart-item">
+                                <div class="item-image">
+                                    <img src="/img/<%= element.image %>" alt="<%= element.type %>">
+                                </div>
+
+                                <div class="item-details">
+                                    <h2>
+                                        <%= element.type %>
+                                            <%= element.marque %>
+                                    </h2>
+                                    <p class="price">
+                                        <%= element.prix_total %> €
+                                    </p>
+
+
+                                    <% if(element.date_retour_effective !=null) { %>
+                                        <p class="date-range">Retourné le <%= element.date_retour_effective.getDay() %>
+                                                <% let month=element.date_retour_effective.getMonth();
+                                                    monthOfYears=["Janvier", "Février" , "Mars" , "Avril" , "Mai"
+                                                    , "Juin" , "Juillet" , "Août" , "Septembre" , "Octobre" , "Novembre"
+                                                    , "Décembre" ]; %>
+                                                    <%= monthOfYears[month] %>
+                                                        <%= element.date_retour_effective.getFullYear() %>
+                                        </p>
+                                        <% }else %>
+                                            <p class="date-range">Infos manquantes sur la date de retour effective !
+                                            </p>
+
+
+
+                                </div>
+
+
+                                <div class="order-summary">
+                                    <div class="price-details">
+                                        <p>Prix payé</p>
+                                        <p>
+                                            <%= element.prix_total %> €
+                                        </p>
+                                    </div>
+
+                                    <hr>
+                                    <div class="total-price">
+                                        <p>Total TVA incluse </p>
+                                        <p>
+                                            <%= element.prix_total %> €
+                                        </p>
+
+                                    </div>
+                                    <a href="/catalogue" class="continue-btn">Commander un nouveau produit ? </a>
+                                </div>
+                            </div>
+
+                            <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+
+                            <!-- <script>
+            function generatePDF() {
+                const { jsPDF } = window.jspdf;
+                const doc = new jsPDF();
+                // Informations de la commande à inclure
+                const itemName = "VELO DE BIKING 500";
+                const pricePerDay = "35€/j";
+                const quantity = document.querySelector('.quantity').innerText;
+                const subTotal = "123€";
+
+                const totalPrice = "123€";
+                const rentalPeriod = "Du 17 août au 23 août 2024";
+
+                // Ajout du contenu dans le PDF
+                doc.setFontSize(18);
+                doc.text("Détails de la commande", 10, 10);
+
+                doc.setFontSize(12);
+                doc.text(`Article : ${itemName}`, 10, 30);
+                doc.text(`Prix par jour : ${pricePerDay}`, 10, 40);
+                doc.text(`Quantité : ${quantity}`, 10, 50);
+                doc.text(`Sous-total : ${subTotal}`, 10, 60);
+                doc.text(`Total (TVA incluse) : ${totalPrice}`, 10, 80);
+                doc.text(`Période de location : ${rentalPeriod}`, 10, 90);
+
+                // Générer et ouvrir le PDF
+                doc.save("commande.pdf");
+            }
+        </script> -->
+
+                        </div>
+                        <% })} %>
+
+                            <script>
+
+                                
+                            </script>
+                            <script>
+                                document.addEventListener("DOMContentLoaded", () => {
+                                    const textElement = document.getElementById("text");
+                                    const textContent = "Commandes en cours"; // Texte à afficher
+                                    let index = 0;
+
+                                    function typeEffect() {
+                                        if (index < textContent.length) {
+                                            textElement.textContent += textContent[index];
+                                            index++;
+                                            setTimeout(typeEffect, 100); // Ajustez la vitesse ici (100ms par lettre)
+                                        } else {
+                                            textElement.style.borderRight = "none"; // Retire le curseur une fois fini
+                                        }
+                                    }
+
+                                    typeEffect(); // Lance l'effet d'écriture
+                                });
+                            </script>
+                            <script>
+                               
+
+                            
+                            </script>
+                            <%- include('footer'); -%>

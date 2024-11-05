@@ -433,8 +433,8 @@ h1 {
 .avis-clients h2 {
     font-size: 36px;
     color: #198900;
-    /* Vert pour le titre */
     margin-bottom: 30px;
+    margin-top: -80px;
 }
 
 .avis-container {

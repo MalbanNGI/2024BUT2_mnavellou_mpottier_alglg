@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -12,40 +13,51 @@
   <link rel="stylesheet" href="/css/milo.css" />
   <link rel="stylesheet" href="/css/footer.css" />
   <link rel="stylesheet" href="/js/script.js">
-  <link rel="icon" type="image/png" href="/img/logolocfit.png"> 
+  <link rel="icon" type="image/png" href="/img/logolocfit.png">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 </head>
+
 <body>
   <header>
     <nav class="nav-index2">
-      <ul>
-        <li id="mainLOCFIT"><a href="/">LOCFIT</a></li>
+      <div class="navigation">
+        <ul>
+          <li id="mainLOCFIT"><a href="/">LOCFIT</a></li>
+          <% if((role === 'client') || (role == null)) {%>
         <li class="li-nav"><a href="/help">Aides</a></li>
+        <% } %>
         <li class="li-nav"><a href="/catalogue">Catalogue</a></li>
+        <% if((role === 'client') || (role == null)) {%>
         <li class="li-nav"><a href="/contact">Contact</a></li>
+       
+        <% } %>
+        <% if(role === 'client') {%>
+          <li class="li-nav"><a href="/commandes-client">Commandes</a></li>
+          <% } %>
         <% if(role === 'admin') {%>
           <li class="li-nav"><a href="/inscriptionadmin">Admin</a></li>
         <% } %>
         <% if(role === 'agent') {%>
-          <li class="li-nav"><a href="/addProduct">Gestion</a></li>
+          <li class="li-nav"><a href="/addProduct">Produits</a></li>
+          <li class="li-nav"><a href="/verif-commandes">Location(s)</a></li>
         <% } %>
-        
-        <% if (isAuth) { %>
-          <li class="li-nav"><a href="/panier"><img class="panier-header" src="/img/panier.png" alt="panier icon"></a></li>
-          <li class="li-nav"><a href="/compte"><img class="compte-header" src="/img/utilisateur.png" alt="compte icon"></a></li>
-          <li class="li-nav"><a href="/deconnexion"><img class="compte-header" src="/img/deconnexion.png" alt="déconnexion icon"></a></li>
-        <% } else { %>
-          <li class="li-nav"><a href="/connexion"><img class="compte-header" src="img/utilisateur.png" alt="compte icon"></a></li>
-        <% } %>
-
-      </ul>
+          
+          <% if (isAuth) { %>
+            <li class="li-nav"><a href="/panier"><img class="panier-header" src="/img/panier.png" alt="panier icon"></a></li>
+            <li class="li-nav"><a href="/compte"><img class="compte-header" src="/img/utilisateur.png" alt="compte icon"></a></li>
+            <li class="li-nav"><a href="/deconnexion"><img class="compte-header" src="/img/deconnexion.png" alt="déconnexion icon"></a></li>
+          <% } else { %>
+            <li class="li-nav"><a href="/connexion"><img class="compte-header" src="/img/utilisateur.png" alt="compte icon"></a></li>
+          <% } %>
+        </ul>
+    </div>
     </nav>
   </header>
 
 
-<div class="video">
-        
+  <div class="video">
+
     <video autoplay muted loop playsinline>
       <source src="/video/course apied.mp4" type="video/mp4" />
       <source src="/video/course apied.webm" type="video/webm" />
@@ -55,10 +67,12 @@
     <div class="texte">
       <div class="main-para">
         <% if (isAuth) { %>
-          <h1><%= name %>,<br> TESTEZ VOUS AU SPORT A <br> DOMICILE</h1>
+          <h1>
+            <%= name %> , Le sport est fait pour vous
+          </h1>
           <% } else { %>
-        <h1>TESTEZ VOUS<br> AU SPORT A <br> DOMICILE</h1>
-        <% } %>
+            <h1>TESTEZ VOUS<br> AU SPORT A <br> DOMICILE</h1>
+            <% } %>
       </div>
       <div class="slogan">
         <p>Grâce à LocFit, découvrez l’univers du sport à domicile !</p>
@@ -66,102 +80,246 @@
       <div class="btn-catalogue">
         <button type="submit"><a href="catalogue">Catalogue</a></button>
       </div>
-      <div class="publocfit">
-        <div class="age">
-          <h3>0 - 100 ans</h3>
-          <p class="petit">Pour tous les âges</p>
+      <% if (isAuth) { %>
+        <div class="space2"></div>
+        <div class="publocfit">
+          <div class="age">
+            <h3>0 - 100 ans</h3>
+            <p class="petit">Pour tous les âges</p>
+          </div>
+          <div class="infos1">
+            <h3>+2000</h3>
+            <p class="petit">Produits utilisés par an</p>
+          </div>
+          <div class="infos2">
+            <h3>+1500</h3>
+            <p class="petit">Clients satisfaits</p>
+          </div>
         </div>
-        <div class="infos1">
-          <h3>+2000</h3>
-          <p class="petit">Produits utilisés par an</p>
+        <%} else { %>
+          <div class="publocfit">
+            <div class="age">
+              <h3>0 - 100 ans</h3>
+              <p class="petit">Pour tous les âges</p>
+            </div>
+            <div class="infos1">
+              <h3>+2000</h3>
+              <p class="petit">Produits utilisés par an</p>
+            </div>
+            <div class="infos2">
+              <h3>+1500</h3>
+              <p class="petit">Clients satisfaits</p>
+            </div>
+          </div>
+          <% } %>
+    </div>
+  </div>
+  <div class="space3"></div>
+
+  <div class="banner ligh-background">
+    <h2>CATEGORIES</h2>
+  </div>
+
+  <div class="categories ligh-background">
+    <div class="rotor">
+      <marquee behavior="" direction="">
+        Découvrez nos différentes machines
+      </marquee>
+    </div>
+    <div class="allProduct">
+
+      <div class="card">
+        <div class="image-container">
+          <img src="/img/tapis-de-course.png" alt="Tapis de course">
         </div>
-        <div class="infos2">
-          <h3>+1500</h3>
-          <p class="petit">Clients satisfaits</p>
+        <div class="info">
+          <h2>
+            Tapis de course
+          </h2>
+          <div class="price-btn-container">
+
+            <button class="btn"><a class="produit-lien" href="/catalogue">Découvrir</a></button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="image-container">
+          <img src="/img/Bike.png" alt="Vélo">
+        </div>
+        <div class="info">
+          <h2>
+            Vélos de course
+          </h2>
+          <div class="price-btn-container">
+
+            <button class="btn"><a class="produit-lien" href="/catalogue">Découvrir</a></button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="image-container">
+          <img src="img/Model_D.png" alt="Model D jsp quoi">
+        </div>
+        <div class="info">
+          <h2>
+            Rameurs
+          </h2>
+          <div class="price-btn-container">
+
+            <button class="btn"><a class="produit-lien" href="/catalogue">Découvrir</a></button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="image-container">
+          <img src="img/SelectTech_.png" alt="Halteres">
+        </div>
+        <div class="info">
+          <h2>
+            Haltères
+          </h2>
+          <div class="price-btn-container">
+
+            <button class="btn"><a class="produit-lien" href="/catalogue">Découvrir</a></button>
+          </div>
         </div>
       </div>
     </div>
   </div>
-
-<div class="banner ligh-background">
-  <h2>CATEGORIES</h2>
-</div>
-
-<div class="categories ligh-background" >
-  <div class="rotor">
-    <marquee behavior="" direction="">
-      Découvrez nos différentes machines
-    </marquee>
+  <div class="bouton-container">
+    <a href="catalogue" class="petitbouton">Catalogue <span class="arrow">→</span></a>
   </div>
-  <div class="allProduct">
-  <div class="product">
-    <div class="image-product">
-      <img src="/img/tapis-de-course.png" alt="" />
-    </div>
-    <div class="title-product">
-      <h4 class="title-product">Tapis de course</h4>
-    </div>
-    <div class="information-subject">
-      <button class="btn-infos" type="button"><a class="link-discover" href="catalogue">Découvrir</a></button>
-    </div>
-  </div>
-  <div class="product">
-    <div class="image-product">
-      <img src="/img/Bike.png" alt="" />
-    </div>
-    <div class="title-product">
-      <h4 class="title-product">Vélos</h4>
-    </div>
-    <div class="information-subject">
-      <button class="btn-infos" type="button"><a class="link-discover" href="catalogue">Découvrir</a></button>
-    </div>
-  </div>
-  <div class="product">
-    <div class="image-product">
-      <img src="img/Model_D.png" alt="" />
-    </div>
-    <div class="title-product">
-      <h4 class="title-product">Rameurs</h4>
-    </div>
-    <div class="information-subject">
-      <button class="btn-infos" type="button"><a class="link-discover" href="catalogue">Découvrir</a></button>
-    </div>
-  </div>
-  <div class="product">
-    <div class="image-product">
-      <img src="img/SelectTech_.png" alt="" />
-    </div>
-    <div class="title-product">
-      <h4 class="title-product">Haltères</h4>
-    </div>
-    <div class="information-subject">
-      <button class="btn-infos" type="button"><a class="link-discover" href="catalogue">Découvrir</a></button>
-    </div>
-  </div>
-</div>
-</div>
-<div class="bouton-container">
-  <a href="catalogue" class="petitbouton">Catalogue <span class="arrow">→</span></a>
-</div>
 
 
-<div class="avis-clients" style="background-image: url('/img/chemin.png');">
-  <h2 class="titreavis">NOS AVIS CLIENTS</h2>
-  <div class="avis-container">
+  <div class="avis-clients" style="background-image: url('/img/chemin.png');">
+    <h2 class="titreavis">NOS AVIS CLIENTS</h2>
+    <div class="avis-container">
       <div class="avis">
-          <h3>Sarah M. <span>⭐⭐⭐⭐⭐</span></h3>
-          <p>"Le matériel était en bon état et la réservation s'est faite sans problème. Petit point à améliorer : la réactivité du service client. Mais dans l'ensemble, très satisfait, je reviendrai !"</p>
+        <h3>Sarah M. <span>⭐⭐⭐⭐⭐</span></h3>
+        <p>"Le matériel était en bon état et la réservation s'est faite sans problème. Petit point à améliorer : la
+          réactivité du service client. Mais dans l'ensemble, très satisfait, je reviendrai !"</p>
       </div>
       <div class="avis">
-          <h3>Alex K. <span>⭐⭐⭐⭐⭐</span></h3>
-          <p>"Rien à redire, tout était parfait ! Le site est simple à utiliser, le matériel loué était en excellent état et conforme à la description. Une expérience sans faute, je passerai par eux pour mes prochaines locations sans hésiter !"</p>
+        <h3>Alex K. <span>⭐⭐⭐⭐⭐</span></h3>
+        <p>"Rien à redire, tout était parfait ! Le site est simple à utiliser, le matériel loué était en excellent état
+          et conforme à la description. Une expérience sans faute, je passerai par eux pour mes prochaines locations
+          sans hésiter !"</p>
       </div>
       <div class="avis">
-          <h3>James L. <span>⭐⭐⭐⭐⭐</span></h3>
-          <p>"Le matériel était de qualité et conforme à la description. La livraison a été rapide, je suis vraiment satisfait. Juste un léger retard pour la confirmation, mais rien de grave. Je recommande !"</p>
+        <h3>James L. <span>⭐⭐⭐⭐⭐</span></h3>
+        <p>"Le matériel était de qualité et conforme à la description. La livraison a été rapide, je suis vraiment
+          satisfait. Juste un léger retard pour la confirmation, mais rien de grave. Je recommande !"</p>
       </div>
+    </div>
   </div>
-</div>
-</div>
+  </div>
 
-<%- include('footer'); -%>
+  <style>
+    .btn {
+      border-color: #d0a705;
+      color: #FFFFFF;
+      padding: 15px 30px;
+      border: none;
+      border-radius: 12px;
+
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn:hover {
+      border-color: #c1a225;
+    }
+
+    .btn:focus {
+      outline: 3px solid #FFD700;
+      /* Bordure pour focus accessible */
+    }
+
+    /* Cartes de contenu */
+    .card {
+      background-color: #FFFFFF;
+      border-radius: 12px;
+      padding: 25px;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+      margin: 20px;
+    }
+
+    .card h2 {
+      font-size: 22px;
+      margin-bottom: 15px;
+    }
+
+    .card p {
+      font-size: 18px;
+      color: #666666;
+    }
+
+
+
+    .produit-lien {
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 18px;
+
+    }
+
+    .produit-lien:hover,
+    .produit-lien:focus {
+      outline: none;
+    }
+
+    /* Espacement pour les éléments */
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    /* Accessibilité des formulaires */
+    input,
+    textarea {
+      width: 100%;
+      padding: 15px;
+      margin-top: 10px;
+      border: 1px solid #CCCCCC;
+      border-radius: 8px;
+    }
+
+    input:focus,
+    textarea:focus {
+      border-color: #d0a705;
+      outline: none;
+    }
+    .nav-index2.scrolled ul li a {
+      color: black; /* Change la couleur du texte en noir */
+    }
+    
+    .nav-index2.scrolled #mainLOCFIT {
+      color: black;
+    }
+    nav.nav-index2.scrolled  {
+      background-color: #D9D9D9; 
+      transition: background-color 0.5s ease; 
+    }
+    
+    
+  </style>
+  <script>
+    window.addEventListener("scroll", function() {
+      const nav = document.querySelector(".nav-index2");
+      const banner = document.querySelector(".banner");
+      const bannerPosition = banner.offsetTop;
+  
+      if (window.scrollY >= bannerPosition) {
+        nav.classList.add("scrolled");
+      } else {
+        nav.classList.remove("scrolled");
+      }
+    });
+  </script>
+  
+
+  <%- include('footer'); -%>

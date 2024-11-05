@@ -49,6 +49,25 @@ app.get("/catalogue", async function (req, res) {
   }
 });
 
+app.get("/commandes-client", async function (req, res) {
+  if (res.locals.role == "client") {
+    try {
+      const userId = res.locals.id;
+      const panier = await userModel.showCommandesPRO(userId);
+      const panier2 = await userModel.showCommandesEND(userId);
+      res.render("commandes-client", { panier, panier2 });
+    } catch (error) {
+      console.error("Erreur dans la liste des produits:", error);
+      res.status(500).send("Erreur dans la liste des produits");
+    }
+  }
+  else {
+    res.render("index");
+  }
+});
+
+
+
 app.get("/produit/:id", async function (req, res) {
   const productId = req.params.id;
   console.log(productId);
@@ -104,8 +123,62 @@ app.get("/help", function (req, res) {
   res.render("help");
 });
 
+app.get("/delete-commande", function (req, res) {
+  res.render("index");
+});
+app.get("/accept-commande", function (req, res) {
+  res.render("index");
+});
+
+app.post("/accept-commande", async function (req, res) {
+  try {
+    let idProduct = req.body.id_product;
+    let idUser = req.body.id_user;
+    const user = await userModel.acceptCommande(idProduct, idUser);
+    const locations_wait = await userModel.locations_Wait();
+    res.render("verif-commandes", { locations_wait });
+    res.render("verif-commandes");
+  } catch (err) {
+    console.error("Erreur lors de l'ajout du produit :", err);
+    res.status(500).send("Erreur lors de l'ajout du produit");
+  }
+});
+app.post("/delete-commande", async function (req, res) {
+  try {
+    let idProduct = req.body.id_product;
+    let idUser = req.body.id_user;
+    const user = await userModel.deleteCommande(idProduct, idUser);
+    const locations_wait = await userModel.locations_Wait();
+    res.render("verif-commandes", { locations_wait });
+    res.render("verif-commandes");
+  } catch (err) {
+    console.error("Erreur lors de l'ajout du produit :", err);
+    res.status(500).send("Erreur lors de l'ajout du produit");
+  }
+});
+
+
+app.get("/verif-commandes", async function (req, res) {
+  if (res.locals.role == 'agent') {
+    try {
+      const locations_wait = await userModel.locations_Wait();
+      const locations_progress = await userModel.locations_Progress();
+      const locations_end = await userModel.locations_End();
+      res.render("verif-commandes", { locations_wait, locations_progress, locations_end  });
+    }
+    catch (err) {
+      console.error("Erreur  :", err);
+      res.status(500).send("Erreur ");
+    }
+  }
+  else {
+    res.render("index");
+  }
+
+});
+
 app.get("/validation", function (req, res) {
-  
+
   if (res.locals.role == "agent") {
     res.render("validation");
   }
@@ -113,7 +186,13 @@ app.get("/validation", function (req, res) {
 });
 
 app.get("/inscriptionadmin", function (req, res) {
-  res.render("inscriptionadmin");
+  if (req.locals.role == "admin") {
+    res.render("inscriptionadmin");
+  }
+  else[
+    res.render("index")
+  ]
+
 });
 app.post("/inscriptionadmin", async function (req, res) {
   if (res.locals.isAuth) {
@@ -252,52 +331,100 @@ app.get("/contact", function (req, res) {
 });
 
 app.get("/panier", async function (req, res) {
-  if(res.locals.isAuth) {
+  if (res.locals.isAuth === true) {
     try {
-      const userId = res.locals.id;
-      
-      const panier = await userModel.showPanier(userId);
-      console.log("ceci est la table panier")
-      console.table(panier)
-//
+      const userId = req.session.userId; // Utiliser l'ID de l'utilisateur connecté
+      const panier = await userModel.showPanier(userId); // Récupérer les éléments du panier pour cet utilisateur
+      console.log("Voici le panier sous forme de table dans /panier")
+      console.log(panier)
       const user = await userModel.getUserById(userId);
-      console.log("ceci est la table user")
-      console.table(user)
-      const leproduit = await userModel.show_productById(id_product);
-      console.log("ceci est la table le produit")
-      console.table(leproduit)
 
-      // Renvoyer la vue "panier" avec les données du panier
-      
-//
-      
-      if(panier.length > 0) {
-        res.render("panier", { panier, user, leproduit });
+      res.render("panier", { panier }); // Passer le panier à la vue pour affichage
+    } catch (error) {
+      console.error("Erreur lors de la récupération du panier :", error);
+      res.status(500).send("Erreur lors de la récupération du panier");
+    }
+  } else {
+    res.render("index");
+  }
+});
+
+app.post("/deleteProductToPanier", async function (req, res) {
+  if (res.locals.isAuth === true) {
+    try {
+      const userId = req.session.userId; // Utiliser l'ID de l'utilisateur connecté
+      const { productId } = req.body;
+
+      const suppr = await userModel.deleteToPanier(productId, userId);
+      if (suppr == true) {
+        const panier = await userModel.showPanier(userId); // Récupérer les éléments du panier pour cet utilisateur
+        console.table(panier)
+        res.render("panier", { panier }); // Passer le panier à la vue pour affichage
       }
       else {
-        res.render("panier", { message: "Votre panier est vide" })
+        console.error("Erreur lors de la supression d'un produit du panier :");
+        res.status(500).send("Erreur lors de la supression d'un produit du panier");
       }
-      
+    } catch (error) {
+      console.error("Erreur lors de la supression d'un produit du panier :", error);
+      res.status(500).send("Erreur lors de la supression d'un produit du panier");
     }
-    catch (err) {
-      console.error("Erreur lors de l'ajout au panier :", err);
-      res.status(500).send("Erreur lors de l'ajout au panier.");
-    }
-    
+  } else {
+    res.render("index");
   }
-  else {
-    res.render("index")
-  }
-  
 });
-app.post("/panier", async function (req, res) {
+
+// app.post("/panier", async function (req, res) {
+//   try {
+//     const userId = res.locals.id; // ID de l'utilisateur connecté
+//     const { id_product, start, end } = req.body; // ID du produit et les dates sélectionnées
+//     console.log("coucou", id_product, start, end );
+
+//     // Vérifier si les dates de location sont disponibles pour le produit
+//     const isAvailable = await userModel.VerifDateDeResa(id_product, start, end );
+//     console.log("ceci est isAvailable :", isAvailable);
+
+//     if (new Date(start) >= new Date(end)) {
+//       return res.status(400).send("La date de début doit être avant la date de fin.");
+//     }
+
+//     if (isAvailable == true) {
+//       // Si les dates sont disponibles, ajouter la location au panier
+//       console.log('aaaaaaaaaa')
+//       const days = await userModel.HowManyDaysWhenPrice(id_product, userId);
+//       console.log("ceci est", days);
+//       const prix = await userModel.calculateTotalPrice(days, 15); // on part dans l'idée que c'est le meme prix pour tout le matos
+
+//       await userModel.addPanier(id_product, userId, start, end, prix);
+
+//       // Récupérer le panier mis à jour après l'ajout
+//       res.render("panier");
+
+//     } else {
+//       // Sinon, renvoyer un message que les dates ne sont pas disponibles
+//       res.status(400).send("Les dates sélectionnées ne sont pas disponibles pour ce produit.");
+//     }
+//   } catch (err) {
+//     console.error("Erreur lors de l'ajout au panier :", err);
+//     res.status(500).send("Erreur lors de l'ajout au panier.");
+//   }
+// });
+
+app.post('/addPanier', async (req, res) => {
+  const { productId } = req.body;  // L'ID du produit à ajouter
+  const userId = req.session.userId;  // ID de l'utilisateur connecté
+
+  if (!userId) {
+    return res.redirect('/login');  // Redirige vers la connexion si non connecté
+  }
+
   try {
     const userId = res.locals.id; // ID de l'utilisateur connecté
     const { id_product, start, end } = req.body; // ID du produit et les dates sélectionnées
-    console.log("coucou", id_product, start, end );
+    console.log("coucou", id_product, start, end);
 
     // Vérifier si les dates de location sont disponibles pour le produit
-    const isAvailable = await userModel.VerifDateDeResa(id_product, start, end );
+    const isAvailable = await userModel.VerifDateDeResa(id_product, start, end);
     console.log("ceci est isAvailable :", isAvailable);
 
     if (new Date(start) >= new Date(end)) {
@@ -306,16 +433,15 @@ app.post("/panier", async function (req, res) {
 
     if (isAvailable == true) {
       // Si les dates sont disponibles, ajouter la location au panier
-      console.log('aaaaaaaaaa')
-      const days = await userModel.HowManyDaysWhenPrice(id_product, userId);
-      console.log("ceci est", days);
-      const prix = await userModel.calculateTotalPrice(days, 15); // on part dans l'idée que c'est le meme prix pour tout le matos
 
-      await userModel.addPanier(id_product, userId, start, end, prix);
-
+      // const days = await userModel.HowManyDaysWhenPrice(id_product, userId);
+      // const prix = await userModel.calculateTotalPrice(days, 15); // on part dans l'idée que c'est le meme prix pour tout le matos
+      // console.log("/ADDPANIER - Milo voici le prix calculer apres la fonction calculateTotalPrice : ", prix, "et voici ensuite ke nombre de jour de location :", days)
+      await userModel.addPanier(id_product, userId, start, end);
+      const panier = await userModel.showPanier(userId);
       // Récupérer le panier mis à jour après l'ajout
-      res.render("panier");
-      
+      res.render("panier", { panier });
+
     } else {
       // Sinon, renvoyer un message que les dates ne sont pas disponibles
       res.status(400).send("Les dates sélectionnées ne sont pas disponibles pour ce produit.");
@@ -328,10 +454,10 @@ app.post("/panier", async function (req, res) {
 
 
 
-
 app.get("/addProduct", function (req, res) {
   res.render("addProduct", { error: null });
 });
+
 app.post("/addProduct", async function (req, res) {
   try {
     let prix = req.body.prix;
@@ -359,6 +485,10 @@ app.post("/addProduct", async function (req, res) {
     console.error("Erreur lors de l'ajout du produit :", err);
     res.status(500).send("Erreur lors de l'ajout du produit");
   }
+});
+
+app.get("/try", function (req, res) {
+  res.render("try", { error: null });
 });
 
 app.get("/connexion", function (req, res) {

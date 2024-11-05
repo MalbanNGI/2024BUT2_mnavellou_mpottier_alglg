@@ -1,7 +1,6 @@
 <%- include('header'); -%>
 
     <div class="space">
-
     </div>
 
     <div class="banner">
@@ -9,22 +8,22 @@
     </div>
 
     <div class="breadcrumb">
-        <a href="#">Accueil</a> > <a href="#">Panier</a>
+        <a href="/">Accueil</a> > <a href="/panier">Panier</a>
     </div>
  
-    <% if ((panier && panier.length > 0) && (user && user.length > 0) && (leproduit && leproduit.length > 0)) { %>
+    <% if (panier && panier.length > 0) { %>
         <% panier.forEach(function(element) { %>
     <div class="cart-container">
         <p class="delivery-info">Livraison dès demain dans nos boutiques près de chez vous.</p>
        
         <div class="cart-item">
             <div class="item-image">
-                <img src="img/velo.png" alt="Velo de Biking 500">
+                <img src="/img/<%= element.image %>" alt="<%= element.type %>">
             </div>
 
             <div class="item-details">
-                <h2>titre ? </h2>
-                <p class="price"><%= element.prix_location %></p>
+                <h2><%= element.type %> <%= element.marque %></h2>
+                <p class="price"><%= element.prix_total %> €</p>
 
                 <div class="quantity-control">
                     <button class="quantity-btn">-</button>
@@ -33,36 +32,75 @@
                     <button class="refresh-btn">&#x21bb;</button>
                 </div>
 
-                <p class="date-range"><%= element.date_retour_prevue %></p>
+            
+                <p class="date-range">A retourner avant le <%= element.date_retour_prevue.getDay() %>  <% let
+                    month=element.date_retour_prevue.getMonth(); monthOfYears=["Janvier", "Février" ,
+                    "Mars" , "Avril" , "Mai" , "Juin" , "Juillet" , "Août" , "Septembre"
+                    , "Octobre" , "Novembre" , "Décembre" ]; %> <%= monthOfYears[month] 
+                    %> <%= element.date_retour_prevue.getFullYear() %></p>
             </div>
           
 
             <div class="order-summary">
                 <div class="price-details">
                     <p>Sous-total</p>
-                    <p><%= element.prix_location %></p>
+                    <p><%= element.prix_total %> €</p>
                 </div>
                 
                 <hr>
                 <div class="total-price">
                     <p>Total TVA incluse</p>
-                    <p><%= element.prix_location %></p>
+                    <p><%= element.prix_total %> €</p>
                 </div>
 
-                <button class="order-btn">Commander</button> <!-- onclick="generatePDF()"-->
+                <button class="order-btn" id="openPopupBtn">Commander</button> <!-- onclick="generatePDF()"-->
+                <div id="popup" class="popup">
+                    <div class="popup-content">
+                        <span id="closePopupBtn" class="close">&times;</span>
+                        <h2>Commandé</h2>
+                        <p>Votre commande est en cours d'évaluation</p>
+                    </div>
+                </div>
                 <a href="/catalogue" class="continue-btn">Poursuivre mes achats</a>
             </div>
         </div>
         
         
         <div class="order-actions">
-            <button class="cancel-btn">Annuler la commande</button>
+            <form action="/deleteProductToPanier" method="post">
+                <input type="hidden" name="productId" value="<%= element.produit_id %>">
+            <button type="submit" class="cancel-btn">Annuler la commande</button>
+        </form>
             <p class="cancel-message">La commande ne peut plus être annulée car elle a été livrée ou commencée.</p>
         </div>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
-
         <script>
+
+            document.addEventListener("DOMContentLoaded", () => {
+                const popup = document.getElementById("popup");
+                const openPopupBtn = document.getElementById("openPopupBtn");
+                const closePopupBtn = document.getElementById("closePopupBtn");
+            
+        
+                openPopupBtn.addEventListener("click", () => {
+                    popup.style.display = "flex";
+                });
+            
+                
+                closePopupBtn.addEventListener("click", () => {
+                    popup.style.display = "none";
+                });
+            
+                
+                window.addEventListener("click", (event) => {
+                    if (event.target === popup) {
+                        popup.style.display = "none";
+                    }
+                });
+            });
+            </script>
+        <!-- <script>
             function generatePDF() {
                 const { jsPDF } = window.jspdf;
                 const doc = new jsPDF();
@@ -90,7 +128,7 @@
                 // Générer et ouvrir le PDF
                 doc.save("commande.pdf");
             }
-        </script>
+        </script> -->
 
     </div>
     <% })} %>

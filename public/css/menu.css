@@ -27,10 +27,6 @@
     font-style: normal;
 }
 
-/* Add more font faces for italic styles, medium weight, etc. if needed */
-
-
-    /*font-family: 'IntegralCF Bold', Arial, sans-serif;*/
 
 
 nav ul {
@@ -81,6 +77,12 @@ nav .compte-header, .panier-header {
     filter: invert()
 }
 
+nav .compte-header, .panier-header {
+    max-width: 30px;
+    margin-top: 12.5px;
+    filter: invert()
+}
+
 nav li a {
     list-style: none;
     color: rgb(0, 0, 0);
@@ -97,13 +99,7 @@ nav li a {
     text-decoration: underline;
 }
 
-/* 
-.navigation {
-    background-color: aqua;
-} */
-/* nav   {
-   background-color: red;
-} */
+
 nav.menu-navigation {
     display: flex;
     justify-content: center;
@@ -117,6 +113,30 @@ nav.menu-navigation {
     margin-top: 0px;
     height: 125px;
 }
+
+nav.nav-index2.scrolled {
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    align-items: center;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #D9D9D9;
+    z-index: 1000;
+    margin-top: 0px;
+    height: 125px;
+}
+
+
+.nav-index2.scrolled .panier-header {
+    filter: none;
+}
+
+.nav-index2.scrolled .compte-header {
+    filter: none;
+}
+
 
 .li-nav:hover {
     transition: 0.5s;
