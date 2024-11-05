@@ -60,10 +60,12 @@
                             <%= element.type %>
                                 <%= element.modele %>
                         </h2>
-                        <div class="price-btn-container">
+                        <div class="deuxiemeclasseprix">
                             <p class="price">
                                 <%= element.prix_location %> €/j
                             </p>
+                        </div>
+                        <div class="price-btn-container">
                             <button class="btn"><a class="produit-lien" href="/produit/<%= element.id %>">Découvrir</a></button>
                             <% if (role==="agent" ) { %>
                                 <button class="btn rouge"><a
