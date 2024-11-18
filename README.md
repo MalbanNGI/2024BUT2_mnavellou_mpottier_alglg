@@ -51,3 +51,23 @@ La couleur principale du site est le **vert foncé** (#198900), évoquant à la 
 ##  Extensions et modules
 
 Aucune extension et aucun module n'a été installé. 
+
+## Fonctionnement
+
+Le **client** se connecte, réserve du matérielsà des dates données. 
+- Si il réserve moins de 3 jours il y a un message d'erreur.
+- Si il réserve plus de 30 jours il y a un message d'erreur.
+
+Autrement, ca envoie une demande de valdiation de commange a/aux agent(s). 
+
+L'**agent** se connecte, va dans l'onglet "Location(s)". 
+Il peut voir les commandes à valider, les commandes en cours ainsi que les commandes terminées.
+
+En validant la commande, le statut de la commande passe de "wait" à "progress". 
+La commande passe donc dans la case *Location(s) en cours*. 
+
+Pour valider le retour de la commande il doit cocher la case et remplir la date de retour effective.
+
+Un fois le bouton *finaliser* cliqué, cela rajoute le prix du surcout en fonction du nombre de jour de retard (+20%/jrs).
+
+Le client verra donc apparaitre un message dans l'onglet *commandes* avec le prix du surcout à payer.

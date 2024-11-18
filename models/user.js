@@ -238,10 +238,12 @@ async function HowManyDaysWhenPrice(idProduct, idClient) {
 }
 
 async function calculateTotalPrice(nbjours, basePrice) {
+
+
   let totalPrice = 0;
 
   if (nbjours <= 3) {
-    totalPrice = basePrice; // les 3 premiers jours sont egals au prix de base de location
+    totalPrice = basePrice; // les 3 premiers jours sont égaux au prix de base de location
   } else if (nbjours > 3 && nbjours <= 7) {
     totalPrice = basePrice + basePrice * 0.04 * (nbjours - 3);
   } else if (nbjours > 7 && nbjours <= 14) {
@@ -255,20 +257,64 @@ async function calculateTotalPrice(nbjours, basePrice) {
       basePrice * 0.01 * (nbjours - 14);
   }
 
-  // si ya plus de 7 jours on enleve 10%
+  // Si plus de 7 jours, enlever 10%
   if (nbjours > 7) {
     totalPrice *= 0.9;
   }
 
-  // si ya plus de 30 jours on rajoute 20%
+  // Si plus de 30 jours, rajouter 20%
   if (nbjours > 30) {
     totalPrice += basePrice * 0.2;
   }
-  // Milo arrondi !
-  return Math.round(totalPrice * 100) / 100; // on arrondi pour facilité l'affichage
+
+
+
+  return Math.round(totalPrice * 100) / 100;
 }
 
-async function addPanier(idProduct, idClient, dateDebut, dateRetourPrevue) {
+async function calculateSurcout(retour_prevue_produit, retour_effectif_produit, prix) {
+  let totalPrice = prix;
+
+  // Conversion des dates en objets Date
+  let datePrevue = new Date(retour_prevue_produit);
+  let dateEffectif = new Date(retour_effectif_produit);
+
+  // Calcul de la différence en jours
+  let differenceInMilliseconds = dateEffectif.getTime() - datePrevue.getTime();
+  let nbjours = Math.ceil(differenceInMilliseconds / (1000 * 60 * 60 * 24)); // Convertir en jours
+
+  // Si la différence est négative, aucun surcoût
+  if (nbjours <= 0) {
+    return Math.round(totalPrice * 100) / 100;
+  }
+
+  // Ajouter 20% par jour supplémentaire
+  for (let i = 0; i < nbjours; i++) {
+    totalPrice += prix * 0.2; // +20% par jour
+  }
+
+  return Math.round(totalPrice * 100) / 100; // Arrondi pour facilité d'affichage
+}
+
+
+
+async function ShowPrixDeLoc(idProduct) {
+  const sql =
+    "SELECT * FROM produit WHERE id = ?";
+  const values = [idProduct];
+
+  return new Promise((resolve, reject) => {
+    bdd.query(sql, values, (err, results) => {
+      if (err) {
+        return reject(err);
+      }
+      resolve(results[0]);
+    });
+  });
+}
+
+
+async function addPanier(idProduct, idClient, dateDebut, dateRetourPrevue, elprecio) {
   try {
     // Calculer le nombre de jours entre dateDebut et dateRetourPrevue
     const dateDebutObj = new Date(dateDebut);
@@ -277,7 +323,8 @@ async function addPanier(idProduct, idClient, dateDebut, dateRetourPrevue) {
     const days = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
 
     // Calculer le prix total en utilisant le nombre de jours et le prix de base (ex. 15)
-    const basePrice = 15;
+    console.log("ceci est le precio : ", elprecio)
+    const basePrice = elprecio;
     const totalPrice = await calculateTotalPrice(days, basePrice);
 
     // Insérer le panier avec le prix total calculé
@@ -329,11 +376,11 @@ async function VerifDateDeResa(idProduct, dateDebut, dateRetourPrevue) {
       SELECT * FROM location
       WHERE produit_id = ?
       AND (
-        (date_debut <= ? AND date_retour_prevue >= ?)  -- Si la nouvelle date de début est comprise dans une location existante
+        (date_debut <= ? AND date_retour_prevue >= ? AND (status = "progress" OR status = "wait" ))  -- Si la nouvelle date de début est comprise dans une location existante
         OR
-        (date_debut <= ? AND date_retour_prevue >= ?)  -- Si la nouvelle date de fin est comprise dans une location existante
+        (date_debut <= ? AND date_retour_prevue >= ?AND (status = "progress" OR status = "wait" ))  -- Si la nouvelle date de fin est comprise dans une location existante
         OR
-        (date_debut >= ? AND date_retour_prevue <= ?)  -- Si la nouvelle location est totalement incluse dans une location existante
+        (date_debut >= ? AND date_retour_prevue <= ?AND (status = "progress" OR status = "wait" ))  -- Si la nouvelle location est totalement incluse dans une location existante
       )
     `;
 
@@ -352,7 +399,7 @@ async function VerifDateDeResa(idProduct, dateDebut, dateRetourPrevue) {
       if (err) {
         return reject(err);
       }
-      // Si le résultat est vide, cela signifie que les dates ne sont pas chevauchées et donc disponibles
+
       if (results.length > 0) {
         resolve(false); // Les dates sont déjà prises
       } else {
@@ -509,6 +556,40 @@ async function deleteCommande(idProduct, userId) {
   });
 }
 
+async function AddSurcout(idUser, idProduct, prix) {
+  const sql = `
+    UPDATE location 
+    SET surcout = ? 
+    WHERE utilisateur_id = ? AND produit_id = ?`;
+
+  const values = [prix, idUser, idProduct];
+
+  return new Promise((resolve, reject) => {
+    bdd.query(sql, values, (err, results) => {
+      if (err) {
+        return reject(err);
+      }
+      resolve(results);
+    });
+  });
+}
+
+async function ShowSurcout(idUser) {
+  const sql = `
+        SELECT * FROM location 
+        WHERE status = "finished" AND utilisateur_id = ?; 
+      `;
+
+  return new Promise((resolve, reject) => {
+    bdd.query(sql,idUser, (err, results) => {
+      if (err) {
+        return reject(err);
+      }
+      resolve(results);
+    });
+  });
+}
+
 module.exports = {
   getUserById,
   getAllUsers,
@@ -538,5 +619,9 @@ module.exports = {
   showCommandesPRO,
   locations_Progress,
   locations_End,
-  finish_location
+  finish_location,
+  ShowPrixDeLoc,
+  calculateSurcout,
+  AddSurcout,
+  ShowSurcout
 };

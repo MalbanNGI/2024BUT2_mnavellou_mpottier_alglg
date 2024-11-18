@@ -11,6 +11,15 @@
         <a href="/">Accueil</a> > <a href="/commandes-client">Commandes</a>
     </div>
     <h1 id="text" class="gradient "></h1>
+    <% let surcout_a_payer = 0 %>
+    <% verifStat.forEach(function(element) { %>
+        <% if(element.surcout > 0) { %>
+            <% surcout_a_payer = surcout_a_payer + element.surcout %>
+       
+    <% }}) %>
+    <% if(surcout_a_payer != 0) { %>
+    <h2>Vous devez payer le(s) surcout(s) estimés à <%= surcout_a_payer %> €</h2>
+    <% } %>
     <% if (panier && panier.length> 0) { %>
         <% panier.forEach(function(element) { %>
             <div class="cart-container">
@@ -110,7 +119,7 @@
             </div>
             <% })} %>
 
-                <h1 id="text2" class="gradient "></h1>
+                <h1 class="gradient">Commande terminées</h1>
                 <% if (panier2 && panier2.length> 0) { %>
                     <% panier2.forEach(function(element) { %>
                         <div class="cart-container">
@@ -207,7 +216,7 @@
 
                             <script>
 
-                                
+
                             </script>
                             <script>
                                 document.addEventListener("DOMContentLoaded", () => {
@@ -229,8 +238,8 @@
                                 });
                             </script>
                             <script>
-                               
 
-                            
+
+
                             </script>
                             <%- include('footer'); -%>
