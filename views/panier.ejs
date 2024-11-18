@@ -33,7 +33,7 @@
                 </div>
 
             
-                <p class="date-range">A retourner avant le <%= element.date_retour_prevue.getDay() %>  <% let
+                <p class="date-range">A retourner avant le <%= element.date_retour_prevue.getUTCDate() %>  <% let
                     month=element.date_retour_prevue.getMonth(); monthOfYears=["Janvier", "Février" ,
                     "Mars" , "Avril" , "Mai" , "Juin" , "Juillet" , "Août" , "Septembre"
                     , "Octobre" , "Novembre" , "Décembre" ]; %> <%= monthOfYears[month] 

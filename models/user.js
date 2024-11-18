@@ -61,7 +61,7 @@ async function show_product() {
       if (err) {
         return reject(err);
       }
-      resolve(results); // Return all products, not just the first one
+      resolve(results); 
     });
   });
 }
@@ -73,7 +73,7 @@ async function show_productById(id) {
       if (err) {
         return reject(err);
       }
-      resolve(results[0]); // Return the first (and only) product result
+      resolve(results[0]); 
     });
   });
 }
