@@ -470,8 +470,23 @@ app.post('/addPanier', async (req, res) => {
 
 
 
-app.get("/addProduct", function (req, res) {
-  res.render("addProduct", { error: null });
+app.get("/addProduct", async function (req, res) {
+  if (res.locals.role === "agent") {
+    try {
+      const products = await userModel.show_product();
+
+      res.render("addProduct", {products});
+
+    }
+    catch (err) {
+      console.error("Erreur lors de l'ajout du produit :", err);
+      res.status(500).send("Erreur lors de l'ajout du produit"); 
+    }
+
+    
+  }
+  res.render("index");
+  
 });
 
 app.post("/addProduct", async function (req, res) {

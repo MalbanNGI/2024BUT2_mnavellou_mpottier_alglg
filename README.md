@@ -21,11 +21,14 @@ Notre site internet comporte plusieurs pages permettant une navigation fluide, t
 Nous avons opté pour un design épuré avec des grandes polices d'écriture et des images imposantes, afin de correspondre aux attentes de notre cible, **Jacque Février**.
 La couleur principale du site est le **vert foncé**, évoquant à la fois la **nature**, la **santé** et l'**espérance**, en parfaite adéquation avec notre thématique sportive.
 
+## Fonctionnalités futures
+
 
 ## Problèmes recontrés 
-
+- 1) Bug au niveau des dates : lors de l'inscription l'utilisateur rentre sa date de naissance mais elle n'était pas la meme dans la page compte une fois connecté
+- 2) L'ajout d'une image lors de l'ajout d'un produit : je n'ai pas réussi 
 
 ## Solutions apportés
-
+- 1) J'ai utilisé une autre fonction pour afficher les dates
 
 ##  Extensions et modules
