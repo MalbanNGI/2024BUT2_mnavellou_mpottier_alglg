@@ -23,7 +23,7 @@ Ces pages sont accessibles dès l'accès au site et sans être connecté à un c
 Puis chaque rôle à des pages spécifiques. 
 L'agent a en plus des pages précédentes : 
 - **Location(s)** : qui va permettre de voir et confirmer les locations des utilisateurs.
-- **Produits** : qui va permettre d'ajouter et de supprimer un produit.
+- **Produits** : qui va permettre d'ajouter, de créer et de supprimer un produit. La suppresion ne peut se faire que si le produit n'est pas en location.
 
 L'admin, quant à lui, a une page en plus :
 - **Admin** : qui va permettre à l'admin d'inscrire et de créer un compte pour un agent sans pouvoir le supprimer par la suite.
