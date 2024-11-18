@@ -55,7 +55,8 @@ app.get("/commandes-client", async function (req, res) {
       const userId = res.locals.id;
       const panier = await userModel.showCommandesPRO(userId);
       const panier2 = await userModel.showCommandesEND(userId);
-      res.render("commandes-client", { panier, panier2 });
+      const verifStat = await userModel.ShowSurcout(userId)
+      res.render("commandes-client", { panier, panier2, verifStat });
     } catch (error) {
       console.error("Erreur dans la liste des produits:", error);
       res.status(500).send("Erreur dans la liste des produits");
@@ -65,8 +66,6 @@ app.get("/commandes-client", async function (req, res) {
     res.render("index");
   }
 });
-
-
 
 app.get("/produit/:id", async function (req, res) {
   const productId = req.params.id;
@@ -163,7 +162,15 @@ app.post("/finalise-commande", async function (req, res) {
   try {
     let idProduct = req.body.id_product;
     let idUser = req.body.id_user;
-    const user = await userModel.finish_location(idUser, idProduct);
+    const retour_effectif_produit = req.body.effectif;
+    const retour_prevue_produit =  req.body.dating;
+    await userModel.finish_location(idUser, idProduct);
+    const prixdeloc = await userModel.ShowPrixDeLoc(idProduct);
+    console.log("ceci est le prixloc apres le await : ", prixdeloc);
+    // Fonction ici qui verif si la date est bien rendu au bon moment
+    const surcout = await userModel.calculateSurcout(retour_prevue_produit ,retour_effectif_produit, prixdeloc["prix_location"]);
+    console.log("ceci est le surcout apres le await : ", surcout);
+    await userModel.AddSurcout(idUser,idProduct,surcout);
     const locations_wait = await userModel.locations_Wait();
     const locations_progress = await userModel.locations_Progress();
     const locations_end = await userModel.locations_End();
@@ -439,27 +446,36 @@ app.post('/addPanier', async (req, res) => {
     const { id_product, start, end } = req.body; // ID du produit et les dates sélectionnées
     console.log("coucou", id_product, start, end);
 
-    // Vérifier si les dates de location sont disponibles pour le produit
-    const isAvailable = await userModel.VerifDateDeResa(id_product, start, end);
-    console.log("ceci est isAvailable :", isAvailable);
+    const startDate = new Date(start);
+    const endDate = new Date(end);
+    console.log("Ceci est startDate :", startDate, " Ceci est endDate : ", endDate)
 
-    if (new Date(start) >= new Date(end)) {
+    // Vérif des dates sont valides
+    if (startDate >= endDate) {
       return res.status(400).send("La date de début doit être avant la date de fin.");
     }
 
-    if (isAvailable == true) {
-      // Si les dates sont disponibles, ajouter la location au panier
+    // Vérfi durée de la réservation + de 30 jours
+    const durationInDays = Math.ceil((endDate - startDate) / (1000 * 60 * 60 * 24));
+    if (durationInDays > 30) {
+      return res.status(400).send("La durée maximale de réservation est de 30 jours. Revenez en arrière !");
+    }
 
-      // const days = await userModel.HowManyDaysWhenPrice(id_product, userId);
-      // const prix = await userModel.calculateTotalPrice(days, 15); // on part dans l'idée que c'est le meme prix pour tout le matos
-      // console.log("/ADDPANIER - Milo voici le prix calculer apres la fonction calculateTotalPrice : ", prix, "et voici ensuite ke nombre de jour de location :", days)
-      await userModel.addPanier(id_product, userId, start, end);
-      const panier = await userModel.showPanier(userId);
+    // Vérifier si les dates de location sont disponibles pour le produit
+    const isAvailable = await userModel.VerifDateDeResa(id_product, start, end);
+    console.log("ceci est isAvailable :", isAvailable);
+    const prixdelocduproduit = await userModel.ShowPrixDeLoc(id_product);
+    console.log("Ceci est le prix de loc : ", prixdelocduproduit["prix_location"])
+    if (isAvailable === true) {
+      // Ajouter la location au panier si tout est correct
+      await userModel.addPanier(id_product, userId, start, end, prixdelocduproduit["prix_location"]);
+
       // Récupérer le panier mis à jour après l'ajout
+      const panier = await userModel.showPanier(userId);
       res.render("panier", { panier });
 
     } else {
-      // Sinon, renvoyer un message que les dates ne sont pas disponibles
+      // Les dates ne sont pas disponibles
       res.status(400).send("Les dates sélectionnées ne sont pas disponibles pour ce produit.");
     }
   } catch (err) {
@@ -467,6 +483,7 @@ app.post('/addPanier', async (req, res) => {
     res.status(500).send("Erreur lors de l'ajout au panier.");
   }
 });
+
 
 
 

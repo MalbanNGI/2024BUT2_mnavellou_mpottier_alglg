@@ -22,13 +22,13 @@
                     <%= product.description %>
                 </p>
                 <h2 class="price">
-                    <%= product.prix_location %>€/j - <%= product.etat %>
+                    <%= product.prix_location %> €/j - <%= product.etat %>
                 </h2>
                 <div class="delivery-info">
                     <span>Retrait <strong>GRATUIT</strong></span> en magasin et point relais
                 </div>
                 <input type="hidden" name="id_product" value="<%= product.id %>">
-                
+                <% if(role === 'client') { %>
 
                 <div class="quantity-reserve">    
                     <div class="date-range">
@@ -38,7 +38,10 @@
                         <input type="date" id="end" name="end" required>  
                     </div>
                 </div>
-                <button type="submit" class="reserve-btn">Réserver</button>
+                
+                    <button type="submit" class="reserve-btn">Réserver</button>
+                <% } %>
+                
             </div>
         </div>
     </form>

@@ -8,6 +8,7 @@
         <h1 id="text" class="gradient">Locations en attente de validation</h1>
 
         <div class="cards-container">
+            
             <% locations_wait.forEach(function(element) { %>
                 <div class="card">
                     <div class="card-header">
@@ -89,7 +90,12 @@
                     <div class="card-footer">
                         <form action="/finalise-commande" method="post">
                             <input type="hidden" name="id_product" value="<%= element.produit_id %>">
+                            <input type="hidden" name="dating" value="<%= element.date_retour_prevue %>">
                             <input type="hidden" name="id_user" value="<%= element.utilisateur_id %>">
+                            <input type="checkbox" id="age-confirmation" name="confirmation" required>
+                            <label for="confirmation">Confirmation de rendu</label>
+                            <label for="effectif">Retour effectif</label>
+                            <input type="date" id="start" name="effectif" required>
                             <button type="submit" class="button validate">Finaliser</button>
                         </form>
                     </div>
