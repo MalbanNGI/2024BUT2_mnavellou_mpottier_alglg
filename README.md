@@ -3,7 +3,7 @@
 
 <img src="public/img/logolocfit.png" alt="Logo de FitLoc" width="100">
 
-Notre équipe, composée de **Annaelle Le Guenic Le Gall**, **Milo Navellou** et **Maël Pottier**, a réalisé un site de location de matériel sportif, **Locfit**, dans le cadre de la **SAE 3.O1** Développer des parcours utilisateur et intégrer des interfaces utilisateur au sein d'un système d'information.
+Notre équipe, composée de **Annaëlle Le Guénic Le Gall**, **Milo Navellou** et **Maël Pottier**, a réalisé un site de location de matériel sportif, **Locfit**, dans le cadre de la **SAE 3.O1** Développer des parcours utilisateur et intégrer des interfaces utilisateur au sein d'un système d'information.
 
 Petit apparté, eswxrdctfgvbhujikoplm
 
@@ -16,7 +16,7 @@ Notre site internet comporte plusieurs pages permettant une navigation fluide, t
 - **Contact**
 - **Connexion** & **Inscription** si vous n'avez pas de compte. 
 - **Aides**
-- **Compte**
+- **Compte** : chaque personne qui se connecte aura accès à son compte et pourra le modifier ou le supprimer. Cependant, il ne peut pas le supprimer si il a une location en cours. 
 
 Ces pages sont accessibles dès l'accès au site et sans être connecté à un compte et chaque rôle les a aussi en pages de base.
 
