@@ -1,11 +1,20 @@
-# 2024BUT2_mnavellou_mpottier_alglg
+#### 2024BUT2_mnavellou_mpottier_alglg
 # Compte rendu SAE 3.O1 : Création du site LocFit
+<p align="center">
+<img src="public/img/logolocfit.png" alt="Logo de FitLoc" width="100" >
+</p>    
 
-<img src="public/img/logolocfit.png" alt="Logo de FitLoc" width="100">
+Notre équipe, composée de **Annaëlle Le Guénic Le Gall**, **Milo Navellou** et **Maël Pottier**, a réalisé un site de location de matériel sportif, **Locfit**, dans le cadre de la **SAE 3.O1**.
+Développer des parcours utilisateur et intégrer des interfaces utilisateur au sein d'un système d'information.
 
-Notre équipe, composée de **Annaëlle Le Guénic Le Gall**, **Milo Navellou** et **Maël Pottier**, a réalisé un site de location de matériel sportif, **Locfit**, dans le cadre de la **SAE 3.O1** Développer des parcours utilisateur et intégrer des interfaces utilisateur au sein d'un système d'information.
 
-Petit apparté, eswxrdctfgvbhujikoplm
+Petit apparté, il faut exécuter le code la BDD disponible dans le dossier `/models/bdd`
+
+* Le fichier `scriptTable.sql` créé 3 tables 
+    - La table ```utilisateur ``` 
+    - La table ```produit ``` 
+    - La table ```location ``` 
+* Le fichier `scriptData.sql` insère les données dans la Base De Donnée mais il n'y a pas de réservation en cours ! C'est à vous de créer une/des réservation(s)
 
 ## Description du site
 
@@ -58,7 +67,7 @@ Le **client** se connecte, réserve du matérielsà des dates données.
 - Si il réserve moins de 3 jours il y a un message d'erreur.
 - Si il réserve plus de 30 jours il y a un message d'erreur.
 
-Autrement, ca envoie une demande de valdiation de commange a/aux agent(s). 
+Autrement, ça **envoie** une demande de valdiation de commange a/aux agent(s). Le statut de la location est en `wait`.
 
 L'**agent** se connecte, va dans l'onglet "Location(s)". 
 Il peut voir les commandes à valider, les commandes en cours ainsi que les commandes terminées.

@@ -329,8 +329,8 @@ async function addPanier(idProduct, idClient, dateDebut, dateRetourPrevue, elpre
 
     // Insérer le panier avec le prix total calculé
     const sql = `
-            INSERT INTO location (produit_id, utilisateur_id, date_debut, date_retour_prevue, prix_total, status)
-            VALUES (?, ?, ?, ?, ?, 'wait')
+            INSERT INTO location (produit_id, utilisateur_id, date_debut, date_retour_prevue, prix_total, status, surcout)
+            VALUES (?, ?, ?, ?, ?, 'wait', 0)
         `;
 
     const values = [

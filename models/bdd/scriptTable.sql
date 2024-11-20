@@ -16,7 +16,9 @@ CREATE TABLE `location` (
   `date_retour_effective` DATE,
   `prix_total` FLOAT,
   `utilisateur_id` INTEGER NOT NULL,
-  `produit_id` INTEGER NOT NULL
+  `produit_id` INTEGER NOT NULL,
+  `status` VARCHAR(50),
+  `surcout` FLOAT
 );
 
 CREATE TABLE `produit` (
@@ -33,3 +35,4 @@ CREATE TABLE `produit` (
 ALTER TABLE `location` ADD FOREIGN KEY (`utilisateur_id`) REFERENCES `utilisateur` (`id`);
 
 ALTER TABLE `location` ADD FOREIGN KEY (`produit_id`) REFERENCES `produit` (`id`);
+

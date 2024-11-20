@@ -22,3 +22,4 @@ VALUES ('Tapis de course', 'Tapis de course pliable avec amortissement avancé, 
 
 INSERT INTO `produit` (type, description, marque, modele, prix_location, etat, image)
 VALUES ('Banc de musculation', 'Banc inclinable pour divers exercices de musculation.', 'Domyos', 'Training Bench 500', 10.0, 'Très bon état', 'Training_Bench.png');
+
