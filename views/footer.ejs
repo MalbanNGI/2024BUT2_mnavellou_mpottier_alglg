@@ -14,7 +14,13 @@
               <ul>
                   <li><a href="/catalogue">Catalogue</a></li>
                   <li><a href="#">Annonces</a></li>
-                  <li><a href="#">Livraisons</a></li>
+                  if(isAuth) {
+                    <li><a href="/commandes-client">Livraisons</a></li>
+                  }
+                else {
+                    <li><a href="/compte">Livraisons</a></li>
+                }
+                  
               </ul>
           </div>
 
