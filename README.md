@@ -1,73 +1,99 @@
+
+
 #### 2024BUT2_mnavellou_mpottier_alglg
+
 # Compte rendu SAE 3.O1 : Création du site LocFit
+
 <p align="center">
-<img src="public/img/logolocfit.png" alt="Logo de FitLoc" width="100" >
-</p>    
+    <img src="public/img/logolocfit.png" alt="Logo de FitLoc" width="100">
+</p>
 
-Notre équipe, composée de **Annaëlle Le Guénic Le Gall**, **Milo Navellou** et **Maël Pottier**, a réalisé un site de location de matériel sportif, **Locfit**, dans le cadre de la **SAE 3.O1**.
-Développer des parcours utilisateur et intégrer des interfaces utilisateur au sein d'un système d'information.
+---
 
+Notre équipe, composée d'**Annaëlle Le Guénic Le Gall**, **Milo Navellou** et **Maël Pottier**, a réalisé un site de location de matériel sportif, **Locfit**, dans le cadre de la **SAE 3.O1**.  
+*Objectif : Développer des parcours utilisateur et intégrer des interfaces utilisateur au sein d'un système d'information.*
 
-Petit apparté, il faut exécuter le code la BDD disponible dans le dossier `/models/bdd`
+> **Note :** Il est nécessaire d'exécuter le script de la BDD situé dans le dossier `/models/bdd` pour initialiser les données.
 
-* Le fichier `scriptTable.sql` créé 3 tables 
-    - La table ```utilisateur ``` 
-    - La table ```produit ``` 
-    - La table ```location ``` 
-* Le fichier `scriptData.sql` insère les données dans la Base De Donnée mais il n'y a pas de réservation en cours ! C'est à vous de créer une/des réservation(s)
+### Scripts BDD
+- Le fichier **`scriptTable.sql`** : Crée trois tables :
+  - Table `utilisateur`
+  - Table `produit`
+  - Table `location`
+- **`scriptData.sql`** : Insère des données dans la base de données. (Attention : aucune réservation n'est enregistrée initialement).
+
+---
 
 ## Description du site
 
-Notre site internet comporte plusieurs pages permettant une navigation fluide, telles que :
+Le site propose une navigation fluide à travers différentes pages accessibles sans connexion préalable :
 - **Accueil**
 - **Catalogue**
 - **Détail des produits**
 - **Contact**
-- **Connexion** & **Inscription** si vous n'avez pas de compte. 
+- **Connexion** / **Inscription**
 - **Aides**
-- **Compte** : chaque personne qui se connecte aura accès à son compte et pourra le modifier ou le supprimer. Cependant, il ne peut pas le supprimer si il a une location en cours. 
+- **Compte** : Permet de modifier ou supprimer son compte *(impossible si une location est en cours).*
 
-Ces pages sont accessibles dès l'accès au site et sans être connecté à un compte et chaque rôle les a aussi en pages de base.
+### Rôles spécifiques
 
-Puis chaque rôle à des pages spécifiques. 
-L'agent a en plus des pages précédentes : 
-- **Location(s)** : qui va permettre de voir et confirmer les locations des utilisateurs.
-- **Produits** : qui va permettre d'ajouter, de créer et de supprimer un produit. La suppresion ne peut se faire que si le produit n'est pas en location.
+#### > Agent
+En complément des pages standards :
+- **Location(s)** : Voir et valider les locations des utilisateurs.
+- **Produits** : Ajouter, modifier ou supprimer un produit (non supprimable si en location).
 
-L'admin, quant à lui, a une page en plus :
-- **Admin** : qui va permettre à l'admin d'inscrire et de créer un compte pour un agent sans pouvoir le supprimer par la suite.
+#### > Admin
+En complément des pages standards :
+- **Admin** : Création de comptes agents (sans possibilité de suppression).
 
-Et pour finir le client a également une page en plus qui est : 
-- **Commandes** : qui va permettre au client de voir ses commandes en cours et terminées. Il peut également annuler une location si elle n'a pas encore commencé. 
+#### > Client
+En complément des pages standards :
+- **Commandes** : Visualiser ses commandes en cours et terminées. Annuler une réservation possible si elle n’a pas encore commencé.
+- **Panier** : Visualiser ses commandes en attente de validation. 
+
+---
 
 ## Choix graphiques
 
-Nous avons opté pour un design épuré avec des grandes polices d'écriture et des images imposantes, afin de correspondre aux attentes de notre cible, **Jacques Février**. Nous avons analysé notre cible afin de connaître et de savoir plus facilement ce qui serait le mieux pour lui au niveau visuel et accéssibilité. 
-La couleur principale du site est le **vert foncé** (#198900), évoquant à la fois la **nature**, la **santé** et l'**espérance**, en parfaite adéquation avec notre thématique sportive.
+Nous avons opté pour un design épuré, avec des **grandes polices** et des **images imposantes**, correspondant à la cible **Jacques Février**.  
+### Couleur principale
+- **Vert foncé** (#198900) : Symbolise la **nature**, la **santé**, et l'**espérance**, en accord avec la thématique sportive.
+
+---
 
 ## Fonctionnalités futures
+- Actuellement, lorsqu'on arrive sur la page d'un produit, peut importe le produit il aura toujours la même description avec les mêmes dimmensions. Dans une version futur, ces dimensions seront rajoutées dans la base de données pour correspondre à chaque produit. 
 
-- Actuelement, lorsqu'on arrive sur la page d'un produit, peut importe le produit il aura toujours la même description avec les mêmes dimmensions. Dans une version futur, ces dimensions seront rajoutées dans la base de donnés pour correspondre à chaque produit. 
 
-## Problèmes recontrés 
-- 1) Bug au niveau des dates : lors de l'inscription l'utilisateur rentre sa date de naissance mais elle n'était pas la même dans la page compte une fois connecté. 
-- 2) L'ajout d'une image lors de l'ajout d'un produit : je n'ai pas réussi à faire en sorte d'importer une image de référence pour le produit 
+---
 
-## Solutions apportées
-- 1) J'ai utilisé une autre fonction pour afficher les dates
-- 2) Je n'ai pas trouvé de solution pour ce problème. Sans doute avec des modules mais pour les faire correspondre à nos règles BDD. 
+## Problèmes rencontrés
 
-##  Extensions et modules
+1. **Bug de date** : La date de naissance de l'utilisateur n'était pas correctement affichée après connexion.
+2. **Ajout d'image produit** : Impossible d'importer une image pour un produit en respectant les règles BDD.
 
-Aucune extension et aucun module n'a été installé. 
+### Solutions apportées
+- **Date** : Utilisation d'une fonction alternative pour corriger l'affichage.
+- **Image** : Problème non résolu (nécessiterait l'utilisation de modules adaptés).
+
+---
+
+## Extensions et modules
+Aucune extension ou module externe n’a été installé.
+
+---
 
 ## Fonctionnement
+
+### Le client
 
 Le **client** se connecte, réserve du matérielsà des dates données. 
 - Si il réserve moins de 3 jours il y a un message d'erreur.
 - Si il réserve plus de 30 jours il y a un message d'erreur.
 
-Autrement, ça **envoie** une demande de valdiation de commange a/aux agent(s). Le statut de la location est en `wait`.
+Autrement, ça **envoie** une demande de validation de commande à/aux agent(s). Le statut de la location est en wait.
+
+### L'agent
 
 L'**agent** se connecte, va dans l'onglet "Location(s)". 
 Il peut voir les commandes à valider, les commandes en cours ainsi que les commandes terminées.
@@ -79,4 +105,10 @@ Pour valider le retour de la commande il doit cocher la case et remplir la date 
 
 Un fois le bouton *finaliser* cliqué, cela rajoute le prix du surcout en fonction du nombre de jour de retard (+20%/jrs).
 
-Le client verra donc apparaitre un message dans l'onglet *commandes* avec le prix du surcout à payer.
+### L'admin
+
+L'admin via la page ADMIN peut créer un nouvel agent qui pourra s'occuper des commandes et des locations.
+
+---
+
+> **Merci de votre attention !**
