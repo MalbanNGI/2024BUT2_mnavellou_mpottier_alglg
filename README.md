@@ -13,6 +13,8 @@
 Notre équipe, composée d'**Annaëlle Le Guénic Le Gall**, **Milo Navellou** et **Maël Pottier**, a réalisé un site de location de matériel sportif, **Locfit**, dans le cadre de la **SAE 3.O1**.  
 *Objectif : Développer des parcours utilisateur et intégrer des interfaces utilisateur au sein d'un système d'information.*
 
+Les tâches ont été réparties de manière stratégique afin de progresser rapidement tout en favorisant un travail asynchrone. Les fichiers CSS ont été divisés, permettant ainsi à chaque membre de l'équipe de travailler efficacement. 
+
 > **Note :** Il est nécessaire d'exécuter le script de la BDD situé dans le dossier `/models/bdd` pour initialiser les données.
 
 ### Scripts BDD
