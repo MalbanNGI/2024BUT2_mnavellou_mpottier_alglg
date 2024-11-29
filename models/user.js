@@ -275,25 +275,25 @@ async function calculateTotalPrice(nbjours, basePrice) {
 async function calculateSurcout(retour_prevue_produit, retour_effectif_produit, prix) {
   let totalPrice = prix;
 
-  // Conversion des dates en objets Date
+  // Conversion des dates
   let datePrevue = new Date(retour_prevue_produit);
   let dateEffectif = new Date(retour_effectif_produit);
 
-  // Calcul de la différence en jours
+  // Calcul de la diff en jours
   let differenceInMilliseconds = dateEffectif.getTime() - datePrevue.getTime();
   let nbjours = Math.ceil(differenceInMilliseconds / (1000 * 60 * 60 * 24)); // Convertir en jours
 
-  // Si la différence est négative, aucun surcoût
+  // Si la différence est négative, 0 surcoût
   if (nbjours <= 0) {
     return Math.round(totalPrice * 100) / 100;
   }
 
-  // Ajouter 20% par jour supplémentaire
+  
   for (let i = 0; i < nbjours; i++) {
     totalPrice += prix * 0.2; // +20% par jour
   }
 
-  return Math.round(totalPrice * 100) / 100; // Arrondi pour facilité d'affichage
+  return Math.round(totalPrice * 100) / 100; 
 }
 
 

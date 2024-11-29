@@ -49,7 +49,7 @@
         <!-- première ligne -->
 
         <div class="allProduct">
-            <% products.forEach(function(element) { %>
+            <% products.forEach(function(element) { %> 
 
                 <div class="card">
                     <div class="image-container">
@@ -67,7 +67,7 @@
                         </div>
                         <div class="price-btn-container">
                             <button class="btn"><a class="produit-lien" href="/produit/<%= element.id %>">Découvrir</a></button>
-                            <% if (role==="agent" ) { %>
+                            <% if (role ==="agent" ) { %>
                                 <button class="btn rouge"><a
                                         href="/delete-product/<%= element.id %>">Supprimer</a></button>
                                 <% } %>
@@ -81,9 +81,9 @@
 
     </body>
 <style>
-    /* Adapté pour une meilleure ergonomie des seniors */
+
 body {
-    background-color: #F0F0F0; /* Arrière-plan clair pour un contraste optimal */
+    background-color: #F0F0F0; /* Arrière-plan clair  */
 }
 
 footer  {
